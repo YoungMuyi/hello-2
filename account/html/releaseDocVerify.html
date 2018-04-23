@@ -1,0 +1,139 @@
+<div id="tab_2204" class="releaseDocVerify basedata tab-page" role="tabpanel">
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <!--begin search box-->
+                <div class="box search-box">
+                    <div class="box-body" style="position: relative;padding-bottom: 35px;">
+                        <form class="search-table form-inline" id="releaseDocVerifySearchForm" role="form" style="height: 66px;overflow: hidden;">
+                            <div class="row" style="margin-bottom:10px;margin-left: 0px;">
+                                <div class="form-group" style="width:28%;">
+                                    <label style="width: 50px;">状态</label>
+                                    <select  name="releaseStatus" class="form-control select2 select2-hidden-accessible" style="width:70%;" tabindex="-1" aria-hidden="true">
+                                        <option value=""></option>
+                                        <option>放单失败</option>
+                                        <option>未登记</option>
+                                        <option>已登记</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" style="width:28%;margin:auto 6%;">
+                                    <label style="width: 50px;">提单号</label>
+                                    <input type="text" class="form-control" style="width: 70%" name="billLadingNo">
+                                </div>
+                                <div class="form-group" style="width:28%;">
+                                    <label style="width: 50px;">申请人</label>
+                                    <input type="text" class="form-control" style="width: 70%" name="applicantName">
+                                </div>
+                            </div>
+                            <div class="row" style="margin-bottom:10px;margin-left: 0px;">
+                                <div class="form-group" style="width:28%;">
+                                    <label style="width: 50px;">放单方式</label>
+                                    <select  name="releaseMethod" class="form-control select2 select2-hidden-accessible" style="width:70%;" tabindex="-1" aria-hidden="true">
+                                        <option value=""></option>
+                                        <option>智能放单</option>
+                                        <option>人工放单</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" style="width:28%;margin:auto 6%;">
+                                    <label style="width: 50px;">客户名称</label>
+                                    <input type="text" class="form-control" style="width: 70%" name="customerName">
+                                </div>
+                                <div class="form-group" style="width:28%;">
+                                    <label style="width:50px;">申请时间</label>
+                                    <input type="text" class="form-control startTime" name="applyDateStart" id="releaseDocVerifyBeginTime" style="width:33%;">
+                                    -
+                                    <input type="text"  class="form-control endTime" name="applyDateEnd" id="releaseDocVerifyEndTime" style="width:33%;">
+                                </div>
+                            </div>
+                        </form>
+                        <div class="sm-wrqapper" style="position: absolute;bottom: 5px;width: 180px;left: 50%;margin-left: -90px;">
+                            <!--<span onclick="releaseDocVerify.telescopic(this)" style="font-size: 13px;color:#20aaec;position: relative;top: 2px;cursor: pointer;">更多搜索<i class="fa fa-fw fa-angle-double-down"></i></span>-->
+                            <input type="button" id="BTN_90040100" class="btn btn-info btn-size" onclick="releaseDocVerify.doSearch()" value="查询"/>
+                            <button class="btn btn-info search_reset" id="releaseDocVerifySearchPortForm"  style="background-color: white;color:#000;border:1px solid #ccc;">
+                                重置
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!--提单登记-->
+                <div class="modal fade" id="ladingBillRegisterModal" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" style="width: 400px; height: 300px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close modal_close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="ladingBillRegisterModalTitle">提单登记</h4>
+                            </div>
+                            <div class="modal-body" style="padding: 5px;height: 150px" id="ladingBillRegisterModalBody">
+                                <form id="ladingBillRegisterModalForm" class="form-inline">
+                                    <table class="edit-table">
+                                        <tr>
+                                            <td style="width: 30%">提单号</td>
+                                            <td style="width: 65%">
+                                                <input style="width: 80%" type="text" class="form-control" name="billLadingNo"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 30%">领取人</td>
+                                            <td style="width: 65%">
+                                                <input style="width:80%;" type="text" class="form-control" name="receiveBillManName"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 30%">领取时间</td>
+                                            <td style="width: 65%">
+                                                <input style="width:80%;" type="text" class="form-control receiveBillDate" name="receiveBillDate"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <div style="height: 20px">
+
+                                    </div>
+
+                                    <div hidden="true"><label>提单登记</label>
+                                        <input type="text"  name="releaseDocVerifyId"/>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="sm-wrapper">
+                                            <input type="submit" class="btn btn-primary" id="ladingBillRegisterModalSubmit" value="保存"/>
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button></button>
+                                            <!--<button type="button" class="btn btn-primary" id="editAccountExchangeRateModalSubmit">确定</button>-->
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div>
+
+                <div class="btn_group">
+                    <button id="BTN_900602001" type="button" onclick="releaseDocVerify.ladingBillRegister()" class="btn btn-info" data-name="BTN_22040200" style="display: none;">
+                        提单登记
+                    </button>
+                </div>
+                <div class="box datable-box">
+
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="releaseDocVerifyTable" class="table table-bordered table-striped">
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+
+                    <!--modify button-->
+
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- DataTables -->
+    <script src="account/js/releaseDocVerify.js"></script>
+    <script src="account/js/public.js"></script>
+    <script>
+
+    </script>
+</div>

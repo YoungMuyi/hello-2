@@ -1,0 +1,168 @@
+<div id="tab_220106" class="interestMaintenance basedata tab-page" role="tabpanel">
+
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="modal fade" id="editInterestMaintenanceModal" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" style="width: 400px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close modal_close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="editInterestMaintenanceModalTitle">新增</h4>
+                            </div>
+                            <div class="modal-body" style="padding: 5px;height: 248px" id="editInterestMaintenanceModalBody">
+                                <form id="editInterestMaintenanceForm" class="form-inline">
+                                    <table class="edit-table">
+                                        <tr>
+                                            <td style="width: 30%">业务类型</td>
+                                            <td style="width: 65%">
+                                                <select  style="width: 86%;" name="businessType"
+                                                         class="form-control select2 select2-hidden-accessible"  tabindex="-1" aria-hidden="true">
+                                                    <option value="空进">空进</option>
+                                                    <option value="海进">海进</option>
+                                                    <option value="海运进口整箱">海运进口整箱</option>
+                                                    <option value="海运出口整箱">海运出口整箱</option>
+                                                    <option value="多式联运">多式联运</option>
+                                                    <option value="物流集装箱进口">物流集装箱进口</option>
+
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 30%">计息期</td>
+                                            <td style="width: 65%">
+                                                <select  style="width:50%;" name="beginType"
+                                                         class="form-control select2 select2-hidden-accessible"  tabindex="-1" aria-hidden="true">
+                                                    <option value="起始">起始</option>
+                                                    <option value="起始(包含)">起始(包含)</option>
+                                                </select>
+                                                <input style="width: 35%;padding-right: 10px" type="text" class="form-control" name="beginDate"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 30%"></td>
+                                            <td style="width: 65%">
+                                                <select  style="width:50%;" name="endType"
+                                                         class="form-control select2 select2-hidden-accessible"  tabindex="-1" aria-hidden="true">
+                                                    <option value="终止">终止</option>
+                                                    <option value="终止(包含)">终止(包含)</option>
+                                                </select>
+                                                <input style="width: 35%;" type="text" class="form-control" name="interestPeriodDate"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 30%">利率</td>
+                                            <td style="width: 65%">
+                                                <select  style="width:50%;" name="symbol"
+                                                         class="form-control select2 select2-hidden-accessible"  tabindex="-1" aria-hidden="true">
+                                                    <option value="+">+</option>
+                                                    <option value="-">-</option>
+                                                </select>
+                                                <div style="width: 35%;" class="input-group">
+                                                    <input type="text" class="form-control" name="interestRate">
+                                                    <span style="padding: 0%; background-color: white;" class="input-group-addon">%</span>
+                                                </div>
+                                                <!--<input style="width: 30%;" type="text" class="form-control" name="interestRate"/>-->
+                                                <!--<span style="width: 5%;" class="input-group-addon">%</span>-->
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 30%">操作人</td>
+                                            <td style="width: 65%"><input style="width: 86%;" type="text" class="form-control" name="amenderName" readonly/></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 30%">操作时间</td>
+                                            <td style="width: 65%"><input style="width: 86%;" type="text" class="form-control" name="amendTime" readonly/></td>
+                                        </tr>
+                                    </table>
+                                    <div hidden="true"><label>新增或保存</label>
+                                        <input type="text" class="form-control" name="amender" value="1" readonly/>
+                                        <input type="text" name="saveType" id="saveType">
+                                        <input type="text"  name="interestPeriodId"/>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="sm-wrapper">
+                                            
+                                            <!--<button type="button" class="btn btn-primary" id="editAccountExchangeRateModalSubmit">确定</button>-->
+                                            <!--<input type="submit" class="btn btn-primary" id="editMaintenanceModalSubmit" onclick="interestMaintenance.submitEditInterestMaintenanceModal()" value="确定"/>-->
+                                            <input type="submit" class="btn btn-primary" id="editMaintenanceModalSubmit"  value="确定"/>
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button></button>
+
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div>
+                <div class="btn_group">
+                    <button id="BTN_11161" onclick="interestMaintenance.addInterestMaintenance()" class="btn btn-info">
+                        新增
+                    </button>
+                    <button id="BTN_11162" onclick="interestMaintenance.editInterestMaintenance()" class="btn btn-info">
+                        修改
+                    </button>
+                    <button id="BTN_11163" onclick="interestMaintenance.deleteInterestMaintenance()" class="btn btn-info">
+                        删除
+                    </button>
+                    <!--    <div class="btn-group export-excel dataTable-dropdown-menu">
+                            <button type="button" class="btn btn-info">导出Excel</button>
+                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu export-excel-menu" role="menu">
+                                <li id="AccountExchangeRate_export-excel-selected"></li>
+                                <li id="AccountExchangeRate_export-excel-current"></li>
+                                <li id="AccountExchangeRate_export-excel-all"></li>
+                            </ul>
+                        </div>
+                        &lt;!&ndash;<button id="AccountExchangeRate_import-excel" onclick="customsDocumentAttachment.importExcel()" class="btn btn-info">&ndash;&gt;
+                        &lt;!&ndash;导出Excel&ndash;&gt;
+                        &lt;!&ndash;</button>&ndash;&gt;
+                        <div class="btn-group export-print dataTable-dropdown-menu">
+                            <button type="button" class="btn btn-info">打印</button>
+                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu export-print-menu" role="menu">
+                                <li id="AccountExchangeRate_export-print-selected"></li>
+                                <li id="AccountExchangeRate_export-print-all"></li>
+                            </ul>
+                        </div>-->
+                    <!--<div class="btn-height btn-group" style="vertical-align: top;" id="AccountExchangeRate_export-copy"></div>-->
+                    <!--<div class="btn-height btn-group" style="vertical-align: top;"  id="AccountExchangeRate_export-columnVisibility" ></div>-->
+
+                    <!--<button id="refreshAccountExchangeRate" onclick="AccountExchangeRate.doSearch()" class="btn btn-info">-->
+                    <!--刷新-->
+                    <!--</button>-->
+                    <!--<button id="showAccountExchangeRateDetail" class="btn btn-info">-->
+                    <!--详情-->
+                    <!--</button>-->
+                </div>
+                <div class="box datable-box">
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="interestMaintenanceTable" class="table table-bordered table-striped">
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                    <!--modify button-->
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- DataTables -->
+    <script src="account/js/interestMaintenance.js"></script>
+    <script src="account/js/public.js"></script>
+    <script>
+
+    </script>
+</div>

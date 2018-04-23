@@ -1,0 +1,395 @@
+<div id="tab_220304" class="invoiceManagementPay basedata  tab-page" role="tabpanel">
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <!--begin search box-->
+                <div class="box search-box">
+
+                    <div class="box-body" style="position: relative;padding-bottom: 35px;">
+                        <form class="search-table form-inline"
+                              id="invoiceManagementPaySearchForm" role="form" style="height: 33px;overflow: hidden;">
+                            <div class="row" style="margin-bottom: 10px; margin-left: 0px;">
+                                <div class="form-group" style="width:28%;">
+                                    <label style="width: 50px;">对账编号</label>
+                                    <input name="reconcileCode" type="text"
+                                           class="form-control" style="width: 70%;" />
+                                </div>
+                                <div class="form-group" style="width:28%;margin:auto 6%;">
+                                    <label style="width: 50px;">往来单位</label>
+                                    <input name="contactCompany" type="text"
+                                           class="form-control" style="width: 70%;" />
+                                </div>
+                                <div class="form-group" style="width:28%;">
+                                    <label style="width: 50px;">状态</label>
+                                    <select name="invoiceRegisterStatus" class="form-control select2 select2-hidden-accessible" style="width: 70%;" tabindex="-1" aria-hidden="true">
+                                        <option value=""></option>
+                                        <option>已登记</option>
+                                        <option>未登记</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="sm-wrqapper" style="position: absolute;bottom: 5px;width: 180px;left: 50%;margin-left: -90px;">
+                            <!--  <lable class="check-1">生效&nbsp&nbsp&nbsp&nbsp<input class="check-size" type="checkbox" name="生效"/>
+                             </lable> -->
+                            <!--<span onclick="airQuotation.telescopic(this)" style="font-size: 13px;color:#20aaec;position: relative;top: 2px;cursor: pointer;">更多搜索<i class="fa fa-fw fa-angle-double-down"></i></span>-->
+                            <input type="button" id="BTN_90040100" class="btn btn-info btn-size" onclick="invoiceManagementPay.doSearch()" value="查询"/>
+                            <button class="btn btn-info search_reset" id="invoiceManagementPaySeachSiteForm"  style="background-color: white;color:#000;border:1px solid #ccc;">
+                                重置
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!--end search box-->
+                <div class="modal fade" id="editInvoiceManagementPayModal"
+                     tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close modal_close"
+                                        data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title"
+                                    id="beditInvoiceManagementPayModalTitle">发票登记</h4>
+                            </div>
+                            <div class="modal-body" style="padding: 10px 20px 30px;"
+                                 id="editInvoiceManagementPayModalBody">
+                                <form id="editInvoiceManagementPayForm" class="form-inline">
+                                    <div class="box">
+                                        <div class="box-header" style="padding: 5px 5px">
+                                            <span style="font-size: 16px">发票详情</span>
+                                            <span style="margin-left: 378px">
+											<button type="button" onclick="invoiceManagementPay.addInvoiceManagementPaySurcharge()"
+                                                    class="btn btn-info">增加</button>
+											<button type="button" onclick="invoiceManagementPay.deleteInvoiceManagementPaySurcharge()"
+                                                    class="btn btn-info">删除</button>
+											</span>
+                                        </div>
+                                        <div class="box-body no-padding">
+                                            <table class="table table-condensed" border="1" cellspacing="0" cellpadding="0" style="border:1px solid #c6d3d6;width:100%;">
+                                                <thead>
+                                                <tr>
+                                                    <th style="width: 6%;"><input type="checkbox" class="checkAllSurcharge"></th>
+                                                    <th style="width: 23.5%;">发票类型</th>
+                                                    <th style="width: 23.5%;">发票号</th>
+                                                    <th style="width: 23.5%;">币种</th>
+                                                    <th style="width: 23.5%;">发票金额</th>
+                                                </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                        <div style="width:100%;max-height:113px;overflow-y: auto;">
+                                            <table class="table table-condensed" id="detailInvoiceManagementPayTable" border="1" cellspacing="0" cellpadding="0" style="border:1px solid #c6d3d6;width:100%;">
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <table class="edit-table" id="infoExDetail" style="margin-bottom: 15px">
+                                        <tr>
+                                            <td style="width:8%;">登记人</td>
+                                            <td style="width:42%;"><input type="text" class="form-control"
+                                                                          name="invoiceRegisterName" style="width: 70%;" readonly /></td>
+                                            <td style="width:10%;">登记时间</td>
+                                            <td style="width:40%;">
+                                                <!-- <input type="text" class="form-control"
+                                                                          name="invoiceRegisterDate" style="width: 60%;" readonly /> -->
+                                                <input type="text" class="form-control"
+                                                                          name="invoiceRegisterDate" style="width: 60%;"/>
+                                                            </td>
+                                        </tr>
+                                    </table>
+                                    <div class="form-group" hidden="true" style="display: none" id="infoExDetail1">
+                                        <label>新增或编辑</label>
+                                        <input type="text" name="invoiceRegisterManId" readonly /></td>
+                                        <input type="text" name="payableReconcileId">
+                                        <!--id="payableReconcileId"-->
+                                    </div>
+                                    <div class="modal-footer" style="position: absolute; right: 0; bottom: 0;">
+                                        <div class="sm-wrapper">
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+                                            <!--<button type="button" class="btn btn-primary" id="editInvoiceManagementPayModalSubmit">确定</button>-->
+                                            <input type="button" class="btn btn-primary" id="editInvoiceManagementPayModalSubmit" onclick="invoiceManagementPay.submitEditInvoiceManagementPayModal()" value="确定" />
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal -->
+                </div>
+
+                <!--对账单详情-->
+                <div class="modal fade" id="detailsInvoiceManagementPayModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" style="width: 800px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close modal_close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">对账单详情</h4>
+                            </div>
+                            <div class="modal-body" id="detailsInvoiceManagementPayModalBody">
+                                <form id="detailsInvoiceManagementPayForm" class="form-inline">
+                                    <table class="edit-table" style="text-align: right">
+                                        <tr>
+                                            <td style="width: 7%;">
+                                                <label>对账编号</label>
+                                            </td>
+                                            <td style="width: 16%;">
+                                                <input style="width: 100%;" class="form-control" name="reconcileCode">
+                                            </td>
+                                            <td style="width: 11%;">
+                                                <label>客户代码</label>
+                                            </td>
+                                            <td style="width: 16%;">
+                                                <input style="width: 100%;" class="form-control" name="customerCode">
+                                            </td>
+                                            <td style="width: 11%;">
+                                                <label>往来单位</label>
+                                            </td>
+                                            <td style="width: 16%;">
+                                                <input style="width: 100%;" class="form-control" name="contactCompany">
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td colspan="6">
+                                                <table id="detailsInvoiceManagementPayTable" class="table table-bordered table-striped"></table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 7%;">
+                                                <label>应付USD</label>
+                                            </td>
+                                            <td style="width: 16%;">
+                                                <input style="width: 100%;" class="form-control" name="payableUsd">
+                                            </td>
+                                            <td style="width: 11%;">
+                                                <label>应付RMB</label>
+                                            </td>
+                                            <td style="width: 16%;">
+                                                <input style="width: 100%;" class="form-control" name="payableRmb">
+                                            </td>
+                                            <td style="width: 11%;">
+                                                <label>对账USD</label>
+                                            </td>
+                                            <td style="width: 16%;">
+                                                <input style="width: 100%;" class="form-control" name="reconcileUsd">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 7%;">
+                                                <label>对账RMB</label>
+                                            </td>
+                                            <td style="width: 16%;">
+                                                <input style="width: 100%;" class="form-control" name="reconcileRmb">
+                                            </td>
+                                            <td style="width: 11%;">
+                                                <label>对账合计币种</label>
+                                            </td>
+                                            <td style="width: 16%;">
+                                                <input style="width: 100%;" class="form-control" name="reconcileCurrency">
+                                            </td>
+                                            <td style="width: 11%;">
+                                                <label>汇率</label>
+                                            </td>
+                                            <td style="width: 16%;">
+                                                <input style="width: 100%;" class="form-control" name="exchangeRate">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 7%;">
+                                                <label>对账金额</label>
+                                            </td>
+                                            <td style="width: 16%;">
+                                                <input style="width: 100%;" class="form-control" name="reconcileAmount">
+                                            </td>
+                                            <td style="width: 11%;">
+                                                <label>核对人</label>
+                                            </td>
+                                            <td style="width: 16%;">
+                                                <input style="width: 100%;" class="form-control" name="checkerName">
+                                            </td>
+                                            <td style="width: 11%;">
+                                                <label>核对时间</label>
+                                            </td>
+                                            <td style="width: 16%;">
+                                                <input style="width: 100%;" class="form-control" name="checkDate">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 7%;">
+                                                <label>备注</label>
+                                            </td>
+                                            <td colspan="5">
+                                                <textarea style="width: 100%;" class="form-control" name="remark"></textarea>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <div id="detailsInvoiceManagementPaySearch" style="display: none">
+                                        <input name="payableReconcileId" type="text">
+                                        <input name="reconcileConfirmStatus" type="text">
+                                    </div>
+                                </form>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div>
+                <!-- 发票修改 -->
+                <div class="modal fade" id="modifyInvoiceManagementPayModal"
+                     tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close modal_close"
+                                        data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">发票修改</h4>
+                            </div>
+                            <div class="modal-body" style="padding: 10px 20px 30px;"
+                                 id="modifyInvoiceManagementPayModalBody">
+                                <form id="modifyInvoiceManagementPayForm" class="form-inline">
+                                    <div class="box">
+                                        <div class="box-header" style="padding: 5px 5px">
+                                            <span style="font-size: 16px">发票详情</span>
+                                            <div class="sm-wrapper" style="display: inline-block;float:right;">
+                                                <input type="button" class="btn btn-primary" id="modifyInvoiceManagementPayTableInsert" onclick="invoiceManagementPay.modifyInvoiceManagementPayTableInsert()" value="新增" />
+                                                <button type="button" class="btn btn-primary" id="modifyInvoiceManagementPayTableDelete" onclick="invoiceManagementPay.modifyInvoiceManagementPayTableDelete()">删除</button>
+
+                                            </div>
+                                        </div>
+                                        <div class="box-body no-padding">
+                                            <table class="table table-condensed" border="1" cellspacing="0" cellpadding="0" style="border:1px solid #c6d3d6;width:100%;">
+                                                <thead>
+                                                <tr>
+                                                    <th style="width: 25%;">发票类型</th>
+                                                    <th style="width: 25%;">发票号</th>
+                                                    <th style="width: 25%;">币种</th>
+                                                    <th style="width: 25%;">发票金额</th>
+                                                </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                        <div style="width:100%;max-height:113px;overflow-y: auto;">
+                                            <table class="table table-condensed" id="modifyInvoiceManagementPayTable" border="1" cellspacing="0" cellpadding="0" style="border:1px solid #c6d3d6;width:100%;">
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <table class="modify-table" id="infoExModify" style="margin-bottom: 15px">
+                                        <tr>
+                                            <td style="width:8%;">登记人</td>
+                                            <td style="width:42%;"><input type="text" class="form-control"
+                                                                          name="invoiceRegisterName" style="width: 70%;" readonly /></td>
+                                            <td style="width:10%;">登记时间</td>
+                                            <td style="width:40%;">
+                                                <input type="text" class="form-control"
+                                                                          name="invoiceRegisterDate" style="width: 60%;"/>
+                                                            </td>
+                                        </tr>
+                                    </table>
+                                    <div class="form-group" hidden="true" style="display: none" id="infoExModify1">
+                                        <label>新增或编辑</label>
+                                        <input type="text" name="invoiceRegisterManId" readonly /></td>
+                                        <input type="text" name="payableReconcileId" id="payableReconcileId">
+
+                                    </div>
+                                    <div class="modal-footer" style="position: absolute; right: 0px; bottom: 0px;">
+                                        <div class="sm-wrapper">
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+                                            <!--<button type="button" class="btn btn-primary" id="editInvoiceManagementPayModalSubmit">确定</button>-->
+                                            <input type="button" class="btn btn-primary" id="modifyInvoiceManagementPayModalSubmit" onclick="invoiceManagementPay.submitModifyInvoiceManagementPayModal()" value="确定" />
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal -->
+                </div>
+
+
+        
+                <div class="modal fade" id="seeInvoiceManagementPaySurChargeModal"
+                     tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close modal_close"
+                                        data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="seeInvoiceManagementPaySurChargeModalTitle">发票详情</h4>
+                            </div>
+                            <div class="modal-body" style="padding: 20px"
+                                 id="seeInvoiceManagementPaySurChargeModalBody">
+                                <div class="box">
+                                    <div class="box-body no-padding">
+                                        <table class="table table-condensed" border="1" cellspacing="0" cellpadding="0" style="border:1px solid #c6d3d6;width:100%;">
+                                            <thead>
+                                            <tr>
+                                                <th style="width: 25%;">发票类型</th>
+                                                <th style="width: 25%;">发票号</th>
+                                                <th style="width: 25%;">币种</th>
+                                                <th style="width: 25%;">发票金额</th>
+                                            </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                    <div style="width:100%;max-height:113px;overflow-y: auto;">
+                                        <table class="table table-condensed" id="seeInvoiceManagementPaySurChargeTable" border="1" cellspacing="0" cellpadding="0" style="border:1px solid #c6d3d6;width:100%;">
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="btn_group">
+                    <button id="BTN_90040200"
+                            onclick="invoiceManagementPay.addInvoiceManagementPay()"
+                            class="btn btn-info">发票登记</button>
+                    <button id="BTN_90040300"
+                            onclick="invoiceManagementPay.seeInvoiceManagementPayDetail1()"
+                            class="btn btn-info">发票详情</button>
+                    <button id="BTN_90040400"
+                            onclick="invoiceManagementPay.modifyInvoiceManagementPay()"
+                            class="btn btn-info">发票修改</button>
+
+
+                </div>
+                <div class="box datable-box">
+
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="invoiceManagementPayTable"
+                               class="table table-bordered table-striped">
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+
+                    <!--modify button-->
+
+
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+    </section>
+    <!-- DataTables -->
+    <script src="account/js/invoiceManagementPay.js"></script>
+    <script src="account/js/public.js"></script>
+
+
+</div>

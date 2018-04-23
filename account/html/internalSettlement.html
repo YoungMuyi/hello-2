@@ -1,0 +1,89 @@
+<div id="tab_220606" class="internalSettlement report tab-page" role="tabpanel">
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box search-box">
+                    <div class="box-body">
+                        <form class="search-table form-inline" id="internalSettlementForm" role="form">
+                            <div class="row" style="margin-bottom:10px;margin-left: 0px;">
+                                <div class="form-group" style="width: 28%;">
+                                    <label style="width: 50px">业务编号</label>
+                                    <input type="text" class="form-control" style="width: 70%;"  name="businessNum">
+                                </div>
+                                <div class="form-group" style="width:28%;margin:auto 6%;">
+                                    <label style="width: 50px">应收单位</label>
+                                    <select name="receiverCompany" class="select2 select2-hidden-accessible" style="width: 70%;"  tabindex="-1" aria-hidden="true">
+                                        <option value=""></option>
+                                        <option>海盟供应链</option>
+                                        <option>海盟国际货运代理</option>
+                                        <option>浙江海盟物流有限公司</option>
+                                        <option>海盟控股集团</option>
+                                    </select>
+
+                                </div>
+                                <div class="form-group" style="width: 28%;">
+                                    <label style="width: 50px">应付单位</label>
+                                    <select name="payingCompany" class="select2 select2-hidden-accessible" style="width: 70%;"  tabindex="-1" aria-hidden="true">
+                                        <option value=""></option>
+                                        <option>海盟供应链</option>
+                                        <option>海盟国际货运代理</option>
+                                        <option>浙江海盟物流有限公司</option>
+                                        <option>海盟控股集团</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-bottom:10px;margin-left: 0px;">
+                                <div class="form-group" style="width: 28%;">
+                                    <label style="width: 50px">实收日期</label>
+                                    <input type="text" class="form-control beginDate" style="width: 33%;"  name="beginDate" id="beginDate">
+                                    -
+                                    <input type="text" class="form-control endDate" style="width: 33%;"  name="endDate" id="endDate">
+                                </div>
+                            </div>
+                        </form>
+                        <div class="ldn-wrqapper">
+                            <input style="margin-right: 5px;" type="button" id="internalSettlementConfirmButton" onclick="internalSettlement.doSearch()" class="btn btn-info btn-size"  value="查询"/>
+                            <button style="background-color: white;color:#000;border:1px solid #ccc;" class="btn btn-info search_reset" id="internalSettlementResetButton">
+                                重置
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="btn_group">
+                    <!--打印按钮-->
+                    <div class="btn-group export-print dataTable-dropdown-menu">
+                        <button type="button" class="btn btn-height btn-info">打印</button>
+                        <button type="button" class="btn btn-height btn-info dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu export-print-menu" role="menu">
+                            <li id="internal_settlement_export-print-selected"></li>
+                            <li id="internal_settlement_export-print-all"></li>
+                        </ul>
+
+
+                    </div>
+                </div>
+                <div class="box datable-box">
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table style="width: 100%" id="internalSettlementTable" class="table table-bordered table-striped">
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+
+
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- DataTables -->
+
+    <script src="account/js/internalSettlement.js"></script>
+</div>
+

@@ -1,0 +1,260 @@
+<div id="tab_9004" class="container-type basedata tab-page" role="tabpanel">
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <!--begin search box-->
+                <div class="box search-box">
+                    <div class="box-body">
+                        <form class="search-table form-inline" id="containerTypeSearchForm" role="form">
+                            <div class="form-group">
+                                <label>箱型代码</label>
+                                <input type="text" class="form-control" name="equipmentCode">
+                            </div>
+                            <div class="form-group">
+                                <label>箱型</label>
+                                <input type="text" class="form-control" name="containerType">
+                            </div>
+                        </form>
+                        <div class="sm-wrqapper" style="position: absolute;right: 0;width: 176px;top: 12px;">
+                            <!--  <lable class="check-1">生效&nbsp&nbsp&nbsp&nbsp<input class="check-size" type="checkbox" name="生效"/>
+                             </lable> -->
+                            <input type="button" id="BTN_90040100" class="btn btn-info btn-size"
+                                   onclick="containerType.doSearch()" value="查询"/>
+                            <button class="btn btn-info search_reset" id="port-group_reset" style="background-color: white;color:#000;border:1px solid #ccc;">
+                                重置
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!--end search box-->
+                <div class="modal fade" id="editContainertypeModal" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close modal_close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="beditContainertypeModalTitle">新增</h4>
+                            </div>
+                            <div class="modal-body" style="padding: 10px 10px 40px" id="editContainertypeModalBody">
+                                <form id="editContainertypeForm" class="form-inline">
+                                      <table class="edit-table">
+                                          <tr>
+                                              <td><b class="color-red">*</b>箱型代码</td>
+                                              <td><input type="text" class="form-control" name="equipmentCode"/></td>
+                                              <td>箱型</td>
+                                              <td><input type="text" class="form-control" name="containerType"/></td>
+                                          </tr>
+                                          <tr>
+                                              <td><b class="color-red">*</b>TEU</td>
+                                              <td><input type="text" class="form-control" name="teu"/></td>
+                                              <td>ISO编码</td>
+                                              <td><input type="text" class="form-control" name="isoCode"/></td>
+                                          </tr>
+                                          <tr>
+                                              <td>箱型描述(CN)</td>
+                                              <td><input type="text" class="form-control" name="containerDescCn"/></td>
+                                              <td>AK的长度</td>
+                                              <td><input type="text" class="form-control" name="akLength"/></td>
+                                          </tr>
+                                          <tr>
+                                              <td>AK的宽度</td>
+                                              <td><input type="text" class="form-control" name="akWidth"/></td>
+                                              <td>类别</td>
+                                              <td><input type="text" class="form-control" name="containerCategory"/></td>
+                                          </tr>
+                                          <tr>
+                                              <td><b class="color-red">*</b>尺寸</td>
+                                              <td><input type="text" class="form-control" name="containerSize"/></td>
+                                              <td><b class="color-red">*</b>FEU</td>
+                                              <td><input type="text" class="form-control" name="feu"/></td>
+                                          </tr>
+                                          <tr>
+                                              <td><input type="checkbox" name="dgCheckFlag"> 危险品</td>
+                                              <td>
+                                              <input type="checkbox" name="akCheckFlag"> 冻箱
+                                              <input type="checkbox" name="rfCheckFlag"> 特种箱</td>
+                                              <td>箱型描述(EN)</td>
+                                              <td><input type="text" class="form-control" name="containerDesc"/></td>
+                                          </tr>
+                                          <tr>
+                                              <td>AK的高度</td>
+                                              <td><input type="text" class="form-control" name="akHigth"/></td>
+                                              <td>箱型质量</td>
+                                              <td><input type="text" class="form-control" name="tareWeight"/></td>
+                                          </tr>
+                                          <tr>
+                                              <td>操作人</td>
+                                              <td><input type="text" class="form-control" name="amenderName" readonly/></td>
+                                              <td>修改时间</td>
+                                              <td><input type="text" class="form-control" name="amendTime" readonly/></td>
+                                          </tr>
+                                      </table>
+                                    <!--<div class="form-inline-item">-->
+                                    <!--<div class="form-group">-->
+                                    <!--<label class="color-red">箱型代码</label>-->
+                                    <!--<input class="form-control" type="text" name="equipmentCode"/>-->
+                                    <!--</div>-->
+                                    <!--<div class="form-group">-->
+                                    <!--<label>箱型</label>-->
+                                    <!--<input class="form-control" type="text" name="containerType"/>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="form-inline-item">-->
+                                    <!--<div class="form-group">-->
+                                    <!--<label class="color-red">TEU</label>-->
+                                    <!--<input type="text" class="form-control" name="teu"/>-->
+                                    <!--</div>-->
+                                    <!--<div class="form-group">-->
+                                    <!--<label>ISO编码</label>-->
+                                    <!--<input type="text" class="form-control" name="isoCode"/>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="form-inline-item">-->
+                                    <!--<div class="form-group">-->
+                                    <!--<label>箱型描述(CN)</label>-->
+                                    <!--<input type="text" class="form-control" name="containerDescCn"/>-->
+                                    <!--</div>-->
+                                    <!--<div class="form-group">-->
+                                    <!--<label>AK的长度</label>-->
+                                    <!--<input type="text" class="form-control" name="akLength"/>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="form-inline-item">-->
+                                    <!--<div class="form-group">-->
+                                    <!--<label>AK的宽度</label>-->
+                                    <!--<input type="text" class="form-control" name="akWidth"/>-->
+                                    <!--</div>-->
+                                    <!--<div class="form-group">-->
+                                    <!--<label>类别</label>-->
+                                    <!--<input type="text" class="form-control" name="containerCategory"/>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+
+                                       <!--<div class="form-inline-item">-->
+                                            <!--<div class="form-group">-->
+                                                <!--<label class="color-red">尺寸</label>-->
+                                                <!--<input type="text" class=" form-control" name="containerSize"/>-->
+                                            <!--</div>-->
+                                            <!--<div class="form-group">-->
+                                                <!--<label class="color-red">FEU</label>-->
+                                                <!--<input type="text" class="form-control" name="feu"/>-->
+                                            <!--</div>-->
+                                       <!--</div>-->
+                                      <!--<div class="form-inline-item">-->
+                                            <!--<div class="form-group checkbox">-->
+                                                <!--<label style="width:85px;">-->
+                                                    <!--<input type="checkbox" name="dgCheckFlag"> 危险品-->
+                                                <!--</label>-->
+                                                <!--<label style="width:85px;">-->
+                                                    <!--<input type="checkbox" name="rfCheckFlag"> 冻箱-->
+                                                <!--</label>-->
+                                                <!--<label style="width:92px;">-->
+                                                    <!--<input type="checkbox" name="akCheckFlag"> 特种箱-->
+                                                <!--</label>-->
+                                            <!--</div>-->
+                                            <!--<div class="form-group">-->
+                                                <!--<label>箱型描述(EN)</label>-->
+                                                <!--<input type="text" class="form-control" name="containerDesc"/>-->
+                                            <!--</div>-->
+                                       <!--</div>-->
+                                       <!--<div class="form-inline-item">-->
+                                            <!--<div class="form-group">-->
+                                                <!--<label>AK的高度</label>-->
+                                                <!--<input type="text" class="form-control" name="akHigth"/>-->
+                                            <!--</div>-->
+                                           <!--<div class="form-group">-->
+                                               <!--<label>箱型质量</label>-->
+                                               <!--<input type="text" class="form-control" name="tareWeight"/>-->
+                                           <!--</div>-->
+                                       <!--</div>-->
+
+                                        <div class="form-group" hidden="true" style="display:none">
+                                            <label>新增或保存</label>
+                                            <input type="text" name="saveType" id="saveType">
+                                            <input type="text" name="containerTypeId">
+                                        </div>
+                                      
+                                    <div class="modal-footer">
+                                        <div class="sm-wrapper">
+                                            <input type="submit" class="btn btn-primary"
+                                                   id="editContainertypeModalSubmit" value="确定"/>
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+                                            <!--<button type="button" class="btn btn-primary" id="editContainertypeModalSubmit">确定</button>-->
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div>
+                <div class="btn_group">
+                    <button id="BTN_90040200" onclick="containerType.addContainertype()" class="btn btn-info" data-name="BTN_90040200" style="display: none;">
+                        新增
+                    </button>
+                    <button id="BTN_90040300" onclick="containerType.editContainertype()" class="btn btn-info" data-name="BTN_90040300" style="display: none;">
+                        修改
+                    </button>
+                    <button id="BTN_90040400" onclick="containerType.deleteContainertype()" class="btn btn-info" data-name="BTN_90040400" style="display: none;">
+                        删除
+                    </button>
+                    <!--<div class="btn-group export-excel dataTable-dropdown-menu">-->
+                        <!--<button type="button" class="btn btn-info">导出Excel</button>-->
+                        <!--<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">-->
+                            <!--<span class="caret"></span>-->
+                            <!--<span class="sr-only">Toggle Dropdown</span>-->
+                        <!--</button>-->
+                        <!--<ul class="dropdown-menu export-excel-menu" role="menu">-->
+                            <!--<li id="containerType_export-excel-selected"></li>-->
+                            <!--<li id="containerType_export-excel-current"></li>-->
+                            <!--<li id="containerType_export-excel-all"></li>-->
+                        <!--</ul>-->
+                    <!--</div>-->
+                    <!--<button id="containerType_import-excel" onclick="customsDocumentAttachment.importExcel()" class="btn btn-info">-->
+                    <!--导出Excel-->
+                    <!--</button>-->
+                    <!--<div class="btn-group export-print dataTable-dropdown-menu">-->
+                        <!--<button type="button" class="btn btn-info">打印</button>-->
+                        <!--<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">-->
+                            <!--<span class="caret"></span>-->
+                            <!--<span class="sr-only">Toggle Dropdown</span>-->
+                        <!--</button>-->
+                        <!--<ul class="dropdown-menu export-print-menu" role="menu">-->
+                            <!--<li id="containerType_export-print-selected"></li>-->
+                            <!--<li id="containerType_export-print-all"></li>-->
+                        <!--</ul>-->
+                    <!--</div>-->
+                    <!--<div class="btn-height btn-group" style="vertical-align: top;" id="containerType_export-copy"></div>-->
+                    <!--<div class="btn-height btn-group" style="vertical-align: top;"  id="containerType_export-columnVisibility" ></div>-->
+                    <!--<button id="refreshContainertype" onclick="containerType.doSearch()" class="btn btn-info">-->
+                        <!--刷新-->
+                    <!--</button>-->
+                    <!--<button id="showContainertypeDetail" class="btn btn-info">-->
+                        <!--详情-->
+                    <!--</button>-->
+                </div>
+                <div class="box datable-box">
+
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="containertypeTable" class="table table-bordered table-striped">
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+
+                    <!--modify button-->
+
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- DataTables -->
+    <script src="basedata/js/container-type.js?v=201711090001"></script>
+    <script src="basedata/js/public.js?v=201711090001"></script>
+    <script>
+
+    </script>
+</div>

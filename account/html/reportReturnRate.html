@@ -1,0 +1,151 @@
+<div id="tab_220602" class="reportReturnRate report tab-page" role="tabpanel">
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <!--begin search box-->
+                <div class="box search-box">
+                    <div class="box-body">
+                        <form class="search-table form-inline" id="reportReturnRateSearchForm" role="form" style="height: 66px;overflow: hidden;">
+                            <div class="row" style="margin-bottom:10px;margin-left: 0px;">
+                                <div class="form-group" style="width: 28%;">
+                                    <label style="width: 50px">公司名称</label>
+                                    <select name="salesmanCompany" class="select2 select2-hidden-accessible" style="width: 70%;"  tabindex="-1" aria-hidden="true">
+                                        <option value=""></option>
+                                        <option>海盟供应链</option>
+                                        <option>海盟物流</option>
+                                        <option>海盟国际货运代理</option>
+                                    </select>
+
+                                </div>
+                                <div class="form-group" style="width:28%;margin:auto 6%;">
+                                    <label style="width: 50px">周期</label>
+                                    <select name="cycDate" class="select2 select2-hidden-accessible" style="width: 70%;"  tabindex="-1" aria-hidden="true">
+                                        <option value=""></option>
+                                        <option>30</option>
+                                        <option>60</option>
+                                        <option>90</option>
+                                        <option>120</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" style="width: 30%;position: absolute;">
+                                    <label style="width: 50px">销售部门</label>
+                                    <select multiple="" name="salesmanDepartmentsCopy" class="select2 select2-hidden-accessible" style="width: 70%;"  tabindex="-1" aria-hidden="true">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-bottom:10px;margin-left: 0px;">
+                                <div class="form-group" style="width: 28%;">
+                                    <label style="width: 50px">月份</label>
+                                    <select name="cycMonthStart" class="select2 select2-hidden-accessible" style="width: 33%;"  tabindex="-1" aria-hidden="true">
+                                        <option value=""></option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                        <option>11</option>
+                                        <option>12</option>
+                                    </select>
+                                    -
+                                    <select name="cycMonthEnd" class="select2 select2-hidden-accessible" style="width: 33%;"  tabindex="-1" aria-hidden="true">
+                                        <option value=""></option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                        <option>11</option>
+                                        <option>12</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" style="width:28%;margin:auto 6%;">
+                                    <label style="width: 50px">年份</label>
+                                    <select name="cycYear" class="select2 select2-hidden-accessible" style="width: 70%;"  tabindex="-1" aria-hidden="true">
+                                        <option value=""></option>
+                                        <option>2017</option>
+                                        <option>2018</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="ldn-wrqapper">
+                            <input style="margin-right: 5px;" type="button" id="BTN_90298221" onclick="reportReturnRate.doSearch()" class="btn btn-info btn-size"  value="查询"/>
+                            <button style="background-color: white;color:#000;border:1px solid #ccc;" class="btn btn-info search_reset" id="reportReturnRateSeachPortForm">
+                                重置
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+                <!--end search box-->
+
+
+                <div class="btn_group" >
+                    <!--导出按钮-->
+                    <div class="btn-group export-excel dataTable-dropdown-menu">
+                        <button type="button" class="btn btn-height btn-info">导出Excel</button>
+                        <button type="button" class="btn btn-height btn-info dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu export-excel-menu" role="menu">
+                            <li id="return_rate_export-excel-selected"></li>
+                            <li id="return_rate_export-excel-current"></li>
+                        </ul>
+                    </div>
+                    <!--打印按钮-->
+                    <div class="btn-group export-print dataTable-dropdown-menu">
+                        <button type="button" class="btn btn-height btn-info">打印</button>
+                        <button type="button" class="btn btn-height btn-info dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu export-print-menu" role="menu">
+                            <li id="return_rate_export-print-selected"></li>
+                            <li id="return_rate_export-print-all"></li>
+                        </ul>
+
+
+                    </div>
+                    <input type="text" style="width: 90px;height: 26px;margin-right: 15px;float: right;display: none" placeholder="回款率" id="RRate" disabled/>
+                    <input type="text" style="width: 90px;height: 26px;margin-right: 15px;float: right" placeholder="实收合计" id="RSumReal" disabled/>
+                    <input type="text" style="width: 90px;margin-right: 20px;height: 26px;float: right" placeholder="应收合计" id="RSum" disabled/>
+
+
+
+                </div>
+                <!--<div class="row" style="height:40px;margin-left: 0px;margin-right: 0px;margin-top:10px;margin-bottom: 10px;background-color: #E5E5E5;">-->
+
+                <!--</div>-->
+
+                <div class="box datable-box">
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table style="width: 100%" id="reportReturnRateTable" class="table table-bordered table-striped">
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+
+
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- DataTables -->
+    <script src="account/js/reportReturnRate.js"></script>
+    <script src="account/js/public.js"></script>
+</div>

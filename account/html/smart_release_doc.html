@@ -1,0 +1,376 @@
+<div id="tab_220105" class="smart_release_doc account tab-page" role="tabpanel">
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <!--begin search box-->
+                <div class="box search-box">
+                    <!--<div class="box-header">-->
+                        <!--<h4 class="box-title">查询</h4>-->
+                        <!--<div class="pull-right box-tools">-->
+                            <!--<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">-->
+                                <!--<i class="fa fa-plus"></i></button>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <div class="box-body">
+                        <form class="search-table form-inline" id="searchAccountSmartReleaseDocForm" role="form">
+                            <div class="row" style="margin-bottom:10px;margin-left: 0px;">
+                                <div class="form-group" style="width:28%;">
+                                <label style="width: 50px;">客户类型</label>
+                                    <select class="form-control select2 select2-hidden-accessible" style="width: 70%;" name="customerType" tabindex="-1" aria-hidden="true">
+                                        <option></option>
+                                        <option>直客</option>
+                                        <option>同行</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" style="width:28%;margin:auto 6%;">
+                                    <label style="width: 50px;">有效期</label>
+                                    <input style="width: 34%;" type="text" class="form-control beginDate" id="accountSmartReleaseDocBeginDate1" name="beginDate">
+                                     -
+                                    <input style="width: 34%;" type="text" class="form-control endDate" id="accountSmartReleaseDocEndDate1" name="endDate">
+                                </div>
+
+                                <!--<div class="form-group" style="width:28%;">-->
+                                    <!--<label style="width: 70px;">有效期(结束)</label>-->
+                                    <!--<input style="width: 64%;" type="text" class="form-control endDate" name="endDate">-->
+                                <!--</div>-->
+                            </div>
+                        </form>
+                        <!--<div class="form-item">-->
+                        <!--<label>港口3代码</label>-->
+                        <!--<input type="text" name="AccountSmartReleaseDoc3code" class="form-control"  placeholder="港口3代码">-->
+                        <!--</div>-->
+                        <div class="ldn-wrqapper">
+                            <input style="margin-right: 5px;" type="button" id="BTN_900260100" class="btn btn-info btn-size" onclick="AccountSmartReleaseDoc.doSearch()" value="查询"/>
+                            <input style="background-color: white;color:#000;border:1px solid #ccc;" type="button" id="BTN_903060100" class="btn btn-info btn-size" onclick="AccountSmartReleaseDoc.resetSearchForm()" value="重置"/>
+
+					<!-- 	<button class="btn btn-info search_reset" id="resetSeachAccountSmartReleaseDocForm">
+                                重置
+                            </button>
+                            -->
+                        </div>
+                    </div>
+
+                </div>
+                <!--end search box-->
+                <div class="modal fade" id="editAccountSmartReleaseDocModal" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" >
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <button type="button" class="close modal_close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="editAccountSmartReleaseDocModalTitle">新增</h4>
+                            </div>
+                            <form id="editAccountSmartReleaseDocForm"  class="form-inline">
+                            <div class="tab-pane" id="ruleConditionList">
+                                
+                                <div class="buttonLine" style="margin-left: 30px;margin-top: 10px;margin-bottom: 10px;">
+                                   <label>客户类型</label>
+                                    <select style="width: 180px; display: inline-block;" name="customerType" class="select2 select2-hidden-accessible">
+                                        <option>直客</option>
+                                        <option>同行</option>
+                                    </select>
+                                    <label style="margin-left: 40px">放单通过条件</label>
+                                    <select style="width: 90px; display: inline-block;" name="byCondition" class="select2 select2-hidden-accessible">
+                                        <option>>=</option>
+                                        <option>></option>
+                                        <option>=</option>
+                                    </select>
+                                    <input style="width: 15%" class="form-control" type="text" name="byConditionValue">
+                                </div>
+                                <div class="box">
+                                    <div class="box-body">
+                                        <table id="indexTable" class="table table-condensed" border="1" cellspacing="0" cellpadding="0" style="border:1px solid #f0f0f0;">
+                                            <thead>
+                                            <tr>
+                                                <th style="width: 10%;">序号</th>
+                                                <th style="width: 10%;">因子</th>
+                                                <th style="width: 35%;">因子名称</th>
+                                                <th style="width: 15%;">分值(有)</th>
+                                                <th style="width: 15%;">分值(无)</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td style="width: 10%;">01</td>
+                                                <td style="width: 10%;">X1</td>
+                                                <td style="width: 35%;">有无合同</td>
+                                                <td style="width: 15%;"><input style="width: 95px" type="text" name="scoreContractYes"></td>
+                                                <td style="width: 15%;"><input style="width: 95px" type="text" name="scoreContractNo"></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 10%;">02</td>
+                                                <td style="width: 10%;">X2</td>
+                                                <td style="width: 35%;">有无超过付款时间</td>
+                                                <td style="width: 15%;"><input style="width: 95px" type="text" name="scoreOverPaytimeYes"></td>
+                                                <td style="width: 15%;"><input style="width: 95px" type="text" name="scoreOverPaytimeNo"></td>
+                                            </tr>
+                                            </tbody>
+                                            
+                                            <tfoot>
+                                            <tr>
+                                                <td style="width: 10%;">03</td>
+                                                <td style="width: 10%;">X3</td>
+                                                <td style="width: 35%;">有无后续单</td>、
+                                                <td style="width: 15%;"><input style="width: 95px" type="text" name="scoreFollowListYes"></td>
+                                                <td style="width: 15%;"><input style="width: 95px" type="text" name="scoreFollowListNo"></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 10%;">04</td>
+                                                <td style="width: 10%;">X4</td>
+                                                <td style="width: 35%;">有无60天以上应收账款</td>
+                                                <td style="width: 15%;"><input style="width: 95px" type="text" name="scoreAccountPeriodYes"></td>
+                                                <td style="width: 15%;"><input style="width: 95px" type="text" name="scoreAccountPeriodNo"></td>
+                                            </tr>
+                                            
+                                            <tr>
+                                                <td style="width: 10%;">05</td>
+                                                <td style="width: 10%;">X5</td>
+                                                <td style="width: 35%;">有无3万以上欠款</td>
+                                                <td style="width: 15%;"><input style="width: 95px" type="text" name="scoreArrearsYes"></td>
+                                                <td style="width: 15%;"><input style="width: 95px" type="text" name="scoreArrearsNo"></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 10%;">06</td>
+                                                <td style="width: 10%;">X6</td>
+                                                <td style="width: 35%;">是否签订我公司版本合同</td>
+                                                <td style="width: 15%;"><input style="width: 95px" type="text" name="scoreCompanyContractYes"></td>
+                                                <td style="width: 15%;"><input style="width: 95px" type="text" name="scoreCompanyContractNo"></td>
+                                            </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="modal-body" style="padding: 5px;height: 120px" id="editAccountSmartReleaseDocModalBody">
+
+                                    <table class="edit-table">
+                                        <tr>
+                                            <td><b class="color-red">*</b>有效期（开始）</td>
+                                            <td><input type="text" class="form-control beginDate " id="accountSmartReleaseDocBeginDate2" name="beginDate"/></td>
+                                            <td><b class="color-red">*</b>有效期（结束）</td>
+                                            <td><input type="text" class="form-control endDate" id="accountSmartReleaseDocEndDate2" name="endDate"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td>操作人</td>
+                                            <td><input type="text" class="form-control" name="amenderName" readonly/></td>
+                                            <td>操作时间</td>
+                                            <td><input type="text" class="form-control" name="amendTime" readonly/></td>
+                                        </tr>
+                                    </table>
+                                    <div hidden="true"><label>新增或保存</label>
+                                       <input type="text" name="saveType" id="saveType">
+                                       <input type="text"  name="smartReleaseDocId">
+                                    </div>
+
+                                <div class="modal-footer">
+                                    <div class="sm-wrapper">
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button></button>
+                                        <!--<button type="button" class="btn btn-primary" id="editAccountSmartReleaseDocModalSubmit">确定</button>-->
+                                        <input type="submit" class="btn btn-primary" id="editAccountSmartReleaseDocModalSubmit" value="确定"/>
+                                    </div>
+                                </div>
+
+                            </div>
+                            </form>
+                             
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div>
+                
+                
+                <div class="modal fade" id="viewRuleConditionModal" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close modal_close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="viewRuleConditionModalTitle">详情</h4>
+                            </div>
+                            <div class="tab-pane" style="margin-top: 20px;margin-bottom: 40px">
+                                <!--<table style="width: 100%;" class="table table-bordered" id="viewRuleConditionList_tb">-->
+                                <!--</table>-->
+                                <div class="box-body">
+                                    <table id="detailTable" class="table table-bordered table-striped" border="1" cellspacing="0" cellpadding="0" style="border:1px solid #c6d3d6;">
+                                        <thead>
+                                        <tr>
+                                            <th style="width: 15%;">序号</th>
+                                            <th style="width: 15%;">因子</th>
+                                            <th style="width: 35%;">因子名称</th>
+                                            <th style="width: 15%;">分值(有)</th>
+                                            <th style="width: 15%;">分值(无)</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td style="width: 15%;">01</td>
+                                            <td style="width: 15%;">X1</td>
+                                            <td style="width: 40%;">有无合同</td>
+                                            <td style="width: 15%;"><input style="width: 95px" type="text" name="scoreContractYes" readonly></td>
+                                            <td style="width: 15%;"><input style="width: 95px" type="text" name="scoreContractNo" readonly></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 15%;">02</td>
+                                            <td style="width: 15%;">X2</td>
+                                            <td style="width: 40%;">有无超过付款时间</td>
+                                            <td style="width: 15%;"><input style="width: 95px" type="text" name="scoreOverPaytimeYes" readonly></td>
+                                            <td style="width: 15%;"><input style="width: 95px" type="text" name="scoreOverPaytimeNo" readonly></td>
+                                        </tr>
+                                        <tfoot>
+                                        <tr>
+                                            <td style="width: 15%;">03</td>
+                                            <td style="width: 15%;">X3</td>
+                                            <td style="width: 40%;">有无后续单</td>
+                                            <td style="width: 15%;"><input style="width: 95px" type="text" name="scoreFollowListYes" readonly></td>
+                                            <td style="width: 15%;"><input style="width: 95px" type="text" name="scoreFollowListNo" readonly></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 15%;">04</td>
+                                            <td style="width: 15%;">X4</td>
+                                            <td style="width: 40%;">有无60天以上应收账款</td>
+                                            <td style="width: 15%;"><input style="width: 95px" type="text" name="scoreAccountPeriodYes" readonly></td>
+                                            <td style="width: 15%;"><input style="width: 95px" type="text" name="scoreAccountPeriodNo" readonly></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 15%;">05</td>
+                                            <td style="width: 15%;">X5</td>
+                                            <td style="width: 40%;">有无3万以上欠款</td>
+                                            <td style="width: 15%;"><input style="width: 95px" type="text" name="scoreArrearsYes" readonly></td>
+                                            <td style="width: 15%;"><input style="width: 95px" type="text" name="scoreArrearsNo" readonly></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 15%;">06</td>
+                                            <td style="width: 15%;">X6</td>
+                                            <td style="width: 40%;">是否签订我公司版本合同</td>
+                                            <td style="width: 15%;"><input style="width: 95px" type="text" name="scoreCompanyContractYes" readonly></td>
+                                            <td style="width: 15%;"><input style="width: 95px" type="text" name="scoreCompanyContractNo" readonly></td>
+                                        </tr>
+                                        </tfoot>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="modal-body" style="padding: 5px" id="viewRuleConditionModalBody">
+                                    <div class="modal-footer">
+                                        <div class="sm-wrapper">
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+                                        </div>
+                                    </div>
+
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div>
+                
+                <div class="modal fade" id="editIndexSetModal" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close modal_close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="editIndexSetModalTitle">详情</h4>
+                            </div>
+                            <div hidden="true">
+                                <label>新增或保存</label>
+                                <input type="text" name="saveType" id="saveType2">
+                                <input type="text"  name="ruleConditionId"/>
+                            </div>
+                            <div class="tab-pane" id="editIndexSet">
+                                <button style="margin-left: 30px;" class="btn btn-height btn-primary" onclick="ruleConditionList.addIndexSetList()"> 新增 </button>
+                              
+                                <button class="btn btn-height btn-primary" onclick="ruleConditionList.deleteIndexSetList()"> 删除 </button>
+                                 
+                                <table href="InitIndexSetList()" style="width: 100%;" class="table table-bordered" id="editIndexSetList_tb">
+                                </table>
+                            </div>
+
+                            <div class="modal-body" style="padding: 5px" id="editIndexSetModalBody">
+                                    <div class="modal-footer">
+                                        <div class="sm-wrapper">
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+                                            <button class="btn btn-height btn-primary" onclick="ruleConditionList.submitIndexSetList()"> 保存 </button>
+                                        </div>
+                                    </div>
+
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div>
+                   
+                <div class="modal fade" id="viewIndexSetModal" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close modal_close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="viewIndexSetModalTitle">详情</h4>
+                            </div>
+                            <div class="tab-pane" id="viewIndexSet">
+                                        
+                                <table href="InitIndexSetList()" style="width: 100%;" class="table table-bordered" id="viewIndexSetList_tb">
+                                </table>
+                            </div>
+
+                            <div class="modal-body" style="padding: 5px" id="viewIndexSetModalBody">
+                                    <div class="modal-footer">
+                                        <div class="sm-wrapper">
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+                                        </div>
+                                    </div>
+
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div>
+                
+                <div class="btn_group">
+                    <button id="BTN_90060200" onclick="AccountSmartReleaseDoc.addAccountSmartReleaseDoc()" class="btn btn-info">
+                       新增
+                    </button>
+                    <button id="BTN_90060300" onclick="AccountSmartReleaseDoc.editAccountSmartReleaseDoc()" class="btn btn-info">
+                        修改
+                    </button>
+                    <button id="BTN_90060400" onclick="AccountSmartReleaseDoc.deleteAccountSmartReleaseDoc()" class="btn btn-info">
+                        删除
+                    </button>
+                    <div class="btn-height btn-group" style="vertical-align: top;" id="AccountSmartReleaseDoc_export-copy"></div>
+
+                    <!--<button id="refreshAccountSmartReleaseDoc" onclick="AccountSmartReleaseDoc.doSearch()" class="btn btn-info">-->
+                        <!--刷新-->
+                    <!--</button>-->
+                    <!--<button id="showAccountSmartReleaseDocDetail" class="btn btn-info">-->
+                        <!--详情-->
+                    <!--</button>-->
+                </div>
+
+                <div class="box datable-box">
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="AccountSmartReleaseDoc_table" class="table table-bordered table-striped">
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+
+                    <!--modify button-->
+
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- DataTables -->
+
+    <script src="account/js/rule_condition.js"></script>
+    <script src="account/js/smart_release_doc.js"></script>
+    <script src="account/js/public.js"></script>
+    <script>
+
+    </script>
+</div>

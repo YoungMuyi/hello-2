@@ -1,0 +1,177 @@
+<div id="tab_220303" class="advancePayable basedata tab-page" role="tabpanel">
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <!--begin search box-->
+                <div class="box search-box" style="margin-bottom: 10px">
+
+                    <div class="box-body" style="position: relative;padding-bottom: 35px;">
+                        <form class="search-table form-inline" id="advancePayableSearchForm" role="form" style="height: 66px;overflow: hidden;">
+                            <div class="row" style="margin-bottom:10px;margin-left: 0px;">
+                                <div class="form-group" style="width:28%;">
+                                    <label style="width: 60px;">供应商代码</label>
+                                    <input type="text" class="form-control" style="width: 70%" name="customerCode">
+                                </div>
+                                <div class="form-group" style="width:28%;margin:auto 6%;">
+                                    <label style="width: 60px;">供应商名称</label>
+                                    <input type="text" class="form-control" style="width: 70%" name="contactCompany">
+                                </div>
+                                <div class="form-group" style="width:28%;">
+                                    <label style="width: 50px;">付款方式</label>
+                                    <select  name="payMethod" class="form-control select2 select2-hidden-accessible" style="width:70%;" tabindex="-1" aria-hidden="true">
+                                        <option value=""></option>
+                                        <option>承兑</option>
+                                        <option>转账</option>
+                                        <option>电汇</option>
+                                        <option>WCAPARTNERPAY</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-bottom:10px;margin-left: 0px;">
+                                <div class="form-group" style="width:28%;">
+                                    <label style="width: 60px;">预付款编号</label>
+                                    <input type="text" class="form-control" style="width: 70%" name="payableCode">
+                                </div>
+
+                            </div>
+                        </form>
+                        <div class="sm-wrqapper" style="position: absolute;bottom: 5px;width: 180px;left: 50%;margin-left: -90px;">
+                            <!--<span onclick="advancePayable.telescopic(this)" style="font-size: 13px;color:#20aaec;position: relative;top: 2px;cursor: pointer;">更多搜索<i class="fa fa-fw fa-angle-double-down"></i></span>-->
+                            <input type="button" id="BTN_90040100" class="btn btn-info btn-size" onclick="advancePayable.doSearch()" value="查询"/>
+                            <button class="btn btn-info search_reset" id="advancePayableSearchPortForm"  style="background-color: white;color:#000;border:1px solid #ccc;">
+                                重置
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!--增加修改模态框-->
+
+                <div class="modal fade" id="advanceInsertUpdateModal" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" style="width: 820px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close modal_close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="insertUpdateModalTitle">增加</h4>
+                            </div>
+                            <div class="modal-body" style="padding: 5px;height: 200px" id="advanceInsertModalBody">
+                                <form id="advanceInsertUpdateForm" class="form-inline">
+                                    <table class="edit-table">
+                                        <tr>
+                                            <td style="width:10%;">预付编号</td>
+                                            <td>
+                                                <input type="text" class="form-control" name="payableCode" style="width:164px;" placeholder="自动生成" disabled />
+                                            </td>
+                                            <td style="width:16%;">预付币种</td>
+                                            <td>
+                                                <input type="text" class="form-control" name="requestCurrency" style="width:164px;" disabled />
+                                                
+
+                                            </td>
+                                            <td style="width:16%;">预付金额</td>
+                                            <td>
+                                                <input type="text" class="form-control" name="requestAmount" style="width:164px;" disabled />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:10%;">预付财务编号</td>
+                                            <td>
+                                                <input type="text" class="form-control" name="financialNumber" style="width:164px;" disabled placeholder="自动生成" />
+                                            </td>
+                                            <td style="width:16%;">实付币种</td>
+                                            <td>
+                                                <select name="payCurrency" class="form-control select2 select2-hidden-accessible" style="width:164px;" tabindex="-1" aria-hidden="true">
+                                                    <option value="RMB" selected="false">RMB</option>
+                                                    <option value="USD" selected="false">USD</option>
+                                                </select>
+
+                                            </td>
+                                            <td style="width:10%;">实付金额</td>
+                                            <td>
+                                                <input type="text" class="form-control" name="payAmount" style="width:164px;"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:10%;">实付方式</td>
+                                            <td>
+                                                <select name="payMethod" class="form-control select2 select2-hidden-accessible" style="width:164px;" tabindex="-1" aria-hidden="true">
+                                                    <option value=""></option>
+                                                </select>
+                                            </td>
+                                            <td style="width:10%;">实付时间</td>
+                                            <td>
+                                                <input type="text" class="form-control startTime" name="payDate" style="width:164px;"/>
+                                            </td>
+                                            <td style="width:10%;">付款单位</td>
+                                            <td>
+                                                <select name="payCompany" class="form-control select2 select2-hidden-accessible" style="width:164px;" tabindex="-1" aria-hidden="true">
+                                                    <option value="海盟供应商" selected="false">海盟供应商</option>
+                                                    <option value="海盟物流" selected="false">海盟物流</option>
+                                                    <option value="海盟国际货运代理" selected>海盟国际货运代理</option>
+                                                </select>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>操作人</td>
+                                            <td>
+                                                <input type="text" class="form-control" name="applicantName" style="width:164px;" readonly/>
+                                                <input type="text"  name="amender" style="width:164px;" hidden="" />
+                                            </td>
+                                            <td>修改日期</td>
+                                            <td>
+                                                <input type="text" class="form-control" name="amendTime" style="width:164px;" disabled/>
+                                            </td>
+                                            
+                                        </tr>
+                                    </table>
+
+                                    <div class="modal-footer ">
+                                        <div class="sm-wrapper">
+                                            <input type="submit" class="btn btn-primary" id="advanceModalSubmit" value="确定"/>
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button></button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div>
+                
+                <div class="btn_group">
+                    <button id="insertAdvance" class="btn btn-info" data-toggle="modal" onclick="advancePayable.insertAdvance()">
+                        增加
+                    </button>
+                    <button id="updateAdvance" class="btn btn-info" data-toggle="modal" onclick="advancePayable.updateAdvance()">
+                        修改
+                    </button>
+                    
+                </div>
+
+                <div class="box datable-box">
+
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="advancePayableTable" class="table table-bordered table-striped">
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+
+                    <!--modify button-->
+
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- DataTables -->
+    <script src="account/js/advancePayable.js"></script>
+    <script src="account/js/public.js"></script>
+    <script>
+
+    </script>
+</div>

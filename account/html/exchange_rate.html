@@ -1,0 +1,194 @@
+<div id="tab_220101" class="exchange_rate account tab-page" role="tabpanel">
+
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <!--begin search box-->
+                <div class="box search-box">
+
+                    <div class="box-body" style="position: relative;">
+                        <form class="search-table form-inline" id="searchAccountExchangeRateForm" role="form" style="overflow: hidden;">
+                            <div class="row" style="margin-bottom:10px;margin-left: 0px;">
+                                <div class="form-group" style="width: 28%">
+                                    <label style="width: 50px">原币种</label>
+                                    <select  name="originalCurrencyName" class="form-control select2 select2-hidden-accessible" style="width:70%;" tabindex="-1" aria-hidden="true">
+                                        <option value=""></option>
+                                        <option value="USD">USD</option>
+                                        <option value="RMB">RMB</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" style="width:28%;margin:auto 6%;">
+                                    <label style="width: 50px">目标币种</label>
+                                    <select  name="targetCurrencyName" class="form-control select2 select2-hidden-accessible" style="width: 70%;" tabindex="-1" aria-hidden="true">
+                                        <option value=""></option>
+                                        <option value="USD">USD</option>
+                                        <option value="RMB">RMB</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" style="width: 28%">
+                                    <label style="width: 50px">有效期</label>
+                                    <input style="width: 33%" type="text" class="form-control beginDate" name="beginDate" id="exchangeRateBeginDate1">
+                                     -
+                                    <input style="width: 33%" type="text" class="form-control endDate" name="endDate" id="exchangeRateEndDate1">
+                                </div>
+                            </div>
+                            <!--<div class="row" style="margin-bottom:10px;margin-left: 0px;">-->
+                                <!--<div class="form-group" style="width: 28%">-->
+                                    <!--<label style="width: 70px">有效期(结束)</label>-->
+                                    <!--<input style="width: 64%" type="text" class="form-control endDate" name="endDate">-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        </form>
+                        <!--<div class="form-item">-->
+                        <!--<label>港口3代码</label>-->
+                        <!--<input type="text" name="AccountExchangeRate3code" class="form-control"  placeholder="港口3代码">-->
+                        <!--</div>-->
+                        <div class="ldn-wrqapper">
+                            <input style="margin-right: 5px;" type="button" id="BTN_90060100" class="btn btn-info btn-size" onclick="AccountExchangeRate.doSearch()" value="查询"/>
+
+                            <button style="background-color: white;color:#000;border:1px solid #ccc;" class="btn btn-info search_reset" id="resetSeachAccountExchangeRateForm">
+                                重置
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+                <!--end search box-->
+                <div class="modal fade" id="editAccountExchangeRateModal" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close modal_close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="editAccountExchangeRateModalTitle">新增</h4>
+                            </div>
+                            <div class="modal-body" style="height: 220px" id="editAccountExchangeRateModalBody">
+                                <form id="editAccountExchangeRateForm" class="form-inline">
+                                    <table class="edit-table">
+                                        <tr>
+                                            <td><b class="color-red">*</b>原币种</td>
+                                            <td>
+                                                <select style="width:155px;" name="originalCurrencyName"
+                                                         class="form-control select2 select2-hidden-accessible" aria-hidden="true">
+                                                    <option value=""></option>
+                                                    <option value="USD">USD</option>
+                                                    <option value="RMB">RMB</option>
+
+                                                </select>
+                                            </td>
+                                            <td><b class="color-red">*</b>目标币种</td>
+                                            <td>
+                                                <select  style="width:155px;" name="targetCurrencyName"
+                                                         class="form-control select2 select2-hidden-accessible"  aria-hidden="true">
+                                                    <option value=""></option>
+                                                    <option value="USD">USD</option>
+                                                    <option value="RMB">RMB</option>
+
+                                                </select>
+
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>汇率</td>
+                                            <td colspan="3"><input type="text"  style="width:155px;" class="form-control" name="exchangeRate" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td><b class="color-red">*</b>开始</td>
+                                            <td><input type="text" class="form-control beginDate " style="width:155px;" name="beginDate" id="exchangeRateBeginDate2"/></td>
+                                            <td><b class="color-red">*</b>结束</td>
+                                            <td><input type="text" class="form-control endDate"  style="width:155px;" name="endDate" id="exchangeRateEndDate2"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td>操作人</td>
+                                            <td><input type="text" class="form-control" style="width:155px;" name="amenderName" readonly/></td>
+                                            <td>操作时间</td>
+                                            <td><input type="text" class="form-control" style="width:155px;" name="amendTime" readonly/></td>
+                                        </tr>
+                                    </table>
+
+                                    <div hidden="true"><label>新增或保存</label>
+                                        <input type="text" name="saveType" id="saveType"><input type="text"  name="exchangeRateId"/></div>
+                                    <div class="modal-footer">
+                                        <div class="sm-wrapper">
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button></button>
+                                            <!--<button type="button" class="btn btn-primary" id="editAccountExchangeRateModalSubmit">确定</button>-->
+                                            <input type="submit" class="btn btn-primary" id="editAccountExchangeRateModalSubmit" value="确定"/>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div>
+                <div class="btn_group">
+                    <button id="BTN_90060200" onclick="AccountExchangeRate.addAccountExchangeRate()" class="btn btn-info">
+                        新增
+                    </button>
+                    <button id="BTN_90060300" onclick="AccountExchangeRate.editAccountExchangeRate()" class="btn btn-info">
+                        修改
+                    </button>
+                    <button id="BTN_90060400" onclick="AccountExchangeRate.deleteAccountExchangeRate()" class="btn btn-info">
+                        删除
+                    </button>
+                <!--    <div class="btn-group export-excel dataTable-dropdown-menu">
+                        <button type="button" class="btn btn-info">导出Excel</button>
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu export-excel-menu" role="menu">
+                            <li id="AccountExchangeRate_export-excel-selected"></li>
+                            <li id="AccountExchangeRate_export-excel-current"></li>
+                            <li id="AccountExchangeRate_export-excel-all"></li>
+                        </ul>
+                    </div>
+                    &lt;!&ndash;<button id="AccountExchangeRate_import-excel" onclick="customsDocumentAttachment.importExcel()" class="btn btn-info">&ndash;&gt;
+                    &lt;!&ndash;导出Excel&ndash;&gt;
+                    &lt;!&ndash;</button>&ndash;&gt;
+                    <div class="btn-group export-print dataTable-dropdown-menu">
+                        <button type="button" class="btn btn-info">打印</button>
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu export-print-menu" role="menu">
+                            <li id="AccountExchangeRate_export-print-selected"></li>
+                            <li id="AccountExchangeRate_export-print-all"></li>
+                        </ul>
+                    </div>-->
+                    <div class="btn-height btn-group" style="vertical-align: top;" id="AccountExchangeRate_export-copy"></div>
+                <!--     <div class="btn-height btn-group" style="vertical-align: top;"  id="AccountExchangeRate_export-columnVisibility" ></div> -->
+
+                    <!--<button id="refreshAccountExchangeRate" onclick="AccountExchangeRate.doSearch()" class="btn btn-info">-->
+                        <!--刷新-->
+                    <!--</button>-->
+                    <!--<button id="showAccountExchangeRateDetail" class="btn btn-info">-->
+                        <!--详情-->
+                    <!--</button>-->
+                </div>
+
+                <div class="box datable-box">
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="AccountExchangeRate_table" class="table table-bordered table-striped">
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+
+                    <!--modify button-->
+
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- DataTables -->
+    <script src="account/js/exchange_rate.js"></script>
+    <script src="account/js/public.js"></script>
+    <script>
+
+    </script>
+</div>

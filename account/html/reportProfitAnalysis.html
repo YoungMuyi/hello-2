@@ -1,0 +1,228 @@
+<div id="tab_220601" class="reportProfitAnalysis report tab-page" role="tabpanel">
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <!--begin search box-->
+                <div class="box search-box">
+                    <div class="box-body">
+                        <form class="search-table form-inline" id="reportProfitAnalysisSearchForm" role="form" style="height: 40px;/*overflow: hidden;*/">
+                            <div class="row" style="margin-bottom:10px;margin-left: 0px;">
+                                <div class="form-group" style="width: 28%;height: 28px">
+                                    <label style="width: 50px">业务部门</label>
+                                    <select multiple="" name="salesmanDepartmentsCopy" class="select2 select2-hidden-accessible" style="width: 70%;"  tabindex="-1" aria-hidden="true">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                                <div class="form-group" style="width: 28%;margin:auto 6%;">
+                                    <label style="width: 50px">公司</label>
+                                    <select name="salesmanCompany" class="select2 select2-hidden-accessible" style="width: 70%;"  tabindex="-1" aria-hidden="true">
+                                        <option value=""></option>
+                                        <option>海盟供应链</option>
+                                        <option>海盟物流</option>
+                                        <option>海盟国际货运代理</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" style="width: 28%;height: 28px">
+                                    <label style="width: 50px">业务员</label>
+                                    <select multiple="" name="salesmanNamesCopy" class="select2 select2-hidden-accessible" style="width: 70%;"  tabindex="-1" aria-hidden="true">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-bottom:10px;margin-left: 0px;">
+                                <div class="form-group" style="width: 28%;height: 28px">
+                                    <label style="width: 50px">实际利润</label>
+                                    <select name="profitSumRealPOperator" class="select2 select2-hidden-accessible" style="width: 70%;"  tabindex="-1" aria-hidden="true">
+                                        <option value=""></option>
+                                        <option value=">">大于0</option>
+                                        <option value="<">小于0</option>
+                                        <option value="=">等于0</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="ldn-wrqapper">
+                            <input style="margin-right: 5px;" type="button" id="BTN_902206221" onclick="reportProfitAnalysis.doSearch()" class="btn btn-info btn-size"  value="查询"/>
+                            <button style="background-color: white;color:#000;border:1px solid #ccc;" class="btn btn-info search_reset" id="reportProfitAnalysisSeachPortForm">
+                                重置
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+                <!--end search box-->
+
+                <!--查看详情模态框-->
+                <div class="modal fade" id="reportProfitAnalysisModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" style="width: 700px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close modal_close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="reportProfitAnalysisModalTitle">查看详情</h4>
+                            </div>
+                            <div class="modal-body" style="padding: 5px" id="reportProfitAnalysisModalBody">
+                                <!--收款详情表单-->
+                                <div id="reportProfitAnalysisModalForm" class="form-inline">
+                                    <table class="edit-table" style="margin: 5px">
+                                        <tr>
+                                            <td width="10%">业务编号</td>
+                                            <td width="23%"><input type="text" class="form-control reportProfitAnalysisInput"  name="businessCode" readonly></td>
+                                            <td width="10%">往来单位</td>
+                                            <td width="24%"><input type="text" class="form-control reportProfitAnalysisInput"  name="contactCompany" readonly></td>
+                                            <td width="10%">客户代码</td>
+                                            <td width="23%"><input type="text" class="form-control reportProfitAnalysisInput"  name="customerCode" readonly></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="10%">公司</td>
+                                            <td width="23%"><input type="text" class="form-control reportProfitAnalysisInput"  name="salesmanCompany" readonly></td>
+                                            <td width="10%">业务部门</td>
+                                            <td width="24%"><input type="text" class="form-control reportProfitAnalysisInput"  name="salesmanDepartment" readonly></td>
+                                            <td width="10%">业务员</td>
+                                            <td width="23%"><input type="text" class="form-control reportProfitAnalysisInput"  name="salesmanName" readonly></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="10%">预计盈利</td>
+                                            <td width="23%"><input type="text" class="form-control reportProfitAnalysisInput"  name="profitSumP" readonly></td>
+                                            <td width="10%">实际盈利</td>
+                                            <td width="24%"><input type="text" class="form-control reportProfitAnalysisInput"  name="profitSumRealP" readonly></td>
+                                            <td width="10%"></td>
+                                            <td width="23%"></td>
+                                        </tr>
+                                    </table>
+                                            <div class="box datable-box" style="margin-bottom: 10px">
+                                                <div class="box-body">
+                                                    <table align="center" border="1" cellspacing="0" cellpadding="0" style="border:1px solid #c6d3d6;width: 98%;" class="table table-condensed" id="profitAnalysisDetailTableR">
+                                                        <caption class="reportProfitAnalysisCaption">应收费用详情</caption>
+                                                        <thead>
+                                                        <tr>
+                                                            <th style="border: 1px solid #c6d3d6;width: 20%">费用代码</th>
+                                                            <th style="border: 1px solid #c6d3d6;width: 20%">费用名称</th>
+                                                            <th style="border: 1px solid #c6d3d6;width: 20%">币种</th>
+                                                            <th style="border: 1px solid #c6d3d6;width: 20%">应收金额</th>
+                                                            <th style="border: 1px solid #c6d3d6;width: 20%">付款单位</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody style="max-height: 100px;overflow-y: scroll">
+                                                        <tr>
+                                                            <td>合计</td>
+                                                            <td>应收USD<input type="text" class="form-control" style="width: 74px"  name="usdR" readonly></td>
+                                                            <td>应收RMB<input type="text" class="form-control" style="width: 74px"  name="rmbR" readonly></td>
+                                                            <td colspan="2">应收合计<input type="text" class="form-control" style="width: 74px"  name="receivableSumP" readonly>元</td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                            <div class="box datable-box" style="margin-bottom: 10px">
+                                                <div class="box-body">
+                                                    <table align="center" border="1" cellspacing="0" cellpadding="0" style="border:1px solid #c6d3d6;width: 98%;" class="table table-condensed"  id="profitAnalysisDetailTableP">
+                                                        <caption class="reportProfitAnalysisCaption">应付费用详情</caption>
+                                                        <thead>
+                                                        <tr>
+                                                            <th style="border: 1px solid #c6d3d6;width: 16%">费用代码</th>
+                                                            <th style="border: 1px solid #c6d3d6;width: 14%">费用名称</th>
+                                                            <th style="border: 1px solid #c6d3d6;width: 14%">应付币种</th>
+                                                            <th style="border: 1px solid #c6d3d6;width: 14%">应付金额</th>
+                                                            <th style="border: 1px solid #c6d3d6;width: 14%">收款单位</th>
+                                                            <th style="border: 1px solid #c6d3d6;width: 14%">实付币种</th>
+                                                            <th style="border: 1px solid #c6d3d6;width: 14%">实付金额</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody style="max-height: 100px;overflow-y: scroll">
+                                                        <tr>
+                                                            <td rowspan="2">合计</td>
+                                                            <td colspan="2">应付USD<input type="text" class="form-control" style="width: 74px"  name="usdP" readonly></td>
+                                                            <td colspan="2">应付RMB<input type="text" class="form-control" style="width: 74px"  name="rmbP" readonly></td>
+                                                            <td colspan="2">应付合计<input type="text" class="form-control" style="width: 74px"  name="payableSumP" readonly>元</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2">实付USD<input type="text" class="form-control" style="width: 74px"  name="usdPR" readonly></td>
+                                                            <td colspan="2">实付RMB<input type="text" class="form-control" style="width: 74px"  name="rmbPR" readonly></td>
+                                                            <td colspan="2">实付合计<input type="text" class="form-control" style="width: 74px"  name="payableSumRealP" readonly>元</td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                           <!-- <div class="box datable-box" style="margin-bottom: 10px">
+                                                <div class="box-body">
+                                                    <table align="center" border="1" cellspacing="0" cellpadding="0" style="border:1px solid #c6d3d6;width: 98%;" class="table table-condensed"  id="profitAnalysisDetailTableF">
+                                                        <caption class="reportProfitAnalysisCaption">费用报销详情</caption>
+                                                        <thead>
+                                                        <tr>
+                                                            <th style="border: 1px solid #c6d3d6;width: 34%">费用代码</th>
+                                                            <th style="border: 1px solid #c6d3d6;width: 33%">费用名称</th>
+                                                            <th style="border: 1px solid #c6d3d6;width: 33%">费用金额</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody style="max-height: 100px;overflow-y: scroll">
+                                                        <tr>
+                                                            <td>合计</td>
+                                                            <td colspan="2"><input type="text" class="form-control" style="width: 74px"  name="reimburseSum" readonly>元</td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>-->
+                                </div>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div>
+
+                <div class="btn_group">
+                    <button id="BTN_900022001" type="button" onclick="reportProfitAnalysis.reportProfitAnalysisDetail()" class="btn btn-info">
+                        查看详情
+                    </button>
+                    <!--//导出按钮-->
+                    <div class="btn-group export-excel dataTable-dropdown-menu">
+                        <button type="button" class="btn btn-height btn-info">导出Excel</button>
+                        <button type="button" class="btn btn-height btn-info dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu export-excel-menu" role="menu">
+                            <li id="profit_analysis_export-excel-selected"></li>
+                            <li id="profit_analysis_export-excel-current"></li>
+                        </ul>
+                    </div>
+                    <!--打印按钮-->
+                    <div class="btn-group export-print dataTable-dropdown-menu">
+                        <button type="button" class="btn btn-height btn-info">打印</button>
+                        <button type="button" class="btn btn-height btn-info dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu export-print-menu" role="menu">
+                            <li id="profit_analysis_export-print-selected"></li>
+                            <li id="profit_analysis_export-print-all"></li>
+                        </ul>
+                    </div>
+                    <input type="text" style="width: 90px;margin-right: 20px;height: 26px;float: right" placeholder="实际盈利" id="PSumReal" disabled/>
+                    <input type="text" style="width: 90px;margin-right: 15px;height: 26px;float: right" placeholder="预计盈利" id="PSum" disabled/>
+
+                </div>
+
+                <div class="box datable-box">
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table style="width: 100%" id="reportProfitAnalysisTable" class="table table-bordered table-striped">
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+
+
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- DataTables -->
+    <link rel="stylesheet" href="account/css/common.css"/>
+    <script src="account/js/reportProfitAnalysis.js"></script>
+    <script src="account/js/public.js"></script>
+</div>

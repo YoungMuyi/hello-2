@@ -1,0 +1,198 @@
+<div id="tab_9011" class="airline basedata tab-page" role="tabpanel">
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <!--begin search box-->
+                <div class="box search-box">
+                    <div class="box-body">
+                        <form class="search-table form-inline" id="searchAirlineForm" role="form">
+                                <!--<div class="form-group">-->
+                                    <!--<label>航空公司（CN）</label>-->
+                                    <!--<input type="text" class="form-control" name="airlineNameCn"/>-->
+                                <!--</div>-->
+                                <!--<div class="form-group">-->
+                                    <!--<label>航空公司（EN）</label>-->
+                                    <!--<input type="text" class="form-control" name="airlineName"/>-->
+                                <!--</div>-->
+                                <!--<div class="form-group">-->
+                                    <!--<label>IATA代码</label>-->
+                                    <!--<input type="text" class="form-control" name="iataDesignator"/>-->
+                                <!--</div>-->
+
+                                <!--<div class="form-group">-->
+                                    <!--<label>国际民航代码</label>-->
+                                    <!--<input type="text" class="form-control" name="icaoDesignator"/>-->
+                                <!--</div>-->
+                                <!--<div class="form-group" style="margin-top: 10px">-->
+                                    <!--<label>所在地</label>-->
+                                        <!--<select  name="countryId" class="select2 select2-hidden-accessible" style="width:300px" tabindex="-1" aria-hidden="true">-->
+                                            <!--<option value=""></option>-->
+                                        <!--</select>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <div class="row" style="margin-bottom:10px;margin-left: 0px;">
+                                <div class="form-group" style="width:28%;">
+                                    <label style="width: 76px;">航空公司(CN)</label>
+                                    <input type="text" class="form-control" name="airlineNameCn"  style="width:60%;"/>
+                                </div>
+                                <div class="form-group" style="width:28%;margin:auto 6%;">
+                                    <label style="width: 76px;">航空公司(EN)</label>
+                                    <input type="text" class="form-control" name="airlineName" style="width:60%;"/>
+                                </div>
+                                <div class="form-group" style="width:28%;">
+                                    <label style="width: 76px;">IATA代码</label>
+                                    <input type="text" class="form-control" name="iataDesignator" style="width:60%;"/>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-bottom:10px;margin-left: 0px;">
+                                <div class="form-group" style="width:28%;">
+                                    <label style="width: 76px;">国际民航代码</label>
+                                    <input type="text" class="form-control" name="icaoDesignator" style="width:60%;"/>
+                                </div>
+                                <div class="form-group" style="width:28%;margin:auto 6%;">
+                                    <label style="width: 76px;">所在地</label>
+                                    <select  name="countryId" class="select2 select2-hidden-accessible" style="width:60%;" tabindex="-1" aria-hidden="true">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="ldn-wrqapper">
+                            <input type="button" class="btn btn-info btn-size" onclick="airline.doSearch()" id="BTN_90110100" value="查询"/>
+                            <button class="btn btn-info search_reset" id="resetSeachAirlineForm" style="background-color: white;color:#000;border:1px solid #ccc;">
+                                重置
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!--end search box-->
+                <div class="modal fade" id="editAirlineModal" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" style="width: 535px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close modal_close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="editAirlineModalTitle">新增</h4>
+                            </div>
+                            <div class="modal-body" style="padding:10px 10px 40px" id="editAirlineModalBody">
+                                <form id="editAirlineForm" class="form-inline">
+                                    <table class="edit-table">
+                                        <tr>
+                                            <td><b class="color-red">*</b>航空公司(CN)</td>
+                                            <td><input type="text" class="form-control" name="airlineNameCn" style="width:165px;"/></td>
+                                            <td><b class="color-red">*</b>IATA代码</td>
+                                            <td> <input type="text" class="form-control" name="iataDesignator" style="width:165px;"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td>航空公司（EN）</td>
+                                            <td><input type="text" class="form-control" name="airlineName" style="width:165px;"/></td>
+                                            <td><!--<b class="color-red">*</b>-->国际民航代码</td>
+                                            <td> <input type="text" class="form-control" name="icaoDesignator" style="width:165px;"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td>所在地</td>
+                                            <td>
+                                                <select  name="countryId" class="form-control select2 select2-hidden-accessible" style="width:165px;" tabindex="-1" aria-hidden="true"><option value=""></option>
+                                                </select>
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>操作人</td>
+                                            <td><input type="text" class="form-control" name="amenderName" style="width:165px;" readonly/></td>
+                                            <td>修改时间</td>
+                                            <td><input type="text" class="form-control" name="amendTime" style="width:165px;" readonly/></td>
+                                        </tr>
+                                    </table>
+
+                                  
+                                    <div hidden="true"><label>新增或保存</label>
+                                        <!--<input type="text"  name="amender" value="1"/>-->
+                                        <input type="text" name="saveType" id="saveType">
+                                        <input type="text"  name="airlineId"/>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="sm-wrapper">
+                                            <input type="submit" class="btn btn-primary" id="editAirlineModalSubmit" value="确定"/>
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+                                            <!--<button type="button" class="btn btn-primary" id="editairlinesModalSubmit">确定</button>-->
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div>
+                <div class="btn_group">
+                    <button id="BTN_90110200" onclick="airline.addAirline()" class="btn btn-info" data-name="BTN_90110200" style="display: none;">
+                        新增
+                    </button>
+                    <button id="BTN_90110300" onclick="airline.editAirline()" class="btn btn-info"  data-name="BTN_90110300" style="display: none;">
+                        修改
+                    </button>
+                    <button id="BTN_90110400" onclick="airline.deleteAirline()" class="btn btn-info"  data-name="BTN_90110400" style="display: none;">
+                        删除
+                    </button>
+                    <!--<div class="btn-group export-excel dataTable-dropdown-menu">-->
+                        <!--<button type="button" class="btn btn-info">导出Excel</button>-->
+                        <!--<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">-->
+                            <!--<span class="caret"></span>-->
+                            <!--<span class="sr-only">Toggle Dropdown</span>-->
+                        <!--</button>-->
+                        <!--<ul class="dropdown-menu export-excel-menu" role="menu">-->
+                            <!--<li id="airline_export-excel-selected"></li>-->
+                            <!--<li id="airline_export-excel-current"></li>-->
+                            <!--<li id="airline_export-excel-all"></li>-->
+                        <!--</ul>-->
+                    <!--</div>-->
+                    <!--&lt;!&ndash;<button id="airline_import-excel" onclick="customsDocumentAttachment.importExcel()" class="btn btn-info">&ndash;&gt;-->
+                    <!--&lt;!&ndash;导出Excel&ndash;&gt;-->
+                    <!--&lt;!&ndash;</button>&ndash;&gt;-->
+                    <!--<div class="btn-group export-print dataTable-dropdown-menu">-->
+                        <!--<button type="button" class="btn btn-info">打印</button>-->
+                        <!--<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">-->
+                            <!--<span class="caret"></span>-->
+                            <!--<span class="sr-only">Toggle Dropdown</span>-->
+                        <!--</button>-->
+                        <!--<ul class="dropdown-menu export-print-menu" role="menu">-->
+                            <!--<li id="airline_export-print-selected"></li>-->
+                            <!--<li id="airline_export-print-all"></li>-->
+                        <!--</ul>-->
+                    <!--</div>-->
+                    <!--<div class="btn-height btn-group" style="vertical-align: top;" id="airline_export-copy"></div>-->
+                    <!--<div class="btn-height btn-group" style="vertical-align: top;"  id="airline_export-columnVisibility" ></div>-->
+
+                    <!--<button id="refreshAirline" onclick="airline.doSearch()" class="btn btn-info">-->
+                        <!--刷新-->
+                    <!--</button>-->
+                    <!--<button id="showAirlineDetail" class="btn btn-info">-->
+                        <!--详情-->
+                    <!--</button>-->
+                </div>
+
+                <div class="box datable-box">
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="airline_table" class="table table-bordered table-striped">
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+
+                    <!--modify button-->
+
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- DataTables -->
+    <script src="basedata/js/airline.js?v=201711090001"></script>
+    <script src="basedata/js/public.js?v=201711090001"></script>
+    <script>
+
+    </script>
+</div>

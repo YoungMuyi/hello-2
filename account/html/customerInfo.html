@@ -1,0 +1,61 @@
+<div id="tab_220104" class="customerInfo account tab-page" role="tabpanel">
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <!--查询栏-->
+                <div class="box search-box">
+                    <div class="box-body">
+                        <form class="search-table form-inline" id="searchCustomerInfoForm" role="form">
+                            <div class="row" style="margin-bottom:10px;margin-left: 0px;">
+                                <div class="form-group" style="width:28%;">
+                                    <label style="width: 50px;">客户代码</label>
+                                    <input style="width:70%;" type="text" class="form-control" name="customerCode">
+                                </div>
+                                <div class="form-group" style="width:28%;margin:auto 6%;">
+                                    <label style="width: 50px;">客户名称</label>
+                                    <input style="width:70%;" type="text" class="form-control" name="customerNameForShow">
+                                </div>
+                            </div>
+
+                        </form>
+                        <div class="ldn-wrqapper"  style="position: absolute;top: 5px;width: 180px;left: 80%;">
+                            <input type="button" class="btn btn-info btn-size" onclick="customerInfo.doSearch()" id="BTN_90100100" value="查询" style="margin-right: 5px;"/>
+
+                            <button style="background-color: white;color:#000;border:1px solid #ccc;" class="btn btn-info search_reset" id="resetCustomerInfoForm">
+                                重置
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="btn_gap"></div>
+
+
+                <!--主要表单-->
+                <div class="box datable-box">
+                    <div class="customerInfoMainTable box-body">
+                        <table id="customerInfo_table" class="display table-bordered table-striped" cellspacing="0" width="100%">
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>　
+</div>
+<link rel="stylesheet" href="account/css/account_common.css" />
+<!--<script src="sale/js/publicPool.js"></script>-->
+<script src="account/js/customerInfo.js"></script>
+
+<!--<script src="plugins/jQuery/distpicker.js"></script>-->
+<!--<script src="plugins/jQuery/distpicker.data.js"></script>-->
+<!--<script src="plugins/jQuery/main.js"></script>-->
+<!--<script>-->
+<!--$(function(){-->
+<!--$('#target').distpicker();-->
+<!--})-->
+<!--</script>-->
+
+
+
+
+

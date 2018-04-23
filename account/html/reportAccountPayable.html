@@ -1,0 +1,162 @@
+<div id="tab_220604" class="accountPayable report tab-page" role="tabpanel">
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <!--begin search box-->
+                <div class="box search-box">
+                    <div class="box-body">
+                        <form class="search-table form-inline" id="searchAccountPayableForm" role="form" style="height: 66px;overflow: hidden;">
+                            <div class="row" style="margin-bottom:10px;margin-left: 0px;">
+                                <div class="form-group" style="width: 28%;">
+                                    <label style="width: 50px">业务类型</label>
+                                    <select name="businessType" class="select2 select2-hidden-accessible" style="width: 70%;"  tabindex="-1" aria-hidden="true">
+                                        <option value=""></option>
+                                        <option>海运出口整箱</option>
+                                        <option>海运进口整箱</option>
+                                        <option>海运出口拼箱</option>
+                                        <option>海运进口拼箱</option>
+                                        <option>空运出口</option>
+                                        <option>空运进口</option>
+                                        <option>物流集装箱进口</option>
+                                        <option>多式联运</option>
+                                        <option>集装箱出口</option>
+                                        <option>零担运输</option>
+                                    </select>
+
+                                </div>
+                                <div class="form-group" style="width: 28%;">
+                                    <label style="width: 50px">业务部门</label>
+                                    <select multiple="" name="salesmanDepartmentsCopy" class="select2 select2-hidden-accessible" style="width: 70%;"  tabindex="-1" aria-hidden="true">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                                <div class="form-group" style="width: 28%;">
+                                    <label style="width: 50px">往来单位</label>
+                                    <input type="text" class="form-control" name="contactCompany" style="width:70%;" />
+                                </div>
+                            </div>
+                            <div class="row" style="margin-bottom:10px;margin-left: 0px;">
+                                <div class="form-group" style="width: 28%;">
+                                    <label style="width: 50px">业务员</label>
+                                    <select multiple="" name="salesmanNamesCopy" class="select2 select2-hidden-accessible" style="width: 70%;"  tabindex="-1" aria-hidden="true">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                                <div class="form-group" style="width: 28%;">
+                                    <label style="width: 50px">实收日期</label>
+                                    <input type="text" class="form-control beginDate" style="width: 33%;"  name="actualDateStart">
+                                    -
+                                    <input type="text" class="form-control endDate" style="width: 33%;"  name="actualDateEnd">
+                                </div>
+                                <div hidden="true">
+                                    <input type="text" name="expenseType" value="1">
+                                </div>
+                            </div>
+                        </form>
+                        <div class="ldn-wrqapper">
+                            <input style="margin-right: 5px;" type="button" id="BTN_90298221" onclick="reportAccountPayable.doSearch()" class="btn btn-info btn-size"  value="查询"/>
+                            <button style="background-color: white;color:#000;border:1px solid #ccc;" class="btn btn-info search_reset" id="resetSearchAccountPayableForm">
+                                重置
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+                <!--end search box-->
+
+
+                <!--打印模态框-->
+                <div class="modal fade" id="businessDetailModal" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" style="width: 600px; height: 100px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close modal_close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="businessDetailModalTitle">业务详情</h4>
+                            </div>
+                            <div class="modal-body" style="padding: 5px" id="businessDetailModalBody">
+
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div>
+
+                <!--导出模态框-->
+                <div class="modal fade" id="detailModal"
+                     tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close modal_close"
+                                        data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title"
+                                    id="detailModalTitle">报销明细-详情</h4>
+                            </div>
+                            <div class="modal-body" style="padding: 10px 20px 30px;" id="detailModalBody">
+
+                            </div>
+
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal -->
+                </div>
+
+                <div class="btn_group" style="margin-top: 15px">
+
+                    <!--//导出按钮-->
+                    <div class="btn-group export-excel dataTable-dropdown-menu">
+                        <button type="button" class="btn btn-height btn-info">导出Excel</button>
+                        <button type="button" class="btn btn-height btn-info dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu export-excel-menu" role="menu">
+                            <li id="account_payable_export-excel-selected"></li>
+                            <li id="account_payable_export-excel-current"></li>
+                        </ul>
+                    </div>
+                    <!--打印按钮-->
+                    <div class="btn-group export-print dataTable-dropdown-menu">
+                        <button type="button" class="btn btn-height btn-info">打印</button>
+                        <button type="button" class="btn btn-height btn-info dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu export-print-menu" role="menu">
+                            <li id="account_payable_export-print-selected"></li>
+                            <li id="account_payable_export-print-all"></li>
+                        </ul>
+
+
+                    </div>
+                    <input type="text" style="width: 90px;height: 26px;margin-right: 15px;float: right" id="actualTotal" placeholder="实付合计" disabled/>
+                    <input type="text" style="width: 90px;margin-right: 20px;height: 26px;float: right" id="needTotal" placeholder="应付合计" disabled/>
+
+
+                </div>
+                <!--<div class="row" style="height:40px;margin-left: 0px;margin-right: 0px;margin-top:10px;margin-bottom: 10px;background-color: #E5E5E5;">-->
+
+                <!--</div>-->
+
+                <div class="box datable-box">
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table style="width: 100%" id="accountPayableTable" class="table table-bordered table-striped">
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+
+
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- DataTables -->
+    <script src="account/js/reportAccountPayable.js"></script>
+    <script src="account/js/public.js"></script>
+</div>

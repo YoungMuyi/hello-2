@@ -1,0 +1,1022 @@
+/*���ִ��þ���*/
+.AIRexport div#expDeclareEntrust td.showCompanyDocumentList a{
+    display: inline-block;
+    margin-right: 10px;
+    border: 1px solid;
+    padding: 2px;
+    border-radius: 2px;
+}
+.AIRexport input,.AIRexport textarea,.AIRexport td{
+    text-transform: uppercase;
+}
+.AIRexport input.form-control{
+    padding: 6px;
+    border-radius: 3px;
+}
+.AIRexport fieldset{
+    padding: 0px;
+    margin: 0px;
+}
+.AIRexport table.table-bordered{
+    border:1px solid #c6d3d6;
+}
+/*滚动条样式*/
+.AIRexport *:horizontal{
+    height: 25px;
+}
+.AIRexport span.form-control-feedback.glyphicon-calendar{
+    width: 16px;
+    right: 2px;
+}
+.AIRexport table.table>tbody>tr>td{
+    /*  border:1px solid #f4f4f4;*/
+}
+/*.AIRexport table#putTable thead tr th{
+    text-align: center;
+    border-left: solid #FFFFFF 3px;
+}*/
+.AIRexport div#overview table.table tr td:nth-child(odd){
+    padding-right: 15px;
+    text-align: right;
+}
+.AIRexport div#inputORD table.table tr td:nth-child(odd){
+    padding-right: 15px;
+    text-align: right;
+}
+.AIRexport div#getGoods table.table tr td:nth-child(odd){
+    padding-right: 15px;
+    text-align: right;
+}
+.AIRexport div#declare table.table tr td:nth-child(odd){
+    padding-right: 15px;
+    text-align: right;
+}
+
+
+.AIRexport table.table>tbody>tr.active>td{
+    background-color: transparent;
+}
+/*dataTables样式*/
+/*模态框样式调整*/
+.AIRexport .modal-footer{
+    position: inherit;
+    border: none;
+}
+/*禁止文本框textarea可拖拽*/
+.AIRexport thead tr{
+    background: rgb(214,237,247);
+}
+.AIRexport thead tr td{
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+.AIRexport thread th,td{
+    white-sapce:nowrap;
+}
+.AIRexport thead tr th{
+    text-align: center;
+}
+/*textarea不可拖拽*/
+.AIRexport textarea{
+    resize: none;
+}
+/*日历图标样式*/
+.AIRexport div.form-group.has-feedback span.glyphicon-calendar.form-control-feedback{
+    right:0px;
+    line-height: 28px;
+}
+
+.AIRexport span.select2-container ul.select2-results__options{
+    overflow: auto;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 240px;
+}
+select.absOpacity+span{
+    position: absolute;
+    opacity: 0;
+}
+
+/*标头居中*/
+.AIRexport div.dataTables_scroll table.dataTable thead tr th{
+    text-align: center !important;
+}
+.AIRexport table thead tr th{
+    text-align: center;
+}
+/*委托*/
+.AIRexport div.Big div#detailPage div#inputORD section>div>div form#entrustBase table td{
+    padding-left:15px;
+}
+.AIRexport div.Big div#detailPage div#inputORD section>div>div form#entrustBase table tr td:first-child{
+    padding-left:0px;
+}
+.AIRexport div#inputORD form.searchById table tr td{
+    padding: 5px 0px;
+}
+.AIRexport div.Big div#detailPage div#inputORD section>div>div form#entrustBase table td input{
+    float: left;
+}
+.AIRexport div.dataTables_scroll div.dataTables_scrollBody{
+    max-height: 400px !important;
+}
+.AIRexport div.andSingle div.bdmh table tr.sel{
+    background: rgb(214,237,247);
+}
+.AIRexport table.bordTop{
+    border:1px solid #aaa;
+}
+.AIRexport ul li{
+    cursor: pointer;
+}
+.AIRexport table.bordTop td{
+    border-top:1px solid #aaa;
+}
+.AIRexport div#detailPage>div.ZLmain>div.tab-content>div.tab-pane>section{
+    background:white;
+}
+/* 打印模态框样式 */
+/*.AIRexport div#print div.modal-content div.modal-body fieldset div.form-inline>div{
+	padding:5px;
+}
+.AIRexport div#print div.modal-content div.modal-body fieldset div.form-inline>div span{
+	margin-right:15px;
+}
+.AIRexport div#print div.modal-content div.modal-body fieldset div.form-inline>div input{
+	width:150px;
+}
+.AIRexport div#print div.modal-content div.modal-body fieldset div.form-inline>div select{
+	width:150px;
+}*/
+/*.AIRexport div.tab-page{
+    min-width: 100% !important;
+    overflow-x: auto;
+}*/
+/*select2样式修改*/
+.AIRexport .select2-container-default .select2-selection--single, .AIRexport .select2-selection .select2-selection--single{
+    height: 22.8px !important;
+    padding: 0px 12px;
+}
+.AIRexport .select2-container--default .select2-selection--single, .AIRexport .select2-selection .select2-selection--single {
+
+}
+.AIRexport .nav-tabs>li>a{
+    line-height: 25px;
+}
+.AIRexport fieldset legend{
+    margin-bottom:0px;
+}
+.AIRexport a{
+    cursor: pointer;
+}
+.AIRexport .vertical-center{
+    line-height: 33px;
+}
+.AIRexport .myFieldset {
+    display: block;
+    -webkit-margin-start: 2px;
+    -webkit-margin-end: 2px;
+    -webkit-padding-before: 0.35em;
+    -webkit-padding-start: 0.75em;
+    -webkit-padding-end: 0.75em;
+    -webkit-padding-after: 0.625em;
+    min-width: -webkit-min-content;
+    /*  border-width: 2px;*/
+    border-style: groove;
+    border-color: threedface;
+    border-image: initial;
+}
+.AIRexport .myFieldset legend {
+    display: block;
+    -webkit-padding-start: 2px;
+    -webkit-padding-end: 2px;
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+    width: inherit;
+    color: rgba(60,141,188,1);
+    font-size:1em;
+    font-weight: bold;
+}
+.AIRexport .myFormGroup{
+    margin-bottom: 5px;
+}
+.AIRexport .myFormGroup .form-group{
+    margin-right: 0px;
+}
+.AIRexport .dropdown-menu>li>a{
+    padding: 3px 10px;
+}
+.AIRexport #moreCriteriaModal table tr td{
+    text-align: left;
+    font-size: 14px;
+    padding-right: 5px;
+}
+.AIRexport #moreCriteriaModal table tr td:nth-child(odd){
+    width:12%;
+}
+/*
+.AIRexport #moreCriteriaModal table tr td label{
+    line-height: 25px;
+}*/
+/*
+.AIRexport #moreCriteriaModal table tr td select option{
+    font-size: 10px;
+    height: 25px;
+    width: 48%;
+}*/
+/*.AIRexport #moreCriteriaModal table tr td input{
+    font-size: 10px;
+    height: 25px;
+}*/
+.AIRexport .ellipsis{
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+
+
+
+/*.AIRexport .operating{*/
+/*display: flex;*/
+/*width: 100%;*/
+/*height:100px;*/
+/*background-color: red;*/
+/*}*/
+/*.AIRexport .operating .operating-item{*/
+/*flex:1;*/
+/*}*/
+
+#AIRexport_tab_9{
+    font-size: 12px;
+}
+.AIRexport .addDelete{
+    text-align: center;
+    padding-top: 193px;
+    border-left: 1px solid #ccc;
+}
+
+
+.AIRexport .addDelete_2{
+    text-align: center;
+    padding-top: 156px;
+    border-left: 1px solid #ccc;
+}
+.AIRexport .ckek{
+    margin:10px 0 8px 0;
+}
+.AIRexport .ckek label{
+    margin-right: 15px;
+}
+.AIRexport .ckek label:last-of-type{
+    margin-right:0px;
+}
+.AIRexport .mar_top28{
+    margin-top:28.5px;
+}
+/*.AIRexport .btn_group {*/
+/*text-align: end;*/
+/*}*/
+
+/*总览表格*/
+.AIRexport table.ZLtable{
+    width: 100%;
+}
+.AIRexport table.ZLtable td{
+    padding: 5px 5px;
+}
+.AIRexport table.ZLtable td:nth-child(even){
+    /*   border-right: 2px solid #aaaaaa; */
+}
+.AIRexport table.ZLtable tr td:last-child{
+    border: none;
+}
+
+
+/*委托*/
+
+.AIRexport ul.nav-tabs-right{
+    width: 40px;
+    float: right;
+    margin-top: 100px;
+    /* margin-right: 20px;*/
+}
+.AIRexport ul.nav-tabs-right li{
+    width: 40px;
+}
+.AIRexport ul.nav-tabs-right li a{
+    line-height:20px;
+}
+.AIRexport #entrustBase table tbody tr td{
+    /*   padding:1px 5px; */
+}
+.AIRexport form#XHXX.searchById table tbody tr td{
+    padding:1px 2px;
+}
+.AIRexport #entrustBase table tbody  table.smallTable td{
+    /* padding:1px 1px; */
+}
+
+/*委托海洋提单*/
+.AIRexport div.hytd table{
+    /*  width: 90%;*/
+    margin-left: 20px;
+}
+.AIRexport div.hytd table td{
+    height:28px;
+}
+.AIRexport div.hytd table td:nth-child(4){
+    border-right: 2px solid #666;
+    width: 170px;
+}
+.AIRexport div.hytd table td:nth-child(5){
+    padding-left: 20px;
+}
+.AIRexport form#entrustBase table tbody tr{
+    /*   margin: 5px 0px; */
+}
+.AIRexport form#entrustBase table tbody tr td input{
+    /* width: 60px;*/
+}
+.AIRexport form#entrustBase td input.lg{
+    width: 150px;
+}
+.AIRexport div.hytd table  td input{
+    /*   width: 50px;*/
+}
+.AIRexport div.hytd table  td input.lg{
+    width: 150px;
+}
+.AIRexport div.hytd table td div.panel{
+    width: 290px;
+}
+.AIRexport div.hytd table td div.panel span.radio,.AIRexport div.hytd table td div.panel span.checkbox{
+    display: inline-block;
+}
+.AIRexport div.hytd table td div.panel span.radio label input[type="radio"]{
+    position: inherit;
+    width: 20px;
+}
+.AIRexport div.hytd table td div.panel span.checkbox label input[type="checkbox"]{
+    position: inherit;
+    width: 20px;
+}
+.AIRexport div.hytd table td div.panel span.radio label input[type="text"]{
+    width: 100px;
+}
+.AIRexport #inputORD form#entrustBase table tbody tr td input.longInp{
+    width:170px;
+}
+.AIRexport #inputORD form#entrustBase table tbody tr td input.codeInp{
+    width:170px;
+}
+/*委托货代提单*/
+.AIRexport div.hdtd table{
+    width: 90%;
+    margin-left: 20px;
+}
+.AIRexport div.hdtd table td{
+    /*  height: 50px; */
+}
+.AIRexport div.hdtd table td:nth-child(4){
+    border-right: 2px solid #666;
+    width: 170px;
+}
+.AIRexport div.hdtd table td:nth-child(5){
+    padding-left: 20px;
+}
+.AIRexport div.hdtd table  td input{
+    /*  width: 50px;*/
+}
+.AIRexport div.hytd table td div span.checkbox{
+    width: 33.333%;
+}
+.AIRexport div.hytd table td div span.checkbox input{
+    width: 30px;
+}
+.AIRexport div.hdtd table  td input.lg{
+    width: 150px;
+}
+.AIRexport div.hdtd table td div.panel{
+    width: 300px;
+}
+.AIRexport div.hdtd table td div.panel span.radio,.AIRexport div.hdtd table td div.panel span.checkbox{
+    display: inline-block;
+}
+.AIRexport div.hdtd table td div.panel span.radio label input[type="radio"]{
+    position: inherit;
+    width: 20px;
+}
+.AIRexport div.hdtd table td div.panel span.checkbox label input[type="checkbox"]{
+    position: inherit;
+    width: 20px;
+}
+.AIRexport div.hdtd table td div.panel span.radio label input[type="text"]{
+    width: 100px;
+}
+/*货物数据*/
+.AIRexport #cargoDataTable tbody tr td input{
+    width:100%;
+}
+/*订舱*/
+.AIRexport form#PZXX table{
+    width: 100%;
+}
+.AIRexport form#PZXX table tr td{
+    /* padding: 5px 0px;*/
+}
+.AIRexport form#PZXX table tr td:nth-child(odd){
+    padding-right: 15px;
+}
+.AIRexport form#PZXX table input{
+    width: 70px;
+    float: left;
+    height: 30px;
+    border-radius: 3px;
+}
+.AIRexport form#PZXX table input.mid{
+    width: 110px;
+}
+.AIRexport form#PZXX table td:nth-child(odd){
+    text-align: right;
+}
+
+.AIRexport form#PZXX table input.lg{
+    width: 180px;
+}
+.AIRexport div#bookingSpace fieldset form div.form-inline table td:nth-child(odd){
+    width: 95px;
+    padding-right: 10px;
+    text-align: right;
+    padding: 0px;
+}
+.AIRexport div#bookingSpace fieldset form#DCXX div.form-inline table td input{
+    width: 180px;
+    height: 30px;
+    border-radius: 3px;
+}
+.AIRexport div#billLading ul.nav-tabs li{
+    width: auto;
+}
+/*出口整箱做箱调度信息*/
+.AIRexport table.DUtable{
+    /* width: 100%;*/
+}
+.AIRexport table.DUtable td{
+    padding: 5px 10px;
+}
+.AIRexport table.DUtable td:nth-child(even){
+    border-right: none;
+}
+.AIRexport table.DUtable tr td:last-child{
+    border:none;
+}
+.AIRexport table div div.operatingButton div{
+    cursor:pointer;
+}
+
+.AIRexport table div table tr.chooseContainer{
+    background:#CAE1FF;
+}
+/*做箱*/
+.AIRexport .packings fieldset div table tbody td{
+    padding: 5px 5px;
+}
+.AIRexport div#packings section fieldset form div table.table-condensed tr td:nth-child(odd){
+    width: 80px;
+    text-align: right;
+    padding-right: 10px;
+}
+.AIRexport div#packings section fieldset form div table.table-condensed{
+    width: auto;
+}
+.AIRexport div#packings section fieldset form div table.table-condensed tr td:nth-child(even){
+    width: 233px;
+}
+
+.AIRexport fieldset.myFieldset form div table td input{
+    width: 150px;
+}
+.AIRexport fieldset.myFieldset form#packings div table td input[type="radio"]{
+    width:30px;
+}
+.AIRexport fieldset.myFieldset form#packings div.xszd table td input[type="checkbox"]{
+    width:20px;
+}
+.AIRexport #packings div.containerInfo table td,.AIRexport #packings div.plasticGoods table td{
+    /*	padding:2px 2px;*/
+    word-break:keep-all;
+}
+.AIRexport #packings div.containerInfo table td input{
+    width:65px;
+    border:none;
+    margin:0px 1px;
+}
+.AIRexport #packings div.plasticGoods table td input{
+    width:55px;
+    border:none;
+    margin:0px 1px;
+}
+/* 做箱操作 新增 复制 删除 */
+.AIRexport #packings .handle li,.AIRexport #packings .handle div{
+    cursor:pointer;
+    margin:6px;
+}
+.AIRexport div.packings div.containerInfo table tbody tr.selContainer>td,.AIRexport div.packings div.plasticGoods table tbody tr.selContainer>td{
+    background:lightblue;
+}
+/*提单*/
+.AIRexport .billLading div#confirmMBL div.col-sm-9 tr td{
+    padding: 1px 5px;
+}
+.AIRexport .billLading div#confirmHBL div.col-sm-9 tr td{
+    padding: 1px 5px;
+}
+.AIRexport .billLading div#ladingBill tr td{
+    padding: 1px 5px;
+}
+/* 子单点击样式 */
+.AIRexport div.billLading div#confirmMBL  div.signleChild table tbody tr.billNow{
+    background:lightblue;
+}
+.AIRexport div.billLading div#confirmHBL  div.signleChild table tbody tr.billNow{
+    background:lightblue;
+}
+/*
+费用*/
+/*.AIRexport .cost table tr td{
+    padding: 2px 2px;
+}*/
+/*.AIRexport .cost table tr td input{
+    width: 100px;
+}*/
+.AIRexport .setBlue{
+    color:#0486D1;
+}
+/*
+跟踪*/
+.AIRexport table#lcgz_tab{
+    text-align: center;
+    font-size: 14px;
+}
+.AIRexport #exportProTrack_tab tbody input.second_track{
+    text-align: center;
+    border: 0px;
+}
+/*
+新版本样式*/
+.AIRexport{
+    font-size: 14px !important;
+}
+.AIRexport .content{
+    /* font-size: 14px !important;*/
+}
+.AIRexport div.ZLmain ul.nav-tabs>li>a{
+    /* padding: 2px 5px; li*/
+    padding: 10px 20px;
+    text-align: center;
+}
+.AIRexport div.new input.form-control{
+    width: 140px;
+}
+.AIRexport div.new select.form-control{
+    padding: 0px 5px;
+}
+.AIRexport div.divHeader{
+    color: #00b3ee;
+    padding: 5px 10px;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+.AIRexport div.divHeader span{
+    /* width: 10% !important;
+     min-width: 120px !important;*/
+    text-align: center !important;
+    z-index: 10;
+    width: 80px !important;
+    display: inline-block;
+}
+.AIRexport div.divHeader div.dottedLine{
+    border-top: 1.8px dotted #00b3ee;
+    float: right;
+    margin-top:10px;
+    /*   margin-right: 10px;*/
+    width: 91%;
+}
+.AIRexport div form#entrustBase table tr td input[type="text"],.AIRexport div form#entrustBase table tr td select{
+    height: 25px;
+    border-radius: 3px;
+}
+.AIRexport div form#entrustBase table tr td:nth-child(odd){
+    text-align: right;
+}
+.AIRexport div.new td>span{
+    display: inline-block;
+    width: 85px;
+    text-align: right;
+    margin-right: 15px;
+    float: left;
+}
+.AIRexport div.new td>span.select2-container{
+    text-align: inherit;
+    margin-bottom: 0px;
+    float: left;
+    margin-right: 0px;
+}
+.AIRexport div.new span.btn{
+    width: auto;
+}
+.AIRexport div.inputOrder textarea{
+    border-radius: 3px;
+    width: 214px;
+    height: 70px;
+}
+.AIRexport div.new input{
+    height: 25px;
+    border-radius: 3px;
+}
+.AIRexport div.new td div>span.radio{
+    width: auto;
+    text-align: inherit;
+    margin-right: 35px;
+}
+.AIRexport div#inputORD div.new label.checkbox-inline{
+    margin-right:20px;
+}
+.AIRexport div.new td div>span.radio label input{
+    height: auto;
+    margin-right: 10px;
+    float: inherit;
+}
+.AIRexport div.new td div label.checkbox-inline input[type="checkbox"]{
+    height: inherit;
+}
+.AIRexport div.new div.xhxx table td input{
+    width: 120px;
+}
+.AIRexport div.new div.xhxx table td span{
+    width: 25px;
+}
+.AIRexport div.new button{
+    margin-right: 10px;
+}
+.AIRexport div.new button>i.fa{
+    font-size: large;
+}
+.AIRexport div.new td input.showDIV{
+    width: 90px;
+}
+.AIRexport div#inputORD table.fix{
+    table-layout: fixed;
+}
+.AIRexport div#inputORD div.new div.hytd input,
+.AIRexport div#inputORD div.new div.hdtd input{
+    width: 180px;
+    height: 30px;
+}
+/*海洋提单DIV样式*/
+
+.AIRexport div#inputORD div.new div.hytd textarea,
+.AIRexport div#inputORD div.new div.hdtd textarea{
+    vertical-align: top;
+    margin-left:50px;
+    resize: auto;
+    width: 320px;
+    height: 70px;
+}
+.AIRexport div#inputORD div.new div.hytd span.select2-selection.select2-selection--single,
+.AIRexport div#inputORD div.new div.hdtd span.select2-selection.select2-selection--single{
+    height: 30px;
+}
+.AIRexport div#inputORD div.new div.hytd div.modalDIV,
+.AIRexport div#inputORD div.new div.hdtd div.modalDIV{
+    position: absolute;
+    width: 500px;
+    max-height: 360px;
+    top:50px;
+    z-index: 999;
+    display: none;
+    box-shadow: 3px 3px 3px;
+    right: 85px;
+}
+.AIRexport div#inputORD div.new div.hytd div.modalDIV .modal-body>div:first-child,
+.AIRexport div#inputORD div.new div.hdtd div.modalDIV .modal-body>div:first-child{
+    margin: 5px;
+    float: right;
+}
+.AIRexport div#inputORD div.new div.hytd div.modalDIV .modal-body>div:first-child span,
+.AIRexport div#inputORD div.new div.hdtd div.modalDIV .modal-body>div:first-child span{
+    margin: 1px 5px;
+    cursor: pointer;
+}
+.AIRexport div#inputORD div.new div.hytd div.modalDIV .modal-body>div:first-child span>span.glyphicon,
+.AIRexport div#inputORD div.new div.hdtd div.modalDIV .modal-body>div:first-child span>span.glyphicon{
+    color: cornflowerblue;
+}
+
+.AIRexport div#inputORD div.new div.hytd .modal-body>div:nth-child(3),
+.AIRexport div#inputORD div.new div.hdtd .modal-body>div:nth-child(3){
+    height: 280px;
+    overflow: auto;
+}
+.AIRexport div#inputORD div.new div.hytd .modal-body>div:nth-child(3) table,
+.AIRexport div#inputORD div.new div.hdtd .modal-body>div:nth-child(3) table{
+    margin: 0px;
+}
+.AIRexport div#inputORD div table td span.glyphicon{
+    width: 30px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    /*   background-color: rgb(215,242,255);*/
+}
+.AIRexport div#inputORD div.new div.hytd span.btn-info,
+.AIRexport div#inputORD div.new div.hdtd span.btn-info{
+    padding: 6px;
+    background-color: rgb(214,237,247);
+    border-color: lightblue;
+    color: #33a5e1;
+    font-size: large;
+    height: 30px;
+    margin-left: 6px;
+}
+
+.AIRexport div#inputORD div.new div.hytd td div.form-group label,
+.AIRexport div#inputORD div.new div.hdtd td div.form-group label{
+    width:95px;
+    padding-right:14px;
+    text-align: right;
+    font-weight: inherit;
+    line-height: 30px;
+    float: left;
+}
+.AIRexport div#inputORD div.new div.XHXX{
+    height:180px;
+    overflow: scroll;
+}
+.AIRexport div#inputORD div.new div.XHXX table tbody tr td input{
+    /*    border: none;*/
+}
+/*.AIRexport div.new td div>span.radio*/
+/*
+业务查询*/
+.AIRexport form.search-table fieldset div.form-inline label{
+    width:60px;
+    text-align: right;
+    padding: 0px;
+    line-height: 34px;
+}
+.AIRexport form.search-table fieldset div.col-sm-3{
+    margin: 0px;
+}
+.AIRexport form.search-table fieldset.myFieldset div.form-inline div.has-feedback span.glyphicon-calendar.form-control-feedback{
+    /*  right: 0px;*/
+}
+/*委托箱货信息*/
+.AIRexport div#inputORD div.nav-tabs-custom.XHXX table thead td{
+    width: 12.5%;
+}
+.AIRexport div#inputORD div.nav-tabs-custom.XHXX table tbody td input.form-control,
+.AIRexport div#inputORD div.nav-tabs-custom.XHXX table tbody td select.form-control{
+    width: 100%;
+    height: 30px;
+}
+.AIRexport div#inputORD input.form-control.lg{
+    width: 181px !important;
+    height: 30px !important;
+    text-align: left;
+}
+.AIRexport div#inputORD input.form-control.mid{
+    width: 111px !important;
+    height: 30px !important;
+    text-align: left;
+}
+.AIRexport div#inputORD input.form-control.sm{
+    width: 70px !important;
+    height: 30px !important;
+    text-align: left;
+}
+.AIRexport div#inputORD div.new ul.nav-tabs li{
+    margin: 0px;
+    width: 100px;
+    height: 40px;
+}
+.AIRexport div.ZLmain ul.nav-tabs li{
+    margin: 0px;
+    width: 100px;
+    height: 45px;
+}
+.AIRexport div#inputORD div.new table.xhxx td input{
+    width: 180px;
+    height: 30px;
+}
+.AIRexport div.new.text-center span.btn-info{
+    width: 60px;
+    height: 30px;
+    margin-right: 15px;
+}
+/*
+.AIRexport div#entrust div.new table.xtxx td input.lg{
+    height: 30px;
+    width: ;
+}*/
+/*做箱样式*/
+.AIRexport div#packings form#packings div.form-inline table td input[type="text"]{
+    width: 180px;
+    height: 30px;
+    border-radius: 3px;
+}
+.AIRexport div#packings form#neglectedLoading table td input,
+.AIRexport div#packings form#fleet table td input{
+    width: 180px;
+    height:30px;
+    border-radius: 3px;
+}
+.AIRexport div#packings form#packings div.form-inline table td textarea{
+    width: 180px;
+    height: 70px;
+    border-radius: 3px;
+}
+.AIRexport div#packings form#packings div.form-inline table.DUtable td input{
+    width: 180px;
+    height: 30px;
+    border-radius: 3px;
+}
+
+/*
+提单页面样式*/
+.AIRexport div#billLading div#confirmMBL div.col-sm-9 form#BillLading table td input[type="text"],
+.AIRexport div#billLading div#confirmHBL div.col-sm-9 form#BillLading table td input[type="text"]{
+    width: 180px;
+    height:30px;
+    border-radius: 3px;
+}
+.AIRexport div#billLading div#confirmMBL div.col-sm-9 form#BillLading table td textarea,
+.AIRexport div#billLading div#confirmHBL div.col-sm-9 form#BillLading table td textarea{
+    width: 180px;
+    height: 70px;
+    border-radius: 3px;
+}
+.AIRexport div#billLading div#ladingBill table td select,
+.AIRexport div#billLading div#ladingBill table td input{
+    width: 180px;
+    height:30px;
+    border-radius: 3px;
+}
+/*做箱*/
+.AIRexport div#packings form div.form-inline table.DUtable tr td:nth-child(odd){
+    text-align:right;
+    width:108px;
+    padding-right:10px;
+}
+.AIRexport div#packings form div.form-inline table.DUtable tr td:nth-child(even){
+    width: 256px;
+}
+
+/*所有的tab菜单*/
+/*.AIRexport div.ZLmain>div.tab-content>div.tab-pane{
+    max-height: 500px;
+}*/
+.AIRexport div.ZLmain div.tab-content div.tab-pane{
+  /*  max-width: 1100px; 为什么要加这个呢？？？！！*/
+}
+.AIRexport div.new span.form-group input{
+    height: auto;
+}
+.AIRexport div.new span.form-group input[type="radio"]{
+    margin-right: 5px;
+}
+.AIRexport fieldset{
+    margin: 0px;
+    padding: 0px;
+}
+.AIRexport div.ZLmain>div.tab-content input.form-control{
+    width: 160px;
+    height: 30px;
+    border-radius: 3px;
+}
+/*报关样式*/
+.AIRexport div#declare section div div table tbody tr td:nth-child(1) input{
+    width:80px;
+}
+.AIRexport div#declare section div div table tbody tr td:nth-child(2) input{
+    width:80px;
+}
+.AIRexport div#declare section div div table tbody tr td:nth-child(3) input{
+    width: 110px;
+}
+.AIRexport div#declare section div div table tbody tr td:nth-child(4) input{
+    width: 110px;
+}
+.AIRexport div#declare section div div table tbody tr td:nth-child(5) input{
+    width: 110px;
+}
+.AIRexport div#declare section div div table tbody tr td:nth-child(6) input{
+    width: 80px;
+}
+.AIRexport div#declare section div div table tbody tr td:nth-child(7) input{
+    width: 110px;
+}
+.AIRexport div#declare section div div.BGtable{
+    float: left;
+    height: 300px;
+    overflow: scroll;
+    width:1113.6px;
+}
+
+
+/*委托*/
+.AIRexport div#inputORD div.new div.JBXX{
+    margin-left: 15px;
+}
+.AIRexport div#inputORD div.new div table.xhxx.table tr td{
+    padding-left: 0px;
+    margin:auto 0px;
+}
+.AIRexport div#inputORD div.new div table.xhxx.table tr td:nth-child(1) span{
+    width:81px;
+    margin-right: 7px;
+}
+.AIRexport div#inputORD div.new div table.xhxx.table tr td:nth-child(3) span{
+    width:81px;
+    margin-right:5px;
+    float: right;
+}
+.AIRexport div#inputORD div.nav-tabs-custom table.table-condensed{
+    margin-left: 22px;
+    width: 700px;
+    margin-bottom: 0px;
+}
+.AIRexport div#inputORD div.new div table.xtxx tbody tr td{
+    padding-left: 0px;
+    margin:auto 0px;
+    padding-right: 0px;
+}
+.AIRexport div#inputORD div.new div table.xtxx tbody tr td:nth-child(1){
+    width: 120px;
+}
+.AIRexport div#inputORD div.new div table.xtxx tbody tr td:nth-child(1) span{
+    float: right;
+}
+/*订舱*/
+.AIRexport div#bookingSpace fieldset div table.table tr td{
+    padding-left: 0px;
+}
+.AIRexport div#bookingSpace fieldset div table.table tr td:nth-child(odd){
+    width: 100px;
+    padding-right: 15px;
+    text-align: right;
+}
+
+
+/*报关*/
+
+@media screen and (max-width:1477px){
+    /*body{
+        background-color: red;
+    }*/
+    .AIRexport div#bookingSpace fieldset form div.form-inline table td:nth-child(odd) {
+        width: auto;
+    }
+    .AIRexport div#declare section div div.BGtable{
+        width: 830px;
+    }
+    .AIRexport div#declare section div div.handle{
+        margin-right: 77px !important;
+    }
+}
+.AIRexport div#declareEntrust div.modal-dialog div.modal-content div.modal-body table td>span{
+    width:140px;
+    font-weight: bold;
+}
+.AIRexport div#declareEntrust div.modal-dialog div.modal-content div.modal-body table td>input{
+    width:100%;
+    border: none;
+}
+.AIRexport div#declareEntrust div.modal-dialog div.modal-content div.modal-body table td{
+    padding: 2px;
+}
+/*费用*/
+.AIRexport #cost table td.selOp>span{
+    position: absolute;
+    opacity: 0;
+}
+.AIRexport .cost table tr td input{
+    width: 100px;
+    border-radius: 3px;
+}
+.AIRexport .cost table tr td input[type="checkbox"]{
+    width:auto;
+    border-radius: 3px;
+}
+.AIRexport .cost table tr td select{
+    border-radius: 3px;
+}
+.AIRexport .cost input{
+    width: 180px;
+    height: 30px;
+    border-radius: 3px;
+    display: inline-block;
+}

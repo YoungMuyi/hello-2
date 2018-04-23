@@ -1,0 +1,74 @@
+<link href="../../../bootstrap/css/bootstrap.css">
+<div id="tab_6_1_1" class="" role="">
+    <div class="">
+        <div class="">
+            <form class="" id="" role="">
+                <fieldset>
+                    <legend>出口业务</legend>
+                <div class="form-group">
+                    <lable>业务编号</lable>
+                    <input style="width:115px;" type="text" class="form-control" name="serviceNum">
+                </div>
+                <div class="form-group">
+                    <lable>提单号</lable>
+                    <input style="width:115px;" type="text" class="form-control" name="orderNum">
+                </div>
+                <div>
+                    <label>委托人</label>
+                    <input style="width:115px;" type="text" class="form-control" name="cilentName">
+                </div>
+                <div>
+                    <label>航空公司</label>
+                    <input style="width:115px;" type="text" class="form-control" name="airCompany">
+                </div>
+                <div>
+                    <label>录入时间</label>
+                    <input style="width:115px;" type="text" class="form-control" name="inputStartTime">
+                    <label>至</label>
+                        <input style="width:115px;" type="text" class="form-control" name="inputEndTime">
+                </div>
+                <div>
+                    <select name="otherCondition" class="select2 select2-hidden-accessible" style="width:115px;" tabindex="-1" aria-hidden="true">
+                        <option value="otherCondition">其他条件</option>
+                        <option value="weiTuofang">委托方</option>
+                        <option value="caoZuoyuan">操作员</option>
+                        <option value="hangBanNum">航班号</option>
+                        <option value="tidanNum">提单号</option>
+                        <option value="dingcangfang">订舱方</option>
+                        <option value="dingcangNum">订舱号</option>
+                        <option value="orderNum">订单号</option>
+                        <option value="jincangNum">进仓编号</option>
+                        <option value="baoguanNum">报关单号</option>
+                        <option value="newstatus">最新状态</option>
+                    </select>
+                    <input style="width:115px" type="text" name="otherConditiontext">
+                </div>
+                <div class="sm-wrapper" style="position: absolute;right: 12px;bottom: 0px;padding-right: 923px;padding-bottom: 6px;">
+                    <input type="button" class="btn btn-height btn-info btn-size" onclick="" value="查询">
+                    <button class="btn btn-height btn-info search_reset" id="resetBillingForm">重置</button>
+                </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div>
+    <table border="1">
+        <tr>
+            <th>全选</th>
+            <th>序号</th>
+            <th>业务编号</th>
+            <th>提单号</th>
+            <th>航空公司</th>
+            <th>航班号</th>
+            <th>实际离岗日期</th>
+            <th>订舱方</th>
+            <th>品名</th>
+            <th>报关单号</th>
+            <th>操作员</th>
+            <th>录入时间</th>
+            <th>最新状态</th>
+        </tr>
+    </table>
+</div>

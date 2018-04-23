@@ -1,0 +1,226 @@
+<div id="tab_220102" class="bank_account basedata tab-page" role="tabpanel">
+    <!--<div class="content-header">-->
+        <!---->
+        <!--<h1>-->
+            <!--基础资料-->
+            <!--<small>航线</small>-->
+        <!--</h1>-->
+        <!--<ol class="breadcrumb">-->
+            <!--<li><a href="#"><i class="fa fa-dashboard"></i>基础资料</a></li>-->
+            <!--<li><a href="#">航线</a></li>-->
+            <!--<li class="active">数据表格</li>-->
+        <!--</ol>-->
+    <!--</div>-->
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <!--begin search box-->
+                <div class="box search-box">
+                    <!--<div class="box-header">-->
+                        <!--<h4 class="box-title">查询</h4>-->
+                        <!--<div class="pull-right box-tools">-->
+                            <!--<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">-->
+                                <!--<i class="fa fa-plus"></i></button>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <div class="box-body">
+                        <form class="search-table form-inline" id="searchBankForm" role="form">
+                            <div class="row" style="margin-bottom:10px;margin-left: 0px;">
+                                <div class="form-group" style="width:28%;">
+                                    <label style="width: 50px;">银行简称</label>
+                                    <input style="width:70%;" type="text" class="form-control" name="abbrev">
+                                </div>
+                                <div class="form-group" style="width:28%;margin:auto 6%;">
+                                    <label style="width: 50px;">银行名称</label>
+                                    <input style="width:70%;" type="text" class="form-control" name="bankName">
+                                </div>
+                            </div>
+
+                        </form>
+                        <div class="ldn-wrqapper"  style="position: absolute;top: 5px;width: 180px;left: 80%;">
+                            <input type="button" class="btn btn-info btn-size" onclick="bank.doSearch()" id="BTN_90100100" value="查询" style="margin-right: 5px;"/>
+
+                            <button style="background-color: white;color:#000;border:1px solid #ccc;" class="btn btn-info search_reset" id="resetSeachBankForm">
+                                重置
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!--end search box-->
+                <div class="modal fade" id="editBankModal" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close modal_close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="editBankModalTitle">新增</h4>
+                            </div>
+                            <div class="modal-body" style="padding: 5px;height: 160px" id="editBankModalBody">
+                                <form id="editBankForm" class="form-inline">
+                                    <table class="edit-table">
+                                        <tr>
+                                            <td><b class="color-red">*</b>银行简称</td>
+                                            <td><input type="text" class="form-control" name="abbrev"/></td>
+                                            <td><b class="color-red">*</b>银行名称</td>
+                                            <td><input type="text" class="form-control" name="bankName"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><b class="color-red">*</b>银行本地名称</td>
+                                            <td><input type="text" class="form-control" name="bankNameNative"/></td>
+                                            <td><b class="color-red">*</b>银行地址</td>
+                                            <td><input type="text" class="form-control" name="addr"/></td>
+                                        </tr>
+                                  
+                                        <tr>
+                                            <td>操作人</td>
+                                            <td><input type="text" class="form-control" name="amenderName" readonly/></td>
+                                            <td>操作时间</td>
+                                            <td><input type="text" class="form-control" name="amendTime" readonly/></td>
+                                        </tr>
+                                    </table>
+
+                                    <div hidden="true"><label>新增或保存</label>
+                                        <input type="text" name="saveType" id="saveType"><input type="text"  name="bankId"/></div>
+                                    <div class="modal-footer">
+                                        <div class="sm-wrapper">
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button></button>
+                                            <!--<button type="button" class="btn btn-primary" id="editbankModalSubmit">确定</button>-->
+                                            <input type="submit" class="btn btn-primary" id="editBankModalSubmit" value="确定"/>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div>
+                <!--银行账户编辑框-->
+                <div class="modal fade" id="editBankacntModal" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close modal_close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="editBankacntModalTitle">银行账号信息</h4>
+                            </div>
+                            <div class="modal-body" style="padding: 0px;height: 170px" id="editBankacntModalBody">
+                                <form id="editBankacntForm" class="form-inline">
+                                     <table class="edit-table">
+                                        <tr>
+                                            <td>账户名</td>
+                                            <td><input type="text" class="form-control" name="bacntName"/></td>
+                                            <td>账号</td>
+                                            <td><input type="text" class="form-control" name="accounts"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td>账户类型</td>
+                                            <td>
+                                                <select  name="bacntType" class="form-control select2 select2-hidden-accessible" style="width:87%;" tabindex="-1" aria-hidden="true">
+                                                    <option value=""></option>
+                                                    <option>RMB</option>
+                                                    <option>USD</option>
+                                                </select>
+                                            </td>
+                                            <td>账户收付类型</td>
+                                            <td>
+                                                <select  name="paymentType" class="form-control select2 select2-hidden-accessible" style="width:87%;" tabindex="-1" aria-hidden="true">
+                                                    <option value=""></option>
+                                                    <option>收款</option>
+                                                    <option>付款</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        
+                                           <tr>
+                                            <td>存款类型</td>
+                                            <td>
+                                                <select  name="depositType" class="form-control select2 select2-hidden-accessible" style="width:87%;" tabindex="-1" aria-hidden="true">
+                                                    <option value=""></option>
+                                                    <option>现金</option>
+                                                    <option>转账</option>
+                                                    <option>承兑</option>
+                                                </select>
+                                            </td>
+                                            <td>备注</td>
+                                            <td><input type="text" class="form-control" name="description"/></td>
+                                        </tr>
+                                  
+                                        <tr>
+                                            <td>最后修改人</td>
+                                            <td><input type="text" class="form-control" name="amenderName" readonly/></td>
+                                            <td>最后修改时间</td>
+                                            <td><input type="text" class="form-control" name="amendTime" readonly/></td>
+                                        </tr>
+                                    </table>
+                                    <div hidden="true"><label>新增或保存</label>
+                                        <input type="text" name="saveType"><input type="text"  name="bankacntId"/><input type="text"  name="bankId"/>
+                             
+                                    </div>
+
+                                </form>
+                                <div class="modal-footer">
+                                    <div class="sm-wrapper">
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+                                        <!--<button type="button" class="btn btn-primary" id="editbankModalSubmit">确定</button>-->
+                                        <input type="submit" class="btn btn-primary" id="editBankacntModalSubmit" onclick="bank.submitEditBankacntForm()" value="确定"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div>
+                <div class="btn_group">
+                    <button id="BTN_90100200" onclick="bank.addBank()" class="btn btn-info">
+                        新增
+                    </button>
+                    <button id="BTN_90100300" onclick="bank.editBank()" class="btn btn-info">
+                        修改
+                    </button>
+                    <button id="BTN_90100400" onclick="bank.deleteBank()" class="btn btn-info">
+                        删除
+                    </button>
+                    <!--<button id="refreshBank" onclick="bank.doSearch()" class="btn btn-info">-->
+                        <!--刷新-->
+                    <!--</button>-->
+                    <button id="addAccountToBank" class="btn btn-info">
+                        新增账户
+                    </button>
+                    
+                    <!--<div class="btn-height btn-group" style="vertical-align: top;" id="bank_export-copy"></div>-->
+                    <!--<div class="btn-height btn-group" style="vertical-align: top;"  id="bank_export-columnVisibility" ></div>-->
+
+                    <!--<button id="showBankDetail" class="btn btn-info">-->
+                        <!--详情-->
+                    <!--</button>-->
+                </div>
+
+
+                <div class="box datable-box">
+
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="Bank_table" class="table table-bordered table-striped">
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+
+                    <!--modify button-->
+
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+
+        <!-- /.row -->
+    </section>
+
+
+
+    <!-- DataTables -->
+    <script src="account/js/bank_account.js"></script>
+    <script src="account/js/public.js"></script>
+    <script>
+
+    </script>
+</div>

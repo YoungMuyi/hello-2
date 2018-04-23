@@ -1,0 +1,334 @@
+<div id="tab_220605" class="reportCommissionStatistics report tab-page" role="tabpanel">
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <!--begin search box-->
+                <div class="box search-box">
+                    <div class="box-body">
+                        <form class="search-table form-inline" id="searchCommissionStatisticsForm" role="form" style="height: 66px;overflow: hidden;">
+                            <div class="row" style="margin-bottom:10px;margin-left: 0px;">
+                                <div class="form-group" style="width: 28%;">
+                                    <label style="width: 50px">结算状态</label>
+                                    <select name="status" class="select2 select2-hidden-accessible" style="width: 70%;"  tabindex="-1" aria-hidden="true">
+                                        <option value=""></option>
+                                        <option>未结算</option>
+                                        <option>已结算</option>
+                                    </select>
+
+                                </div>
+                                <div class="form-group" style="width:28%;margin:auto 6%;">
+                                    <label style="width: 50px">业务部门</label>
+                                    <select multiple="" name="salesmanDepartmentsCopy" class="select2 select2-hidden-accessible" style="width: 70%;"  tabindex="-1" aria-hidden="true">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                                <div class="form-group" style="width: 28%;">
+                                    <label style="width: 50px">业务员</label>
+                                    <select multiple="" name="salesmanNamesCopy" class="select2 select2-hidden-accessible" style="width: 70%;"  tabindex="-1" aria-hidden="true">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-bottom:10px;margin-left: 0px;">
+                                <div class="form-group" style="width: 28%;">
+                                    <label style="width: 50px">开航日</label>
+                                    <input type="text" class="form-control beginDate" style="width: 33%;"  name="beginDate">
+                                    -
+                                    <input type="text" class="form-control endDate" style="width: 33%;"  name="endDate">
+                                </div>
+                                <div class="form-group" style="width: 28%;margin:auto 6%;">
+                                    <label style="width: 50px">公司</label>
+                                    <select name="salesmanCompany" class="select2 select2-hidden-accessible" style="width: 70%;"  tabindex="-1" aria-hidden="true">
+                                        <option value=""></option>
+                                        <option>海盟供应链</option>
+                                        <option>海盟物流</option>
+                                        <option>海盟国际货运代理</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="ldn-wrqapper">
+                            <input style="margin-right: 5px;" type="button" id="BTN_902206221" onclick="reportCommissionStatistics.doSearch()" class="btn btn-info btn-size"  value="查询"/>
+                            <button style="background-color: white;color:#000;border:1px solid #ccc;" class="btn btn-info search_reset" id="resetSearchCommissionStatisticsForm">
+                                重置
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+                <!--end search box-->
+
+                <!--提成结算模态框-->
+                <div class="modal fade" id="commissionSettlementModal" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" style="width: 650px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close modal_close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="commissionSettlementModalTitle">提成结算</h4>
+                            </div>
+                            <div class="modal-body" style="padding: 5px" id="commissionSettlementModalBody">
+                                <!--收款详情表单-->
+                                <fieldset id="myFieldset2" style="margin-left: 2%;margin-right: 2%">
+                                    <legend>业务详情</legend>
+                                    <form id="commissionSettlementModalForm1" class="form-inline">
+                                        <!--<h5 style="margin-bottom: 0;margin-left:5%;color: dodgerblue;">收款详情</h5>-->
+                                        <div class="form-group" style="width: 40%;margin-left: 20px">
+                                            <label style="width: 25%">结算单号</label>
+                                            <input type="text" class="form-control" style="width: 68%;"  name="commissionId" value="自动生成" readonly>
+                                        </div>
+                                        <div class="form-group" style="width: 40%;margin-left: 10%">
+                                            <label style="width: 25%">业务编号</label>
+                                            <input type="text" class="form-control" style="width: 68%;"  name="businessCode" readonly>
+                                        </div>
+                                        <div class="form-group" style="width: 40%;margin-top: 10px;margin-left: 20px">
+                                            <label style="width: 25%">客户代码</label>
+                                            <input type="text" class="form-control" style="width: 68%;"  name="customerCode" readonly>
+                                        </div>
+                                        <div class="form-group" style="width: 40%;margin-top: 10px;margin-left: 10%">
+                                            <label style="width: 25%">往来单位</label>
+                                            <input type="text" class="form-control" style="width: 68%;"  name="contactCompany" readonly>
+                                        </div>
+                                        <div class="form-group" style="width: 40%;margin-top: 10px;margin-left: 20px">
+                                            <label style="width: 25%">提单号</label>
+                                            <input type="text" class="form-control" style="width: 68%;"  name="billLadingNo" readonly>
+                                        </div>
+                                        <div class="form-group" style="width: 40%;margin-top: 10px;margin-left: 10%">
+                                            <label style="width: 25%">开航日期</label>
+                                            <input type="text" class="form-control" style="width: 68%;"  name="sailingDate" readonly>
+                                        </div>
+                                        <div class="form-group" style="width: 40%;margin-top: 10px;margin-left: 20px">
+                                            <label style="width: 25%">应收金额</label>
+                                            <input type="text" class="form-control" style="width: 68%;"  name="receivableSumP" readonly>
+                                        </div>
+                                        <div class="form-group" style="width: 40%;margin-top: 10px;margin-left: 10%">
+                                            <label style="width: 25%">应付金额</label>
+                                            <input type="text" class="form-control" style="width: 68%;"  name="payableSumP" readonly>
+                                        </div>
+                                        <div class="form-group" style="width: 40%;margin-top: 10px;margin-left: 20px">
+                                            <label style="width: 25%">制单毛利</label>
+                                            <input type="text" class="form-control" style="width: 68%;"  name="profitSumP" readonly>
+                                        </div>
+                                        <div class="form-group" style="width: 40%;margin-top: 10px;margin-left: 10%">
+                                            <label style="width: 25%">业务提成</label>
+                                            <input type="text" class="form-control" style="width: 68%;"  name="businessCommission" readonly>
+                                        </div>
+                                        <div hidden="true">
+                                            <!--业务编号-->
+                                            <input type="text" name="businessTotalId">
+                                            <!--<input type="text" name="commissionStatus">-->
+                                        </div>
+                                        <hr style="color: white; margin-top: 10px;margin-bottom: 10px;">
+                                    </form>
+                                </fieldset>
+                                <!--核销详情表单-->
+                                <form id="commissionSettlementModalForm2" class="form-inline">
+                                    <div class="row" style="margin-left: 2%;height:35px;margin-right:2%;background-color: #E5E5E5;">
+                                        <h5 class="header" style="color: black; margin-left: 10px">核销详情</h5>
+                                    </div>
+
+                                    <!--核销详情datatable-->
+                                    <div class="box datable-box" style="width: 96%;">
+                                        <div class="box-body">
+                                            <table align="center" border="1" cellspacing="0" cellpadding="0" style="border:1px solid #c6d3d6;width: 614px;margin-left: 2%" id="commissionWriteOffTable" class="table table-condensed">
+                                                <thead>
+                                                <tr>
+                                                    <th style="width: 7.5%">序号</th>
+                                                    <th style="width: 20%">核销日期</th>
+                                                    <th style="width: 10%">核销币种</th>
+                                                    <th style="width: 10%">核销金额</th>
+                                                    <th style="width: 7.5%">汇率</th>
+                                                    <th style="width: 11.25%">销账金额</th>
+                                                    <th style="width: 11.25%">账期</th>
+                                                    <th style="width: 11.25%">+利息</th>
+                                                    <th style="width: 11.25%">-利息</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                            <!--<table id="writeOffDetailTable" class="table table-bordered table-striped">-->
+                                            <!--</table>-->
+                                            <div class="form-group" style="width: 31%;margin-top: 10px;margin-left: 2%">
+                                                <label style="width: 40%">销账金额总计</label>
+                                                <input type="text" class="form-control" style="width: 53%;"  name="payableSumReal">
+                                            </div>
+                                            <div class="form-group" style="width: 28%;margin-top: 10px;margin-left: 10px">
+                                                <label style="width: 35%">+利息合计</label>
+                                                <input type="text" class="form-control" style="width: 58%;"  name="positiveInterest">
+                                            </div>
+                                            <div class="form-group" style="width: 28%;margin-top: 10px;margin-left: 10px">
+                                                <label style="width: 35%">-利息合计</label>
+                                                <input type="text" class="form-control" style="width: 58%;"  name="negativeInterest">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div style="height: 50px">
+
+                                    </div>
+
+                                    <div class="modal-footer" style="margin-top: 20px">
+                                        <div class="sm-wrapper" >
+                                            <input type="button" onclick="reportCommissionStatistics.commissionSubmit()" class="btn btn-primary" value="提交"/>
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+                                            <!--<button type="button" class="btn btn-primary" id="editAccountExchangeRateModalSubmit">确定</button>-->
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div>
+                <!--发送模态框-->
+                <div class="modal fade" id="commissionSendModal" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" style="width: 1000px; height: 100px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close modal_close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="commissionSendModalTitle">提成结算详情</h4>
+                            </div>
+                            <div class="modal-body" style="padding: 5px" id="commissionSendModalBody">
+                                <form id="commissionSendModalForm" class="form-inline">
+                                    <div class="form-group" style="width: 30%;margin-top: 10px;margin-left: 20px">
+                                        <label style="width: 25%">客户代码</label>
+                                        <input type="text" class="form-control" style="width: 68%;"  name="customerCode" readonly>
+                                    </div>
+                                    <div class="form-group" style="width: 30%;margin-top: 10px;margin-left: 10px">
+                                        <label style="width: 25%">往来单位</label>
+                                        <input type="text" class="form-control" style="width: 68%;"  name="contactCompany" readonly>
+                                    </div>
+                                    <div class="form-group" style="width: 30%;margin-top: 10px;margin-left: 10px">
+                                        <label style="width: 25%">提成合计</label>
+                                        <input type="text" class="form-control" style="width: 68%;"  name="businessCommissionSum" readonly>
+                                    </div>
+                                    <div class="form-group" style="width: 30%;margin-top: 10px;margin-left: 20px">
+                                        <label style="width: 25%">业务公司</label>
+                                        <input type="text" class="form-control" style="width: 68%;"  name="salesmanCompany" readonly>
+                                    </div>
+                                    <div class="form-group" style="width: 30%;margin-top: 10px;margin-left: 10px">
+                                        <label style="width: 25%">业务部门</label>
+                                        <input type="text" class="form-control" style="width: 68%;"  name="salesmanDepartment" readonly>
+                                    </div>
+                                    <div class="form-group" style="width: 30%;margin-top: 10px;margin-left: 10px">
+                                        <label style="width: 25%">业务员</label>
+                                        <input type="text" class="form-control" style="width: 68%;"  name="salesmanName" readonly>
+                                    </div>
+                                    <!--提成结算详情-->
+                                    <div class="box datable-box">
+                                        <div class="box-body" style="padding-left: 2%;padding-right: 2%;">
+                                            <div style="height:28px;background-color: #E5E5E5;margin-top: 20px">
+                                                <h5 class="header" style="color: black; margin-left: 10px">提成结算详情</h5>
+                                            </div>
+                                            <table align="center" border="1" cellspacing="0" cellpadding="0" style="border:1px solid #c6d3d6;" id="commissionSettlementDetailsTable" class="table table-condensed">
+                                                <thead>
+                                                <tr>
+                                                    <th>序号</th>
+                                                    <th>业务类型</th>
+                                                    <th>业务编号</th>
+                                                    <th>客户代码</th>
+                                                    <th>往来单位</th>
+                                                    <th>提单号</th>
+                                                    <th>开航日</th>
+                                                    <th>应收金额</th>
+                                                    <th>应付金额</th>
+                                                    <th>销账金额</th>
+                                                    <th>正利息</th>
+                                                    <th>负利息</th>
+                                                    <th>业务提成</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div style="height: 50px">
+                                    </div>
+
+                                </form>
+                                <div class="modal-footer" style="margin-top: 20px">
+                                    <div class="sm-wrapper" >
+                                        <input type="button" onclick="reportCommissionStatistics.sendSubmit()" class="btn btn-primary"  value="发送"/>
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+                                        <!--<button type="button" class="btn btn-primary" id="editAccountExchangeRateModalSubmit">确定</button>-->
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div>
+
+                <!--打印模态框-->
+                <div class="modal fade" id="detailModal"
+                     tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close modal_close"
+                                        data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title"
+                                    id="detailModalTitle">报销明细-详情</h4>
+                            </div>
+                            <div class="modal-body" style="padding: 10px 20px 30px;" id="detailModalBody">
+
+                            </div>
+
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal -->
+                </div>
+
+                <div class="btn_group" id="calculate">
+                    <button id="BTN_900022001" type="button" onclick="reportCommissionStatistics.commissionSettlement()" class="btn btn-info">
+                        提成结算
+                    </button>
+                    <button id="BTN_906032002" type="button" onclick="reportCommissionStatistics.send()" class="btn btn-info">
+                        发送
+                    </button>
+                    <!--打印按钮-->
+                    <div class="btn-group export-print dataTable-dropdown-menu">
+                        <button type="button" class="btn btn-height btn-info">打印</button>
+                        <button type="button" class="btn btn-height btn-info dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu export-print-menu" role="menu">
+                            <li id="commission_statistics_export-print-selected"></li>
+                            <li id="commission_statistics_export-print-all"></li>
+                        </ul>
+
+
+                    </div>
+                    <input type="text" name="profitTotal" style="width: 90px;height: 26px;margin-right: 15px;float: right"  placeholder="提成结算合计" disabled/>
+                    <input type="text" name="negativeTotal" style="width: 90px;height: 26px;margin-right: 15px;float: right" placeholder="负利息合计" disabled/>
+                    <input type="text" name="positiveTotal" style="width: 90px;margin-right: 20px;height: 26px;float: right" placeholder="正利息合计" disabled/>
+
+
+                </div>
+
+                <div class="box datable-box">
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table style="width: 100%" id="commissionStatisticsTable" class="table table-bordered table-striped">
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+
+
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- DataTables -->
+    <script src="account/js/reportCommissionStatistics.js"></script>
+    <link rel="stylesheet" href="account/css/paymentManagement.css" />
+    <script src="account/js/public.js"></script>
+</div>

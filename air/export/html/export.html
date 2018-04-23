@@ -1,0 +1,3186 @@
+<div id="tab_16" class="AIRexport tab-page" role="tabpanel" style="width: 100%; height: 100%;">
+	<!--切换卡-->
+	<section class="content AIRtab">
+		<div class="row" style="">
+			<div class="col-xs-12">
+				<ul class="nav nav-tabs Big" role="tablist">
+					<li role="presentation" class="query"><a href="#exportMain"
+															 aria-controls="exportMain" role="tab" data-toggle="tab">业务查询</a></li>
+				</ul>
+				<div class="tab-content Big" style="padding-top: 10px;">
+					<!--业务查询-->
+					<div role="tabpanel" class="active tab-pane businessQuery" id="exportMain">
+						<section class="content AIRmain" style="margin-bottom: 30px">
+							<div class="row">
+								<div class="col-xs-12">
+									<!--表单查询-->
+									<div class="box box-primary search-box">
+										<div class="container-fluid box-body">
+											<form class="search-table form-inline" id="exportSearchForm"
+												  role="form" style="width: 100%;">
+												<fieldset class="myFieldset">
+													<legend>出口业务:</legend>
+													<div class="form-inline" style="margin-bottom: 5px;">
+														<div class="form-group" style="width: 24%; float: left;">
+															<label>业务编号&emsp;</label> <input type="text"
+																							 class="form-control" name="businessCode" placeholder="请输入业务编号">
+														</div>
+														<div class="form-group" style="width: 24%; float: left;">
+															<label>提单号&emsp;</label> <input type="text"
+																							class="form-control" name="billLandingNo" placeholder="请输入提单号">
+														</div>
+														<div class="form-group" style="width: 24%; float: left;">
+															<label>委托人&emsp;</label> <input type="text"
+																							class="form-control" name="clientInfo" placeholder="请输入委托人">
+														</div>
+														<div class="form-group" style="width: 24%; float: left;">
+															<label>航空公司&emsp;</label> <input type="text"
+																							 class="form-control" name="airplaneInfo" placeholder="请输入航空公司">
+														</div>
+														<div style="clear: both;"></div>
+													</div>
+													<div class="form-inline">
+														<div class="col-md-5 form-group has-feedback"
+															 style="padding-left: 0px;">
+															<label class="col-sm-2 control-label"
+																   style="padding-left: 0px; padding-right: 0px; width: initial; line-height: 34px;">录入时间&emsp;&nbsp;</label>
+															<div class="col-sm-4 form-group"
+																 style="padding-left: 0px; padding-right: 0px;">
+																<input type="text" class="form-control startTime"
+																	   name="startTime"
+																	   style="padding-right: 0px; width: 100%;"> <span
+																	class="glyphicon glyphicon-calendar form-control-feedback"></span>
+															</div>
+															<div class="col-sm-1 text-center"
+																 style="line-height: 34px; padding-left: 0px; padding-right: 0px;">
+																至</div>
+															<div class="col-md-4 form-group"
+																 style="padding-right: 0px; padding-left: 0px;">
+																<input type="text" class="form-control endTime"
+																	   name="endTime" style="padding-right: 0px; width: 100%;">
+																<span
+																		class="glyphicon glyphicon-calendar form-control-feedback"></span>
+															</div>
+														</div>
+														<div class="col-md-3 form-group">
+															<select
+																	class="otherConditions form-control select2 select2-hidden-accessible"
+																	style="width: 50%;" tabindex="-1" aria-hidden="true">
+																<option selected value="">其他条件</option>
+															</select> <input type="text" class="form-control" aria-label="……"
+																			 style="width: 48%; margin-left: -5px;">
+														</div>
+														<div style="clear: both;"></div>
+													</div>
+												</fieldset>
+											</form>
+											<div class="col-md-3"
+												 style="position: absolute; right: 0px; bottom: 15px;">
+												<button class="btn btn-primary left"
+														style="padding-right: 20px; padding-left: 20px;"
+														onclick="AIRexport.doSearch()">查询</button>
+												<button class="btn btn-primary right search_reset"
+														style="padding-left: 20px; padding-right: 20px;">
+													重置</button>
+											</div>
+										</div>
+									</div>
+									<!--一排按钮-->
+									<div class="btn_group" style="height: 56px;">
+										<div class="row" style="margin: 5px 5px;">
+											<!--<button type="button" class="btn btn-primary">查询</button>-->
+											<button type="button" class="btn btn-primary" onclick="AIRexport.addNew()" data-name="BTN_16010200" style="display: none;">新增</button>
+											<button type="button" class="btn btn-primary" onclick="AIRexport.updateButton()">修改</button>
+											<button type="button" class="btn btn-primary" onclick="AIRexport.copy()" data-name="BTN_16010300" style="display: none;">复制</button>
+											<button type="button" class="btn btn-primary"
+													onclick="AIRexport.deleteBusinessAll(this)" data-name="BTN_16010400" style="display: none;">删除</button>
+											<!--<button type="button" class="btn btn-primary">保存</button>-->
+											<!--<button type="button" class="btn btn-primary">取消</button>-->
+											<button type="button" class="btn btn-primary" onclick="AIRexport.datatableRefresh()" data-name="BTN_16010500" style="display: none;">刷新</button>
+											<div class="btn-group export-excel dataTable-dropdown-menu" data-name="BTN_16010600" style="display: none;">
+												<button type="button" class="btn btn-height btn-info">导出Excel</button>
+												<button type="button"
+														class="btn btn-height btn-info dropdown-toggle"
+														data-toggle="dropdown">
+													<span class="caret"></span> <span class="sr-only">ToggleDropdown</span>
+												</button>
+												<ul class="dropdown-menu export-excel-menu" role="menu">
+													<li id="customer_export-excel-selected"></li>
+													<li id="customer_export-excel-current"></li>
+												</ul>
+											</div>
+											<button type="button" class="btn btn-primary"
+													data-toggle="modal" onclick="AIRexport.showPrint(1)" data-name="BTN_16010700" style="display: none;">打印</button>
+											<button type="button" class="btn btn-primary" onclick="AIRexport.listFileById(1)" data-name="BTN_16010800" style="display: none;">附件</button>
+										</div>
+									</div>
+									<!--查询结果显示-->
+									<div class="box datable-box">
+										<div class="AIRexportMainTable box-body">
+											<table id="AIRexportTable" class="table table-bordered table-striped" style="width: 100%;">
+
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</section>
+					</div>
+					<!--总览-输单-货物数据-报关……-->
+					<div role="tabpanel" class="tab-pane detailPage" id="detailPage">
+						<div class="ZLmain">
+							<div class="row" style="margin: 5px 5px;">
+								<!--<button type="button" class="btn btn-primary"
+									onclick="AIRexport.queryButton()">查询</button>-->
+								<button type="button" class="btn btn-primary" onclick="AIRexport.addNew()">新增</button>
+								<!--<button type="button" class="btn btn-primary">复制</button>-->
+								<!--<button type="button" class="btn btn-primary">删除</button>-->
+								<button type="button" class="btn btn-primary invalid" onclick="AIRexport.airExportSave()">保存</button>
+								<button type="button" class="btn btn-primary invalid" onclick="AIRexport.airExportSubmit()">提交</button>
+								<!--<button type="button" class="btn btn-primary">取消</button>-->
+								<button type="button" class="btn btn-primary" onclick="AIRexport.refresh()">刷新</button>
+								<!--<button type="button" class="btn btn-primary">导出</button>-->
+								<button type="button" class="btn btn-primary" data-toggle="modal" onclick="AIRexport.showPrint(0)">打印</button>
+								<button type="button" class="btn btn-primary" onclick="AIRexport.listFileById(0)">附件</button>
+								<button type="button" class="btn btn-primary invalid" onclick="AIRexport.lockPage()">完成提交</button>
+								<button type="button" class="btn btn-primary HHShow" onclick="AIRexport.DS()">数据同步</button>
+							</div>
+							<ul class="nav nav-tabs editList" role="tablist" style="background-color: #FFFFFF;">
+								<li role="presentation" class="active overview" changed=false>
+									<a href="#overview" aria-controls="overview" role="tab"
+									   data-toggle="tab">总览</a>
+								</li>
+								<li role="presentation" class="inputORD" changed=false data-name="BTN_16011100" style="display: none;"><a
+										href="#inputORD" aria-controls="entrust" role="tab"
+										data-toggle="tab">输单</a></li>
+								<li role="presentation" class="goodsData" changed=false data-name="BTN_16011200" style="display: none;"><a
+										href="#goodsData" aria-controls="goodsData" role="tab"
+										data-toggle="tab">货物数据</a></li>
+								<li role="presentation" class="getGoods" changed=false data-name="BTN_16011300" style="display: none;"><a
+										href="#getGoods" aria-controls="getGoods" role="tab"
+										data-toggle="tab">取货计划</a></li>
+								<li role="presentation" class="declare" changed=false data-name="BTN_16011400" style="display: none;"><a
+										href="#declare" aria-controls="declare" role="tab"
+										data-toggle="tab">报关</a></li>
+								<li role="presentation" class="cost" changed=false data-name="BTN_16011500" style="display: none;"><a
+										href="#cost" aria-controls="cost" role="tab" data-toggle="tab">费用</a>
+								</li>
+								<li role="presentation" class="tracing" changed=false data-name="BTN_16011600" style="display: none;"><a
+										href="#tracing" aria-controls="tracing" role="tab"
+										data-toggle="tab">跟踪</a>
+								</li>
+							</ul>
+							<!-- Tab panes -->
+							<div class="tab-content" style="background: white;">
+								<!--总览-->
+								<div role="tabpanel" class="active tab-pane" id="overview">
+									<section class="content" style="margin: 0px; padding: 0px;">
+										<form class="form-inline searchById" id="overviewForm"
+											  role="form" style="width: 100%; padding-bottom: 20px;">
+											<div class="row form-inline"
+												 style="width: 95%; overflow: scroll; padding: 0px; margin: 0px; margin-bottom: 20px; padding-bottom: 5px;">
+												<table class="table">
+													<tbody>
+													<tr>
+														<td>业务编号</td>
+														<td><input type="text" class="form-control"
+																   id="businessCode" name="businessCode"
+																   disabled="disabled" readonly="readonly"></td>
+														<!--<td>业务类型</td>
+														<td><input type="text" class="form-control"
+																    disabled="disabled" value="空运出口"
+																   readonly="readonly"></td>-->
+														<td>主单号</td>
+														<td><input type="text" class="form-control"
+																   id="majorNumber" name="majorNumber"
+																   disabled="disabled" readonly="readonly"></td>
+														<td>分单号</td>
+														<td><input type="text" class="form-control"
+																   name="branchNumber" id="branchNumber"
+																   disabled="disabled" readonly="readonly"></td>
+														<td>最新状态</td>
+														<td><input type="text" class="form-control"
+																   id="businessStatus" name="businessStatus" disabled="disabled"
+																   readonly="readonly"></td>
+													</tr>
+												<!--	<tr>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+													</tr>-->
+													<tr>
+														<td colspan="10"
+															style="border-bottom: 1.8px solid #b3b3b3; height: 20px;"></td>
+													</tr>
+													<tr>
+														<td>委托人</td>
+														<td><input type="text" name="clientInfo"
+																   class="form-control" disabled="disabled"
+																   readonly="readonly"></td>
+														<td>装货港</td>
+														<td><input type="text" name="loadInfo"
+																   class="form-control" disabled="disabled"
+																   readonly="readonly"></td>
+														<td>航空公司</td>
+														<td><input type="text" name="airplaneInfo"
+																   class="form-control" disabled="disabled"
+																   readonly="readonly"></td>
+														<td>销售</td>
+														<td><input type="text" class="form-control"
+																   name="salesmanId" disabled="disabled"
+																   readonly="readonly"></td>
+													</tr>
+													<tr>
+														<td>收货人</td>
+														<td><input type="text" name="majorRecieveInfo"
+																   class="form-control" disabled="disabled"
+																   readonly="readonly"></td>
+														<td>目的地</td>
+														<td><input type="text" name="terminiInfo"
+																   class="form-control" disabled="disabled"
+																   readonly="readonly"></td>
+														<td>航班</td>
+														<td><input type="text" name="flightId"
+																   class="form-control" disabled="disabled"
+																   readonly="readonly"></td>
+														<td>客服1</td>
+														<td><input type="text" class="form-control"
+																   name="majorPeopleOneName" disabled="disabled"
+																   readonly="readonly"></td>
+													</tr>
+													<tr>
+														<td>发货人</td>
+														<td><input type="text" name="majorShipperInfo"
+																   class="form-control" disabled="disabled"
+																   readonly="readonly"></td>
+														<!--<td>卸货港</td>
+														<td><input type="text" name="carTeam"
+																   class="form-control" disabled="disabled"
+																   readonly="readonly"></td>-->
+														<td>实际离港</td>
+														<td><input type="text" name="actualDate"
+																   class="form-control" disabled="disabled"
+																   readonly="readonly"></td>
+														<td>预计离港</td>
+														<td><input type="text" name="planLeaveDate"
+																   class="form-control" disabled="disabled"
+																   readonly="readonly"></td>
+														<td>客服2</td>
+														<td><input type="text" class="form-control"
+																   name="majorPeopleTwoName" disabled="disabled"
+																   readonly="readonly"></td>
+													</tr>
+													<tr>
+														<td>联系人</td>
+														<td><input type="text" name="majorNotifierInfo"
+																   class="form-control" disabled="disabled"
+																   readonly="readonly"></td>
+														<td>提单号</td>
+														<td><input type="text" name="billLadingNo"
+																   class="form-control" disabled="disabled"
+																   readonly="readonly"></td>
+														<td></td>
+														<td></td>
+														<td>客服3</td>
+														<td><input type="text" class="form-control"
+																   name="majorPeopleThreeName" disabled="disabled"
+																   readonly="readonly"></td>
+													</tr>
+													<tr>
+														<!--<td>海外代理</td>
+														<td><input type="text" name="carTeam"
+																   class="form-control" disabled="disabled"
+																   readonly="readonly"></td>-->
+														<td colspan="6" style="border-bottom: 1.8px solid #b3b3b3; height: 2px;">
+														</td>
+														<td style="text-align: right;padding-right: 15px;">商务</td>
+														<td style="text-align: left;"><input type="text" class="form-control"
+																   name="majorBusniess" disabled="disabled"
+																   readonly="readonly"></td>
+													</tr>
+													<tr>
+														<td>车队</td>
+														<td><input type="text" name="carTeam"
+																   class="form-control" disabled="disabled"
+																   readonly="readonly"></td>
+														<td>实际计费重量</td>
+														<td><input type="text" name="warehouseChargeWeight"
+																   class="form-control" disabled="disabled"
+																   readonly="readonly"></td>
+														<td>接单日期</td>
+														<td><input type="text" name="createTime"
+																   class="form-control" disabled="disabled"
+																   readonly="readonly"></td>
+														<td>操作</td>
+														<td><input type="text" class="form-control"
+																   name="majorOperate" disabled="disabled"
+																   readonly="readonly"></td>
+													</tr>
+													<tr>
+														<td>装箱方式</td>
+														<td><input type="text" name="loadMean"
+																   class="form-control" disabled="disabled"
+																   readonly="readonly"></td>
+														<td>实际泡重</td>
+														<td><input type="text" class="form-control"
+																   name="warehouseVolumerticWeight" disabled="disabled"
+																   readonly="readonly"></td>
+														<td>报关行</td>
+														<td><input type="text" name="customsBroker"
+																   class="form-control" disabled="disabled"
+																   readonly="readonly"></td>
+														<td>调度</td>
+														<td><input type="text" class="form-control"
+																   name="majorDispatch" disabled="disabled"
+																   readonly="readonly"></td>
+														<!--<td>应付分泡比</td>
+														<td><input type="text" name="splitRatio"
+																   class="form-control" disabled="disabled"
+																   readonly="readonly"></td>-->
+													</tr>
+													<tr>
+														<td>实际件数</td>
+														<td><input type="text" name="warehouseAmount"
+																   class="form-control" disabled="disabled"
+																   readonly="readonly"></td>
+														<td>应付结算重量</td>
+														<td><input type="text" class="form-control"
+																   name="warehouseCalculateWeight" disabled="disabled"
+																   readonly="readonly"></td>
+														<td>报关日期</td>
+														<td><input type="text" name="customsDate"
+																   class="form-control" disabled="disabled"
+																   readonly="readonly"></td>
+														<td></td>
+														<td>
+															<button class="btn btn-primary" type='button'
+																	id="financialInfo" onclick="AIRexport.financialModalShow()">财务信息</button>
+														</td>
+													</tr>
+													<!--<tr>-->
+														<!--<td>仓库</td>
+														<td><input type="text" name="carTeam"
+																   class="form-control" disabled="disabled"
+																   readonly="readonly"></td>-->
+														<!--<td>应付分泡比</td>
+														<td><input type="text" name="splitRatio"
+																   class="form-control" disabled="disabled"
+																   readonly="readonly"></td>-->
+
+													<!--</tr>-->
+													<tr>
+														<td>实际毛重</td>
+														<td><input type="text" name="warehouseGross"
+																   class="form-control" disabled="disabled"
+																   readonly="readonly"></td>
+														<td>付款方式</td>
+														<td><select class="form-control"
+																	style="background-color: #EEE; width: 160px; height: 30px;" disabled="disabled">
+															<option value="month">月结</option>
+															<option value="once">单次结算</option>
+														</select></td>
+														<td>报关单号</td>
+														<td><input type="text" name="customsNo"
+																   class="form-control" disabled="disabled"
+																   readonly="readonly"></td>
+													</tr>
+													<tr>
+														<td>实际体积</td>
+														<td><input type="text" name="warehouseVolume"
+																   class="form-control" disabled="disabled"
+																   readonly="readonly"></td>
+														<td></td>
+														<td></td>
+														<td>报关完成</td>
+														<td><input type="text" name="entrMiddleOperation"
+																   class="form-control" disabled="disabled"
+																   readonly="readonly"></td>
+													</tr>
+													<tr>
+
+														<!--<td>商检放行</td>
+														<td><input type="text" name="inspectionRelease"
+																   class="form-control" disabled="disabled"
+																   readonly="readonly"></td>-->
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td>查验日期</td>
+														<td><input type="text" name="inspectionDate"
+																   class="form-control" disabled="disabled"
+																   readonly="readonly"></td>
+													</tr>
+													<tr>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+													</tr>
+													<tr>
+														<td colspan="6"
+															style="border-bottom: 1.8px solid #b3b3b3; height: 20px;"></td>
+													</tr>
+													<tr>
+														<td>备注</td>
+														<td><input type="text" class="form-control"
+																   style="height: 30px; width: 160px;" name="remarks"
+																   disabled="disabled" readonly="readonly"></td>
+														<td>操作要求</td>
+														<td><input type="text" class="form-control"
+																   name="oprateRequire" disabled="disabled"
+																   readonly="readonly"></td>
+														<td>订舱要求</td>
+														<td><input type="text" class="form-control"
+																   name="orderRemand" disabled="disabled"
+																   readonly="readonly"></td>
+													</tr>
+													<tr>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+													</tr>
+													</tbody>
+												</table>
+											</div>
+										</form>
+									</section>
+								</div>
+								<!--输单-->
+								<div role="tabpanel" class="tab-pane" id="inputORD">
+									<section class="content" style="margin: 0px; padding: 0px;">
+										<form class="form-inline searchById" id="busyCode" role="form"
+											  style="width: 100%; padding-bottom: 20px;">
+											<div class="row form-inline inputOrder"
+												 style="width: 90%; overflow: scroll; padding: 0px; margin: 0px; margin-bottom: 20px; padding-bottom: 5px;">
+												<table class="table">
+													<tbody>
+													<tr>
+														<td><b class="color-red">*</b> 业务编号</td>
+														<td><input type="text" class="form-control must"
+																   id="entrServiceCode" name="businessCode" readonly="readonly"></td>
+													</tr>
+													<tr>
+														<td colspan="4"
+															style="border-bottom: 1.8px solid #b3b3b3; height: 10px;"></td>
+													</tr>
+													<tr>
+														<td style="text-align: center; font-size: 120%;" colspan="2">
+															<b style="color: #3c8dbc;">主单</b>
+														</td>
+
+														<td style="text-align: center; font-size: 120%;" colspan="2"><b style="color: #3c8dbc;">分单</b></td>
+													</tr>
+													<tr>
+														<td>主单号</td>
+														<td>
+															<input type="text" class="form-control" name="majorNumber">
+														</td>
+														<td>分单号</td>
+														<td>
+															<input type="text" class="form-control" name="branchNumber">
+														</td>
+													</tr>
+													<tr>
+														<td>发货人</td>
+														<td>
+															<div class="ZDFHR majorConsignor modal-content personModal"
+																 style="position: absolute; width: 450px; max-height: 400px; top: 310px; z-index: 999; display: none; -webkit-box-shadow: 3px 3px 3px;  -moz-box-shadow:  3px 3px 3px; box-shadow:3px 3px 3px;">
+																<div class="modal-header">
+																	<button type="button" class="close"
+																			data-dismiss="modal" aria-label="Close">
+																			<span aria-hidden="true"
+																				  onclick="AIRexport.closeDetail('.majorConsignor')">&times;</span>
+																	</button>
+																	<div class="modal-title">发货人</div>
+																</div>
+																<div class="modal-body">
+																	<div style="margin: 5px; float: left;">
+																		<input type="text" class="form-control" name="customerSearch">
+																		<span style="margin: 1px 5px; cursor: pointer;"onclick="AIRinputorder.customerSearch(this)">
+																			<span class="glyphicon glyphicon-search"style="color: cornflowerblue;"></span>搜索</span>
+																	</div>
+																	<div style="margin: 5px; float: right;">
+																		<!--<span style="margin: 1px 5px; cursor: pointer;" onclick="AIRinputorder.selCustomer(this)">
+                                                                            <span class="glyphicon glyphicon-ok" style="color: cornflowerblue;"></span>选择
+                                                                        </span>-->
+																		<span style="margin: 1px 5px; cursor: pointer;"
+																			  onclick="AIRinputorder.addCus(this)"> <span
+																				class="glyphicon glyphicon-plus"
+																				style="color: cornflowerblue;"></span>新增
+																			</span> <span style="margin: 1px 5px; cursor: pointer;"
+																						  onclick="AIRinputorder.delCus(this)"> <span
+																			class="glyphicon glyphicon-trash"
+																			style="color: cornflowerblue;"></span>删除
+																			</span>
+																	</div>
+																	<div style="clear: both;"></div>
+																	<div style="height: 280px; overflow: auto;">
+																		<table border="1" style="margin-bottom: 0px;"
+																			   class="smallTable table table-striped">
+																			<thead>
+																			<tr>
+																				<td>代码</td>
+																				<td>合成名称</td>
+																				<td>新增人</td>
+																				<td>新增日期</td>
+																			</tr>
+																			</thead>
+																			<tbody>
+
+																			</tbody>
+																		</table>
+																	</div>
+																</div>
+															</div>
+															<input type="text" class="form-control code" name="majorShipperCode">
+															<!--<input type="text" class="form-control info must" name="majorShipperInfo"> -->
+															<span class="btn btn-info invalid" id="majorConsignor" onclick="AIRinputorder.majorConsignor(this)">
+																	<i class="fa fa-fw fa-angle-double-down"></i>
+																</span>
+														</td>
+														<td>发货人</td>
+														<td>
+															<div class="FDFHR branchConsignor modal-content personModal"
+																 style="position: absolute; width: 450px; max-height: 400px; top: 310px; z-index: 999; display: none; -webkit-box-shadow: 3px 3px 3px;  -moz-box-shadow:  3px 3px 3px; box-shadow:  3px 3px 3px;">
+																<div class="modal-header">
+																	<button type="button" class="close"
+																			data-dismiss="modal" aria-label="Close">
+																			<span aria-hidden="true"
+																				  onclick="AIRexport.closeDetail('.branchConsignor')">&times;</span>
+																	</button>
+																	<div class="modal-title">发货人</div>
+																</div>
+																<div class="modal-body">
+																	<div style="margin: 5px; float: left;">
+																		<input type="text" class="form-control" name="customerSearch">
+																		<span style="margin: 1px 5px; cursor: pointer;"onclick="AIRinputorder.customerSearch(this)">
+																			<span class="glyphicon glyphicon-search"style="color: cornflowerblue;"></span>搜索
+																	</div>
+																	<div style="margin: 5px; float: right;">
+																		<!--<span style="margin: 1px 5px; cursor: pointer;" onclick="AIRinputorder.selCustomer(this)">
+                                                                            <span class="glyphicon glyphicon-ok" style="color: cornflowerblue;"></span>选择
+                                                                        </span>-->
+																		<span style="margin: 1px 5px; cursor: pointer;"
+																			  onclick="AIRinputorder.addCus(this)"> <span
+																				class="glyphicon glyphicon-plus"
+																				style="color: cornflowerblue;"></span>新增
+																			</span> <span style="margin: 1px 5px; cursor: pointer;"
+																						  onclick="AIRinputorder.delCus(this)"> <span
+																			class="glyphicon glyphicon-trash"
+																			style="color: cornflowerblue;"></span>删除
+																			</span>
+																	</div>
+																	<div style="clear: both;"></div>
+																	<div style="height: 280px; overflow: auto;">
+																		<table border="1" style="margin-bottom: 0px;"
+																			   class="smallTable table table-striped">
+																			<thead>
+																			<tr>
+																				<td>代码</td>
+																				<td>合成名称</td>
+																				<td>新增人</td>
+																				<td>新增日期</td>
+																			</tr>
+																			</thead>
+																			<tbody>
+
+																			</tbody>
+																		</table>
+																	</div>
+																</div>
+															</div>
+															<input type="text" class="form-control code" name="branchShipperCode">
+															<!--<input type="text" class="form-control info" name="branchShipperInfo"> -->
+															<span class="btn btn-info invalid" id="branchConsignor" onclick="AIRinputorder.branchConsignor(this)">
+																	<i class="fa fa-fw fa-angle-double-down"></i>
+																</span>
+														</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td><textarea style="border-color: #d2d6de;width: 160px;" name="majorShipperInfo"></textarea></td>
+														<td></td>
+														<td><textarea style="border-color: #d2d6de;width: 160px;" name="branchShipperInfo"></textarea></td>
+													</tr>
+													<tr>
+														<td>收货人</td>
+														<td>
+															<div class="ZDSHR majorConsignee modal-content personModal"
+																 style="position: absolute; width: 450px; max-height: 400px; top: 434px; z-index: 999; display: none; -webkit-box-shadow: 3px 3px 3px;  -moz-box-shadow:  3px 3px 3px; box-shadow:  3px 3px 3px;">
+																<div class="modal-header">
+																	<button type="button" class="close"
+																			data-dismiss="modal" aria-label="Close">
+																			<span aria-hidden="true"
+																				  onclick="AIRexport.closeDetail('.majorConsignee')">&times;</span>
+																	</button>
+																	<div class="modal-title">收货人</div>
+																</div>
+																<div class="modal-body">
+																	<div style="margin: 5px; float: left;">
+																		<input type="text" class="form-control" name="customerSearch">
+																		<span style="margin: 1px 5px; cursor: pointer;"onclick="AIRinputorder.customerSearch(this)">
+																			<span class="glyphicon glyphicon-search"style="color: cornflowerblue;"></span>搜索
+																	</div>
+																	<div style="margin: 5px; float: right;">
+																		<!--<span style="margin: 1px 5px; cursor: pointer;" onclick="AIRinputorder.selCustomer(this)">
+                                                                            <span class="glyphicon glyphicon-ok" style="color: cornflowerblue;"></span>选择
+                                                                        </span>-->
+																		<span style="margin: 1px 5px; cursor: pointer;"
+																			  onclick="AIRinputorder.addCus(this)"> <span
+																				class="glyphicon glyphicon-plus"
+																				style="color: cornflowerblue;"></span>新增
+																			</span> <span style="margin: 1px 5px; cursor: pointer;"
+																						  onclick="AIRinputorder.delCus(this)"> <span
+																			class="glyphicon glyphicon-trash"
+																			style="color: cornflowerblue;"></span>删除
+																			</span>
+																	</div>
+																	<div style="clear: both;"></div>
+																	<div style="height: 280px; overflow: auto;">
+																		<table border="1" style="margin-bottom: 0px;"
+																			   class="smallTable table table-striped">
+																			<thead>
+																			<tr>
+																				<td>代码</td>
+																				<td>合成名称</td>
+																				<td>新增人</td>
+																				<td>新增日期</td>
+																			</tr>
+																			</thead>
+																			<tbody>
+
+																			</tbody>
+																		</table>
+																	</div>
+																</div>
+															</div>
+															<input type="text" class="form-control code" name="majorRecieveCode">
+															<!--<input type="text" class="form-control info must" name="majorRecieveInfo">-->
+															<span class="btn btn-info invalid" id="majorConsignee" onclick="AIRinputorder.majorConsignee(this)">
+																	<i class="fa fa-fw fa-angle-double-down"></i>
+																</span>
+														</td>
+														<td>收货人</td>
+														<td>
+															<div class="FDSHR branchConsignee modal-content personModal"
+																 style="position: absolute; width: 450px; max-height: 400px; top: 434px; z-index: 999; display: none; -webkit-box-shadow: 3px 3px 3px;  -moz-box-shadow:  3px 3px 3px; box-shadow:  3px 3px 3px;">
+																<div class="modal-header">
+																	<button type="button" class="close"
+																			data-dismiss="modal" aria-label="Close">
+																			<span aria-hidden="true"
+																				  onclick="AIRexport.closeDetail('.branchConsignee')">&times;</span>
+																	</button>
+																	<div class="modal-title">收货人</div>
+																</div>
+																<div class="modal-body">
+																	<div style="margin: 5px; float: left;">
+																		<input type="text" class="form-control" name="customerSearch">
+																		<span style="margin: 1px 5px; cursor: pointer;"onclick="AIRinputorder.customerSearch(this)">
+																			<span class="glyphicon glyphicon-search"style="color: cornflowerblue;"></span>搜索
+																	</div>
+																	<div style="margin: 5px; float: right;">
+																		<!--<span style="margin: 1px 5px; cursor: pointer;" onclick="AIRinputorder.selCustomer(this)">
+                                                                            <span class="glyphicon glyphicon-ok" style="color: cornflowerblue;"></span>选择
+                                                                        </span>-->
+																		<span style="margin: 1px 5px; cursor: pointer;"
+																			  onclick="AIRinputorder.addCus(this)"> <span
+																				class="glyphicon glyphicon-plus"
+																				style="color: cornflowerblue;"></span>新增
+																			</span> <span style="margin: 1px 5px; cursor: pointer;"
+																						  onclick="AIRinputorder.delCus(this)"> <span
+																			class="glyphicon glyphicon-trash"
+																			style="color: cornflowerblue;"></span>删除
+																			</span>
+																	</div>
+																	<div style="clear: both;"></div>
+																	<div style="height: 280px; overflow: auto;">
+																		<table border="1" style="margin-bottom: 0px;"
+																			   class="smallTable table table-striped">
+																			<thead>
+																			<tr>
+																				<td>代码</td>
+																				<td>合成名称</td>
+																				<td>新增人</td>
+																				<td>新增日期</td>
+																			</tr>
+																			</thead>
+																			<tbody>
+
+																			</tbody>
+																		</table>
+																	</div>
+																</div>
+															</div>
+															<input type="text" class="form-control code" name="branchRecieveCode">
+															<!--<input type="text" class="form-control info" name="branchRecieveInfo"> -->
+															<span class="btn btn-info invalid" id="branchConsignee" onclick="AIRinputorder.branchConsignee(this)">
+																	<i class="fa fa-fw fa-angle-double-down"></i>
+																</span>
+														</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td><textarea style="border-color: #d2d6de;width: 160px;" name="majorRecieveInfo"></textarea></td>
+														<td></td>
+														<td><textarea style="border-color: #d2d6de;width: 160px;" name="branchRecieveInfo"></textarea></td>
+													</tr>
+													<tr>
+														<td>通知人</td>
+														<td>
+															<div class="ZDTZR majorContact modal-content personModal"
+																 style="position: absolute; width: 450px; max-height: 400px; top: 556px; z-index: 999; display: none; -webkit-box-shadow: 3px 3px 3px;  -moz-box-shadow:  3px 3px 3px; box-shadow:  3px 3px 3px;">
+																<div class="modal-header">
+																	<button type="button" class="close"
+																			data-dismiss="modal" aria-label="Close">
+																			<span aria-hidden="true"
+																				  onclick="AIRexport.closeDetail('.majorContact')">&times;</span>
+																	</button>
+																	<div class="modal-title">通知人</div>
+																</div>
+																<div class="modal-body">
+																	<div style="margin: 5px; float: left;">
+																		<input type="text" class="form-control" name="customerSearch">
+																		<span style="margin: 1px 5px; cursor: pointer;"onclick="AIRinputorder.customerSearch(this)">
+																			<span class="glyphicon glyphicon-search"style="color: cornflowerblue;"></span>搜索
+																	</div>
+																	<div style="margin: 5px; float: right;">
+																		<!--<span style="margin: 1px 5px; cursor: pointer;"
+                                                                            onclick="AIRinputorder.selCustomer(this)"> <span
+                                                                            class="glyphicon glyphicon-ok"
+                                                                            style="color: cornflowerblue;"></span>选择
+                                                                        </span>-->
+																		<span style="margin: 1px 5px; cursor: pointer;"
+																			  onclick="AIRinputorder.addCus(this)"> <span
+																				class="glyphicon glyphicon-plus"
+																				style="color: cornflowerblue;"></span>新增
+																			</span> <span style="margin: 1px 5px; cursor: pointer;"
+																						  onclick="AIRinputorder.delCus(this)"> <span
+																			class="glyphicon glyphicon-trash"
+																			style="color: cornflowerblue;"></span>删除
+																			</span>
+																	</div>
+																	<div style="clear: both;"></div>
+																	<div style="height: 280px; overflow: auto;">
+																		<table border="1" style="margin-bottom: 0px;"
+																			   class="smallTable table table-striped">
+																			<thead>
+																			<tr>
+																				<td>代码</td>
+																				<td>合成名称</td>
+																				<td>新增人</td>
+																				<td>新增日期</td>
+																			</tr>
+																			</thead>
+																			<tbody>
+
+																			</tbody>
+																		</table>
+																	</div>
+																</div>
+															</div>
+															<input type="text" class="form-control code" name="majorNotifierCode">
+															<!--<input type="text" class="form-control info" name="majorNotifierInfo">-->
+															<span class="btn btn-info invalid" onclick="AIRinputorder.majorContact(this)">
+																	<i class="fa fa-fw fa-angle-double-down"></i>
+																</span>
+														</td>
+														<td>通知人</td>
+														<td>
+															<div class="FDTZR branchContact modal-content personModal"
+																 style="position: absolute; width: 450px; max-height: 400px; top: 556px; z-index: 999; display: none; -webkit-box-shadow: 3px 3px 3px;  -moz-box-shadow:  3px 3px 3px; box-shadow:  3px 3px 3px;">
+																<div class="modal-header">
+																	<button type="button" class="close"
+																			data-dismiss="modal" aria-label="Close">
+																			<span aria-hidden="true"
+																				  onclick="AIRexport.closeDetail('.branchContact')">&times;</span>
+																	</button>
+																	<div class="modal-title">通知人</div>
+																</div>
+																<div class="modal-body">
+																	<div style="margin: 5px; float: left;">
+																		<input type="text" class="form-control" name="customerSearch">
+																		<span style="margin: 1px 5px; cursor: pointer;"onclick="AIRinputorder.customerSearch(this)">
+																			<span class="glyphicon glyphicon-search"style="color: cornflowerblue;"></span>搜索
+																	</div>
+																	<div style="margin: 5px; float: right;">
+																		<!--<span style="margin: 1px 5px; cursor: pointer;"
+                                                                            onclick="AIRinputorder.selCustomer(this)"> <span
+                                                                            class="glyphicon glyphicon-ok"
+                                                                            style="color: cornflowerblue;"></span>选择
+                                                                        </span>-->
+																		<span style="margin: 1px 5px; cursor: pointer;"
+																			  onclick="AIRinputorder.addCus(this)"> <span
+																				class="glyphicon glyphicon-plus"
+																				style="color: cornflowerblue;"></span>新增
+																			</span> <span style="margin: 1px 5px; cursor: pointer;"
+																						  onclick="AIRinputorder.delCus(this)"> <span
+																			class="glyphicon glyphicon-trash"
+																			style="color: cornflowerblue;"></span>删除
+																			</span>
+																	</div>
+																	<div style="clear: both;"></div>
+																	<div style="height: 280px; overflow: auto;">
+																		<table border="1" style="margin-bottom: 0px;"
+																			   class="smallTable table table-striped">
+																			<thead>
+																			<tr>
+																				<td>代码</td>
+																				<td>合成名称</td>
+																				<td>新增人</td>
+																				<td>新增日期</td>
+																			</tr>
+																			</thead>
+																			<tbody>
+
+																			</tbody>
+																		</table>
+																	</div>
+																</div>
+															</div>
+															<input type="text" class="form-control code" name="branchNotifierCode">
+															<!--<input type="text" class="form-control info" name="branchNotifierInfo">-->
+															<span class="btn btn-info invalid" onclick="AIRinputorder.branchContact(this)">
+																	<i class="fa fa-fw fa-angle-double-down"></i>
+																</span>
+														</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td><textarea style="border-color: #d2d6de;width: 160px;" name="majorNotifierInfo"></textarea></td>
+														<td></td>
+														<td><textarea style="border-color: #d2d6de;width: 160px;" name="branchNotifierInfo"></textarea></td>
+													</tr>
+													<tr>
+														<td>付款方式</td>
+														<td>
+															<select class="form-control" name="majorPayMean" style="width: 60px; height: 30px;border-radius: 3px;">
+																<option>P</option>
+																<option>C</option>
+																<option>A</option>
+															</select>
+															<input class="form-control" style="width: 97px;" name="">
+														</td>
+														<td>付款方式</td>
+														<td>
+															<select class="form-control" name="branchPayMean" style="width: 60px; height: 30px;border-radius: 3px;">
+																<option>P</option>
+																<option>C</option>
+																<option>A</option>
+															</select>
+															<input class="form-control" style="width: 97px;" name="">
+														</td>
+													</tr>
+													<tr>
+														<td>货币</td>
+														<td>
+															<select name="majorMoneyType" class="form-control" style="width: 160px; height: 30px;border-radius: 3px;">
+																<option>RMB</option>
+																<option>USD</option>
+															</select>
+														</td>
+														<td>货币</td>
+														<td>
+															<select name="branchMoneyType" class="form-control" style="width: 160px; height: 30px;border-radius: 3px;">
+																<option>RMB</option>
+																<option>USD</option>
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td>杂费</td>
+														<td>
+															<input type="text" class="form-control" name="majorOtherMoney">
+														</td>
+														<td>杂费</td>
+														<td>
+															<input type="text" class="form-control" name="branchOtherMoney">
+														</td>
+													</tr>
+													<tr>
+														<td>声明价值（运输）</td>
+														<td>
+															<input type="text" class="form-control" name="majorTransportValue">
+														</td>
+														<td>声明价值（运输）</td>
+														<td>
+															<input type="text" class="form-control" name="branchTransportValue">
+														</td>
+													</tr>
+													<tr>
+														<td>声明价值（海关）</td>
+														<td>
+															<input type="text" class="form-control" name="majorCustomeValue">
+														</td>
+														<td>声明价值（海关）</td>
+														<td>
+															<input type="text" class="form-control" name="branchCustomVslue">
+														</td>
+													</tr>
+													<tr>
+														<td><b class="color-red">*</b> 件数</td>
+														<td>
+															<input type="text" style="width: 114px;" class="form-control must" name="majorPackageNumber">
+															<select name="majorQuantityUnitSEL"  id="select_4" class=" mbl form-control must select2 select2-hidden-accessible absOpacity" style = "width: 60px;" tabindex="-1" aria-hidden="true">
+															</select>
+															<input type="text" style="width: 43px;" value="CASE" class="form-control must" name="majorQuantityUnit">
+														</td>
+														<td>件数</td>
+														<td>
+															<input type="text" style="width: 114px;" class="form-control" name="branchPackageNumber">
+															<select name="branchQuantityUnit"  id="select_5" class=" mbl form-control select2 select2-hidden-accessible absOpacity" style = "width: 60px;" tabindex="-1" aria-hidden="true">
+															</select>
+															<input type="text" style="width: 43px;" value="CASE" class="form-control" name="branchQuantityUnit">
+														</td>
+													</tr>
+													<tr>
+														<td><b class="color-red">*</b> 毛重</td>
+														<td>
+															<input type="text" class="form-control must" style="width: 114px;" name="majorGrossWeight">
+															<input type="text" class="form-control must" value="KGS" style="width: 43px;" name="majorWeightUnit">
+														</td>
+														<td>毛重</td>
+														<td>
+															<input type="text" class="form-control" style="width: 114px;" name="branchGrossWeight">
+															<input type="text" class="form-control" value="KGS" style="width: 43px;" name="branchWeightUnit">
+														</td>
+													</tr>
+													<tr>
+														<td><b class="color-red">*</b>体积</td>
+														<td>
+															<input type="text" class="form-control must" style="width: 114px;" name="majorVolume">
+															<input type="text" class="form-control must" value="CBM" style="width: 43px;" name="majorVolumeUnit">
+														</td>
+														<td>体积</td>
+														<td>
+															<input type="text" class="form-control" style="width: 114px;" name="branchVolume">
+															<input type="text" class="form-control" value="CBM" style="width: 43px;" name="branchVolumeUnit">
+														</td>
+													</tr>
+													<tr>
+														<td colspan="4"	style="border-bottom: 1.8px solid #b3b3b3; height: 20px;"></td>
+													</tr>
+													<tr>
+														<td>中文货名</td>
+														<td>
+															<input type="text" class="form-control" name="chineseCargo">
+														</td>
+														<td>英文货名</td>
+														<td>
+															<input type="text" class="form-control" name="englishCargo">
+														</td>
+													</tr>
+													<tr>
+														<td>唛头</td>
+														<td>
+															<input type="text" class="form-control" name="cargoCode">
+														</td>
+														<td>委托备注</td>
+														<td>
+															<input type="text" class="form-control" name="entrustRemark">
+														</td>
+													</tr>
+													<tr>
+														<td colspan="4"	style="border-bottom: 1.8px solid #b3b3b3; height: 20px;"></td>
+													</tr>
+													<tr>
+														<td><b class="color-red">*</b> 委托人</td>
+														<td>
+															<input type="text" class="form-control must" style="width: 50px;" name="customerCode" data-toggle="modal" data-target="#exportEntrustModal">
+															<input type="text" class="form-control must" name="clientInfo">
+															<input type="text" class="form-control" style="display: none;" name="customerId">
+														</td>
+														<td>客户委托编号</td>
+														<td><input type="text" class="form-control"
+																   name="clientId"></td>
+													</tr>
+													<tr>
+														<td><b class="color-red">*</b> 装货港</td>
+														<td>
+															<div class="ZHG entrLoading modal-content" style="position: absolute; width: 600px; max-height: 400px; top: 25px; z-index: 999; display: none; -webkit-box-shadow: 3px 3px 3px;  -moz-box-shadow:  3px 3px 3px; box-shadow:  3px 3px 3px;">
+																<div class="modal-header">
+																	<button type="button" class="close"	data-dismiss="modal" aria-label="Close">
+																			<span aria-hidden="true" onclick="AIRexport.closeDetail('.entrLoading')">&times;</span>
+																	</button>
+																	<div class="modal-title">装货港</div>
+																</div>
+																<div class="modal-body"	 style="max-height: 350px; overflow: auto;">
+																	<table style="margin-bottom: 0px;" border="1" class="table smallTable">
+																		<thead>
+																			<tr>
+																				<td>港口代码</td>
+																				<td>英文名称</td>
+																				<td>中文名称</td>
+																				<td width="60">国家英文</td>
+																				<td width="55">国家中文</td>
+																			</tr>
+																		</thead>
+																		<tbody>
+																		</tbody>
+																	</table>
+																</div>
+															</div>
+															<select trig="entrLoading" class="countryArr select2 select2-hidden-accessible absOpacity" style="position: absolute; width: 200px;" tabindex="-1"  aria-hidden="true">
+															</select>
+															<input type="text" name="loadId" class="form-control must" style="display: none;">
+															<input type="text" name="loadCode" class="form-control must" style="width: 50px;"  readonly="readonly">
+															<input type="text" name="loadInfo" class="form-control must">
+														</td>
+														<td>订舱要求</td>
+														<td><input type="text" class="form-control" name="orderRemand"></td>
+													</tr>
+													<tr>
+														<td><b class="color-red">*</b> 目的地</td>
+														<td>
+															<div class="MDD entrDestDock modal-content"
+																 style="position: absolute; width: 600px; max-height: 400px; top: 25px; z-index: 999; display: none; -webkit-box-shadow: 3px 3px 3px;  -moz-box-shadow:  3px 3px 3px; box-shadow: 3px 3px 3px;">
+																<div class="modal-header">
+																	<button type="button" class="close"
+																			data-dismiss="modal" aria-label="Close">
+																			<span
+																					onclick="AIRexport.closeDetail('.entrDestDock')">&times;</span>
+																	</button>
+																	<div class="modal-title">目的的码头</div>
+																</div>
+																<div class="modal-body"
+																	 style="max-height: 350px; overflow: auto;">
+																	<table style="margin-bottom: 0px;"
+																		   class="table   smallTable">
+																		<thead>
+																		<tr>
+																			<td>码头代码</td>
+																			<td>英文名称</td>
+																			<td>中文名称</td>
+																			<td width="60">国家英文</td>
+																			<td width="90">国家中文</td>
+																		</tr>
+																		</thead>
+																		<tbody>
+
+																		</tbody>
+																	</table>
+																</div>
+															</div> <select trig="entrDestDock"
+																		   class="basedataWharf select2 select2-hidden-accessible absOpacity"
+																		   style="position: absolute; width: 200px;" tabindex="-1"
+																		   aria-hidden="true">
+
+														</select>
+															<input type="text" name="terminiCode" class="form-control must" style="width: 50px;" readonly="readonly">
+															<input type="text" name="terminiInfo" class="form-control must">
+															<input type="text" name="terminiId" class="form-control" style="display: none;">
+														</td>
+														<td>航线</td>
+														<td>
+															<div class="HX entrRouteCode"
+																 style="position: absolute; width: 400px; height: 250px; background: #eee; top: 25px; z-index: 999; display: none; -webkit-box-shadow: 3px 3px 3px;  -moz-box-shadow:  3px 3px 3px; box-shadow:  3px 3px 3px;">
+																<div style="background: lightgrey; height: 20px;">
+																		<span class="pull-right"
+																			  onclick="AIRexport.closeDetail('.entrRouteCode')"
+																			  style="width: 30px; font-weight: bolder; margin-right: 20px; border: 1px solid #949090; border-radius: 5px; text-align: center;">&times;</span>
+																	<div style="clear: both;"></div>
+																</div>
+																<div style="height: 230px; overflow: auto;">
+																	<table style="width: 100%; background: #e9e9e9;"
+																		   border="1" class="smallTable">
+																		<thead>
+																		<tr>
+																			<td>航线代码</td>
+																			<td>英文名称</td>
+																			<td>中文名称</td>
+																		</tr>
+																		</thead>
+																		<tbody>
+																		</tbody>
+																	</table>
+																</div>
+															</div> <select trig="entrRouteCode"
+																		   class="airLineSelect select2 select2-hidden-accessible absOpacity"
+																		   style="position: absolute; width: 200px;" tabindex="-1"
+																		   aria-hidden="true">
+
+														</select> <input type="text" name="routeId"
+																		 class="form-control" style="width: 50px;"
+																		 disabled="disabled" readonly="readonly"> <input
+																type="text" name="routeInfo" class="form-control">
+														</td>
+													</tr>
+													<tr>
+														<td>操作要求</td>
+														<td><input type="text" class="form-control" name="oprateRequire"></td>
+														<td>订舱方</td>
+														<td>
+															<div class="DCF orderPer"
+																 style="position: absolute; width: 400px; height: 250px; background: #eee; top: 25px; z-index: 999; display: none; -webkit-box-shadow: 3px 3px 3px;  -moz-box-shadow:  3px 3px 3px; box-shadow:  3px 3px 3px;">
+																<div style="background: lightgrey; height: 20px;">
+																		<span class="pull-right"
+																			  onclick="FCLexport.closeDetail('.orderPer')"
+																			  style="width: 30px; font-weight: bolder; margin-right: 20px; border: 1px solid #949090; border-radius: 5px; text-align: center;">&times;</span>
+																	<div style="clear: both;"></div>
+																</div>
+																<div style="height: 230px; overflow: auto;">
+																	<table style="width: 100%; background: #e9e9e9;"
+																		   border="1" class="smallTable">
+																		<thead>
+																		<tr>
+																			<td>航线代码</td>
+																			<td>英文名称</td>
+																			<td>中文名称</td>
+																		</tr>
+																		</thead>
+																		<tbody></tbody>
+																	</table>
+																</div>
+															</div>
+															<!--<select trig="orderPer" class="orderPER select2 select2-hidden-accessible absOpacity"-->
+															<!--style="position: absolute; width: 200px;" tabindex="-1" aria-hidden="true">-->
+															<!--</select>-->
+															<!--<input type="text" name="orderId" class="form-control must" style="width: 50px;"-->
+															<!--disabled="disabled" readonly="readonly">-->
+															<input type="text" name="orderId" class="form-control" style="width: 50px;display:none;">
+															<input type="text" name="orderCode" onclick="AIRexport.airBooking()" class="form-control" style="width: 50px;">
+															<input type="text" name="orderInfo" class="form-control">
+														</td>
+													</tr>
+													<tr>
+														<td>报关方式</td>
+														<td><select class="form-control"
+																	style="width: 160px; height: 30px;border-radius: 3px;">
+															<option>自报</option>
+															<option>我司代报</option>
+															<option>其他</option>
+														</select></td>
+														<td>航空公司</td>
+														<td>
+															<div class="HKGS airCompany modal-content"
+																 style="position: absolute; width: 600px; max-height: 400px; top: 25px; z-index: 999; display: none; -webkit-box-shadow: 3px 3px 3px;  -moz-box-shadow:  3px 3px 3px; box-shadow:  3px 3px 3px;">
+																<div class="modal-header">
+																	<button type="button" class="close"
+																			data-dismiss="modal" aria-label="Close">
+																			<span aria-hidden="true"
+																				  onclick="AIRexport.closeDetail('.airCompany')">&times;</span>
+																	</button>
+																	<div class="modal-title">航空公司</div>
+																</div>
+																<div class="modal-body"
+																	 style="max-height: 350px; overflow: auto;">
+																	<table style="margin-bottom: 0px;" border="1"
+																		   class=" table smallTable">
+																		<thead>
+																		<tr>
+																			<td>港口代码</td>
+																			<td>英文名称</td>
+																			<td>中文名称</td>
+																			<td width="60">国家英文</td>
+																			<td width="55">国家中文</td>
+																		</tr>
+																		</thead>
+																		<tbody>
+																		</tbody>
+																	</table>
+																</div>
+															</div> <select trig="airCompany"
+																		   class="airCom select2 select2-hidden-accessible absOpacity"
+																		   style="position: absolute; width: 200px;" tabindex="-1"
+																		   aria-hidden="true">
+
+														</select> <input type="text" name="airplaneId"
+																		 class="form-control" style="width: 50px;"
+																		 disabled="disabled" readonly="readonly"> <input
+																type="text" name="airplaneInfo"
+																class="form-control">
+														</td>
+													</tr>
+													<tr>
+														<td><b class="color-red">*</b>操作</td>
+														<td>
+															<select name="majorOperateId" style="width:160px;" class="must IdAndName relevance form-control select2 select2-hidden-accessible"></select>
+															<input type="text" class="form-control must"  name="majorOperate" style="display: none;">
+														</td>
+														<td>航班号</td>
+														<td><input type="text" class="form-control" name="flightId"></td>
+													</tr>
+													<tr>
+														<td><b class="color-red">*</b>销售</td>
+														<td>
+															<input type="text" class="form-control must" name="salesmanName">
+															<input type="text" class="form-control" style="display: none;" name="salesmanId">
+														</td>
+														<td><b class="color-red">*</b> 预计离港</td>
+														<td>
+															<div class="col-sm-4 form-group"
+																 style="padding-left: 0px; padding-right: 0px; width: 160px;">
+																<input type="text" class="form-control Time must"
+																	   name="planLeaveDate"
+																	   style="padding-right: 0px; width: 160px;"> <span
+																	class="glyphicon glyphicon-calendar form-control-feedback"></span>
+															</div>
+														</td>
+													</tr>
+													<tr>
+														<td><b class="color-red">*</b>商务</td>
+														<td>
+															<select name="majorBusinessId" style="width:160px;" class="must IdAndName relevance form-control select2 select2-hidden-accessible"></select>
+															<input type="text" class="form-control must" name="majorBusniess" style="display: none;">
+														</td>
+														<td>实际离港</td>
+														<td>
+															<div class="col-sm-4 form-group"
+																 style="padding-left: 0px; padding-right: 0px; width: 160px;">
+																<input type="text" class="form-control Time"
+																	   name="actualDate"
+																	   style="padding-right: 0px; width: 160px;"> <span
+																	class="glyphicon glyphicon-calendar form-control-feedback"></span>
+															</div>
+														</td>
+													</tr>
+													<tr>
+														<td>客服1</td>
+														<td>
+															<select name="majorPeopleOne" style="width:160px;" class="must relevance form-control select2 select2-hidden-accessible"></select>
+															<!--<input type="text" class="form-control must"
+																   name="majorPeopleOne">-->
+														</td>
+														<td>运价</td>
+														<td>
+															<input type="text" class="form-control" name="fare" >
+															<button type="button" style="width: 70px;" class="btn btn-primary left invalid" onclick="AIRinputorder.showPriceModal()">选择规格</button>
+														</td>
+													</tr>
+													<tr>
+														<td>客服2</td>
+														<td>
+															<select name="majorPeopleTwo" style="width:160px;" class="relevance form-control select2 select2-hidden-accessible"></select>
+															<!--<input type="text" class="form-control must" name="majorPeopleTwo">-->
+														</td>
+														<td>附加费</td>
+														<td><input type="text" class="form-control" name="extra"></td>
+													</tr>
+													<tr>
+														<td>客服3</td>
+														<td>
+															<select name="majorPeopleThree" style="width:160px;" class="relevance form-control select2 select2-hidden-accessible"></select>
+															<!--<input type="text" class="form-control must" name="majorPeopleThree">-->
+														</td>
+														<td>附加费条款</td>
+														<td><input type="text" class="form-control" name="extraProvision"></td>
+													</tr>
+													<tr>
+														<td>调度</td>
+														<td>
+															<select name="majorDispatchId" style="width:160px;" class="IdAndName relevance form-control select2 select2-hidden-accessible"></select>
+															<input type="text" class="form-control" name="majorDispatch" style="display: none;">
+														</td>
+														<td>审核状态</td>
+														<td>
+															<input disabled="disabled" type="text" class="form-control" name="examine">
+															<button type="button" id="examinButton" class="btn btn-primary invalid" style="width: 70px;" onclick="AIRinputorder.examin()">审核</button>
+														</td>
+													</tr>
+													<tr>
+														<td>进仓编号</td>
+														<td>
+															<input type="text" class="form-control" name="inWarehouseId">
+														</td>
+														<td rowspan="2">审核备注</td>
+														<td rowspan="2">
+															<textarea class="form-control" name="updateRemark" readonly="readonly" disabled="disabled" style="width:160px;border-color: #d2d6de;"></textarea>
+														</td>
+													</tr>
+													<tr>
+														<td>备注说明</td>
+														<td><input type="text" class="form-control" name="noteClain"></td>
+													</tr>
+													</tbody>
+												</table>
+											</div>
+										</form>
+									</section>
+								</div>
+								<!--货物数据-->
+								<div role="tabpanel" class="tab-pane" id="goodsData" style="height: 500px; background-color: #FFFFFF;">
+									<section clss="content" style="margin: 0px 10px;">
+										<div class="row">
+											<div class="col-xs-12">
+												<!--表单查询-->
+												<div class="box box-primary search-box" style="margin-bottom: 30px;border-bottom: 1px solid #b3b3b3;">
+													<div class="container-fluid box-body">
+														<form class="search-table form-inline" id="airCargoData"
+															  role="form" style="width: 100%;">
+															<div class="form-inline" style="margin-bottom: 5px;">
+																<table class="table">
+																	<tbody>
+																	<tr>
+																		<td><label>业务编号&emsp;</label> <input type="text"
+																											 class="form-control" name="businessCode"
+																											 placeholder="0001" readonly="readonly"> <label>进仓方式&emsp;</label>
+																			<select class=" form-control select2"
+																					name="inWarehouseMean" style="width: 160px;"
+																					tabindex="-1" aria-hidden="true">
+																				<option>自送</option>
+																				<option>代送</option>
+																				<option>其他</option>
+																			</select> <label>装箱方式&emsp;</label> <select
+																					class=" form-control select2 select2-hidden-accessible"
+																					name="loadMean" style="width: 160px;" tabindex="-1"
+																					aria-hidden="true">
+																				<option>门店</option>
+																				<option>自做</option>
+																				<option>内装</option>
+																			</select></td>
+																	</tr>
+																	</tbody>
+																</table>
+															</div>
+														</form>
+														<!--<button class="btn btn-primary left"
+															style="padding-right: 25px; padding-left: 5px; width: 80px;"
+															onclick="AIRexport.doSearch()">仓库回执导入</button>
+														<button class="btn btn-primary right search_reset"
+															style="padding-right: 25px; padding-left: 5px; width: 80px;">
+															仓库回执查看</button>-->
+														<!--<button class="btn btn-primary invalid"
+																style="padding-right: 25px; padding-left: 5px; width: 60px;"
+																onclick="PageFunction.calculateMoney()">自动计算</button>-->
+													</div>
+												</div>
+												<!--查询结果显示-->
+												<div class="box box-primary search-box"
+													 style="border-bottom: 1px solid #b3b3b3; width: 100%; overflow: scroll;">
+													<form id="cargoDataForm">
+														<table class="table table-bordered" id="cargoDataTable">
+															<thead>
+															<tr>
+																<th></th>
+																<th>件数</th>
+																<th>毛重（kg）</th>
+																<th>体积</th>
+																<th>计费重量（kg）</th>
+																<th>泡重（kg）</th>
+																<th style="width: 100px;">分泡比</th>
+																<th>结算重量（kg）</th>
+																<!--<th>别类</th>-->
+																<th>单价</th>
+																<th>金额</th>
+															</tr>
+															</thead>
+															<tbody>
+															<tr class="CargoDetailcloneDemo">
+																<td>收款-分单</td>
+																<td><input type="text" name="branchAmount"
+																		   class="form-control branchAmount"></td>
+																<td><input type="text" name="branchGross"
+																		   class="form-control branchGross"></td>
+																<td><input type="text" name="branchVolume"
+																		   class="form-control branchVolume"></td>
+																<td><input type="text" name="branchChargeWeight"
+																		   class="form-control branchChargeWeight"></td>
+																<td>
+																	<input type="text" name="branchVolumerticWeight" class="form-control">
+																</td>
+																<!--<td>
+																	<input type="text" name="branchSplitRatio" class="form-control">
+																</td>-->
+																<td>
+																	<select name="branchKind" class="branchKind form-control" style="height: 30px;">
+																		<option value="5/5">5/5</option>
+																		<option value="4/6">4/6</option>
+																		<option value="3/7">3/7</option>
+																		<option value="2/8">2/8</option>
+																	</select>
+																</td>
+																<td><input type="text"
+																		   name="branchCalculateWeight"
+																		   class="form-control branchCalculateWeight">
+																</td>
+																<!--<td>
+																	<select name="branchKind" class="branchKind form-control" style="height: 30px;">
+																		<option value="5/5">5/5</option>
+																		<option value="4/6">4/6</option>
+																		<option value="3/7">3/7</option>
+																		<option value="2/8">2/8</option>
+																	</select>
+																</td>-->
+																<td><input type="text" name="branchPrice"
+																		   class="branchPrice form-control"></td>
+																<td><input type="text" name="branchMoney"
+																		   class="branchMoney form-control"></td>
+															</tr>
+															<tr class="CargoDetailcloneDemo">
+																<td>付款-主单</td>
+																<td><input type="text" name="majorAmount"
+																		   class="branchAmount form-control"></td>
+																<td><input type="text" name="majorGross"
+																		   class="branchGross form-control"></td>
+																<td><input type="text" name="majorVolume"
+																		   class="branchVolume form-control"></td>
+																<td><input type="text" name="majorChargeWeight"
+																		   class="majorChargeWeight form-control"></td>
+																<td><input type="text"
+																		   name="majorVolumerticWeight" class="form-control"></td>
+															<!--	<td><input type="text" name="majorSplitRatio" class="form-control"></td>-->
+																<td>
+																	<select name="majorKind" class="branchKind form-control" style="height: 30px;">
+																		<option value="5/5">5/5</option>
+																		<option value="4/6">4/6</option>
+																		<option value="3/7">3/7</option>
+																		<option value="2/8">2/8</option>
+																	</select>
+																</td>
+																<td><input type="text" name="majorCalculateWeight"
+																		   class="majorCalculateWeight form-control"></td>
+																<!--<td>
+																	<select name="majorKind" class="branchKind form-control" style="height: 30px;">
+																		<option value="5/5">5/5</option>
+																		<option value="4/6">4/6</option>
+																		<option value="3/7">3/7</option>
+																		<option value="2/8">2/8</option>
+																	</select>
+																</td>-->
+																<td><input type="text" name="majorPrice"
+																		   class="branchPrice form-control"></td>
+																<td><input type="text" name="majorMoney"
+																		   class="majorMoney form-control"></td>
+															</tr>
+															<tr class="CargoDetailcloneDemo">
+																<td>实际进仓</td>
+																<td><input type="text" name="warehouseAmount"
+																		   class="branchAmount form-control" id="input0"></td>
+																<td><input type="text" name="warehouseGross"
+																		   class="branchGross form-control"></td>
+																<td><input type="text" name="warehouseVolume"
+																		   class="branchVolume form-control"></td>
+																<td><input type="text"
+																		   name="warehouseChargeWeight"
+																		   class="warehouseChargeWeight form-control"></td>
+																<td><input type="text"
+																		   name="warehouseVolumerticWeight" class="form-control"></td>
+															<!--	<td><input type="text" name="warehouseSplitRatio" class="form-control"></td>-->
+																<td>
+																	<select name="warehouseKind" class="branchKind form-control" style="height: 30px;">
+																		<option value="5/5">5/5</option>
+																		<option value="4/6">4/6</option>
+																		<option value="3/7">3/7</option>
+																		<option value="2/8">2/8</option>
+																	</select>
+																</td>
+																<td><input type="text"  name="warehouseCalculateWeight" class="warehouseCalculateWeight form-control"></td>
+																<!--<td>
+																	<select name="warehouseKind" class="branchKind form-control" style="height: 30px;">
+																		<option value="5/5">5/5</option>
+																		<option value="4/6">4/6</option>
+																		<option value="3/7">3/7</option>
+																		<option value="2/8">2/8</option>
+																	</select>
+																</td>-->
+																<td><input type="text" name="warehousePrice"
+																		   class="branchPrice form-control"></td>
+																<td><input type="text" name="warehouseMoney"
+																		   class="warehouseMoney form-control"></td>
+															</tr>
+															</tbody>
+														</table>
+													</form>
+												</div>
+												<div class="form-inline" style="margin-top: 30px;">
+													<div class="form-group" style="width: 24%;">
+														<form id="inWarehouseIdForm">
+															<label>&emsp;</label> <label>进仓编号&emsp;</label> <input
+																type="text" class="form-control" name="inWarehouseId"
+																placeholder="0001" readonly="readonly">
+														</form>
+													</div>
+												</div>
+											</div>
+										</div>
+									</section>
+								</div>
+								<!--取货计划-->
+								<div role="tabpanel" class="getGoods tab-pane" id="getGoods" style="background-color: #FFFFFF;">
+									<section class="content" style="margin: 0px; padding: 0px;">
+										<form class="form-inline searchById" id="goodsTransPlan" role="form" style="width: 100%; padding-bottom: 20px;">
+											<div class="row form-inline" style="width: 100%;padding: 0px; margin: 0px; margin-bottom: 20px; padding-bottom: 5px;">
+												<div class="new putInfo">
+													<div class="divHeader">
+														<span>取货计划</span>
+														<div class="dottedLine"></div>
+													</div>
+													<table class="table">
+														<tbody>
+														<tr>
+															<td>提单号</td>
+															<td><input type="text" class="form-control"
+																	   name="billLadingNo"></td>
+															<td>自提重</td>
+															<td><select name="selfLifting" class="form-control"
+																		style="width: 160px; height: 30px;border-radius: 3px;">
+																<option>是</option>
+																<option>否</option>
+															</select></td>
+															<td>卸货时间</td>
+															<td>
+																<div class="col-sm-4 form-group" style="padding-left: 0px; padding-right: 0px; width: 160px;">
+																	<input type="text" class="form-control Time must"
+																		   name="unloadDay"
+																		   style="padding-right: 0px; width: 160px;"> <span
+																		class="glyphicon glyphicon-calendar form-control-feedback"></span>
+																</div>
+															</td>
+														</tr>
+														<tr>
+															<td>航班号</td>
+															<td><input type="text" class="form-control"
+																	   name="flightNumber" readonly="readonly"></td>
+															<td>通知时间</td>
+															<td>
+																<div class="col-sm-4 form-group"
+																	 style="padding-left: 0px; padding-right: 0px; width: 160px;">
+																	<input type="text" class="form-control Time must"
+																		   name="infoDate"
+																		   style="padding-right: 0px; width: 160px;"> <span
+																		class="glyphicon glyphicon-calendar form-control-feedback"></span>
+																</div>
+															</td>
+															<td>卸货港区</td>
+															<td><input type="text" class="form-control"
+																	   name="dischargePortName"></td>
+														</tr>
+														<tr>
+															<td>委托方</td>
+															<td>
+																<!-- <input type="text" class="form-control" name="customerCode"> -->
+																<input type="text" class="form-control" name="contact" readonly="readonly">
+															</td>
+															<td>预计取货</td>
+															<td>
+																<div class="col-sm-4 form-group"
+																	 style="padding-left: 0px; padding-right: 0px; width: 160px;">
+																	<input type="text" class="form-control Time must"
+																		   name="expectDrawTime"
+																		   style="padding-right: 0px; width: 160px;"> <span
+																		class="glyphicon glyphicon-calendar form-control-feedback"></span>
+																</div>
+															</td>
+															<td>货物放行</td>
+															<td>
+																<div class="col-sm-4 form-group"
+																	 style="padding-left: 0px; padding-right: 0px; width: 160px;">
+																	<input type="text" class="form-control Time must"
+																		   name="goodsRelease"
+																		   style="padding-right: 0px; width: 160px;"> <span
+																		class="glyphicon glyphicon-calendar form-control-feedback"></span>
+																</div>
+															</td>
+														</tr>
+														<tr>
+															<td>拿单地址</td>
+															<td>
+																<input type="text" class="form-control"
+																	   name="takeAddress">
+															</td>
+															<td>实际取货</td>
+															<td>
+																<div class="col-sm-4 form-group"
+																	 style="padding-left: 0px; padding-right: 0px; width: 160px;">
+																	<input type="text" class="form-control Time must"
+																		   name="actualDrawTime"
+																		   style="padding-right: 0px; width: 160px;"> <span
+																		class="glyphicon glyphicon-calendar form-control-feedback"></span>
+																</div>
+															</td>
+															<td>送货要求</td>
+															<td><textarea style="width: 160px;border-radius: 3px;border-color: #d2d6de;" name="deliverRequest"></textarea></td>
+														</tr>
+														<tr>
+															<td>取货地址</td>
+															<td>
+																<input type="text" class="form-control"
+																	   name="drawAddress">
+															</td>
+															<td>预计送抵</td>
+															<td>
+																<div class="col-sm-4 form-group"
+																	 style="padding-left: 0px; padding-right: 0px; width: 160px;">
+																	<input type="text" class="form-control Time must"
+																		   name="expectDeliverTime"
+																		   style="padding-right: 0px; width: 160px;"> <span
+																		class="glyphicon glyphicon-calendar form-control-feedback"></span>
+																</div>
+															</td>
+														</tr>
+														<tr>
+															<td>实际提重</td>
+															<td><input type="text" class="form-control"
+																	   name="actualLiftWeight"></td>
+															<td>实际送抵</td>
+															<td>
+																<div class="col-sm-4 form-group"
+																	 style="padding-left: 0px; padding-right: 0px; width: 160px;">
+																	<input type="text" class="form-control Time must"
+																		   name="actualDeliverTime"
+																		   style="padding-right: 0px; width: 160px;"> <span
+																		class="glyphicon glyphicon-calendar form-control-feedback"></span>
+																</div>
+															</td>
+														</tr>
+														</tbody>
+													</table>
+												</div>
+												<div class="new">
+													<div class="divHeader">
+														<div class="dottedLine" style="width: 100%;"></div>
+													</div>
+
+													<div class="box box-primary search-box" id="goodsDataTable"
+														 style="width: 100%; height: 400px;">
+														<div class="handle" style="height: 30px; margin-left: 10px; margin-bottom: 10px; color: blue;">
+															<!--<div style="height: 20px;margin-right: 25px; float: left;" class="invalid" id="entrustDiv"
+                                                                onclick="exportGoodsPlan.entrust()">
+                                                                <span class="glyphicon glyphicon-transfer"
+                                                                    aria-hidden="true"></span>委托
+                                                            </div>-->
+															<div style="height: 20px;margin-right: 25px; float: left;" class="invalid" id="addGoodsDiv"
+																 onclick="goodsPlan.addGoodsData('AIRexport')">
+																	<span class="glyphicon glyphicon-plus"
+																		  aria-hidden="true"></span>新增
+															</div>
+															<div style="height: 20px;margin-right: 25px;float: left;" class="invalid" id="copyGoodsDiv" onclick="goodsPlan.copyData('AIRexport')">
+																	<span class="glyphicon glyphicon-duplicate"
+																		  aria-hidden="true"></span>复制
+															</div>
+															<div style="height: 20px;margin-right: 25px;float:left;" class="invalid" id="deleteGoodsDiv"
+																 onclick="goodsPlan.delGoodsData('AIRexport')">
+																	<span class="glyphicon glyphicon-minus-sign"
+																		  aria-hidden="true"></span>删除
+															</div>
+															<div style="height: 20px;margin-right: 25px; float: right;">
+																<button type="button" class="btn btn-primary invalid" onclick="exportGoodsPlan.entrust()">发送运输委托</button>
+															</div>
+														</div>
+														<form id="putTableForm">
+															<div style="height: 280px;border: 1px solid #c6d3d6;margin: 15px; overflow: scroll;" id="putTableDiv">
+																<table class="table table-bordered" id="putTable">
+																	<thead>
+																	<tr>
+																		<th colspan="8">门点（提货）</th>
+																		<th colspan="6">门点（送货）</th>
+																		<th colspan="8">货物信息</th>
+																		<th colspan="4">车队</th>
+																		<th colspan="2">预计时间</th>
+																		<th colspan="2">实际时间</th>
+																	</tr>
+																	<tr>
+																		<th><input class="checkAll" type="checkbox"></th>
+																		<th>序号</th>
+																		<th>简称</th>
+																		<th>名称</th>
+																		<th>联系人</th>
+																		<th>联系方式</th>
+																		<th>地址</th>
+																		<th>备注</th>
+																		<th>简称</th>
+																		<th>名称</th>
+																		<th>联系人</th>
+																		<th>联系方式</th>
+																		<th>地址</th>
+																		<th>备注</th>
+																		<th>件数</th>
+																		<th>毛重</th>
+																		<th>体积</th>
+																		<th>中文货名</th>
+																		<th>英文货名</th>
+																		<th>货物属性</th>
+																		<th>货物描述</th>
+																		<th>唛头（票号）</th>
+																		<th>车队</th>
+																		<th>车牌</th>
+																		<th>联系人</th>
+																		<th>联系方式</th>
+																		<th>送货</th>
+																		<th>送抵</th>
+																		<th>送货</th>
+																		<th>送抵</th>
+																	</tr>
+																	</thead>
+																	<tbody>
+																	<tr class="CargoDetailcloneDemo">
+																	</tr>
+																	</tbody>
+																</table>
+															</div>
+															<!--<div class="handle"
+																style="position: absolute; height: 100px; float: right; margin-left: 10px; margin-right: 25px; color: blue;">
+																<div style="height: 20px;"
+																	onclick="goodsPlan.addGoodsData('AIRimport')">
+																	<span class="glyphicon glyphicon-plus"
+																		aria-hidden="true"></span>新增
+																</div>
+																<div style="height: 20px;" onclick="">
+																	<span class="glyphicon glyphicon-duplicate"
+																		aria-hidden="true"></span>复制
+																</div>
+																<div style="height: 20px;"
+																	onclick="goodsPlan.delGoodsData('AIRimport')">
+																	<span class="glyphicon glyphicon-minus-sign"
+																		aria-hidden="true"></span>删除
+																</div>
+															</div>-->
+														</form>
+													</div>
+												</div>
+											</div>
+										</form>
+									</section>
+								</div>
+								<!--报关-->
+								<div role="tabpanel" class="declare tab-pane" id="declare"
+									 style="background-color: #FFFFFF;">
+									<section class="content" style="margin: 0px 10px;">
+										<!--配载信息-->
+										<fieldset class="myFieldset">
+											<legend>报关信息</legend>
+											<form class="form-inline searchById" id="airBGXX" role="form"
+												  style="width: 100%;">
+												<div class="form-inline">
+													<table class="table">
+														<tbody>
+														<tr>
+															<td>报关方式</td>
+															<td><select name="customsMode"
+																		class="select2  select2-hidden-accessible"
+																		style="width: 160px; height: 30px;">
+																<option value="我司代报">我司代报</option>
+																<option value="自报">自报</option>
+																<option value="其他">其他</option>
+															</select></td>
+															<td>委托方</td>
+															<td><input class="form-control" style="width: 50px;" name="customerCode" readonly="readonly">
+																<input class="form-control" style="width: 105px;" name="customerName" readonly="readonly">
+															</td>
+															<td>B/L</td>
+															<td><input class="form-control" name="billLadingNo">
+															</td>
+														</tr>
+														<tr>
+															<td>报关行</td>
+															<td>
+																<select name="customsBrokerId" class="customsBrokerSel select2 select2-hidden-accessible absOpacity" style="position:absolute;width: 160px;" tabindex="-1" aria-hidden="true">
+																</select>
+																<input style="width:50px;float: left;" type="text" name="customsBrokerCode" class="form-control">
+																<input style="width: 110px;float: left;" type="text" name="customsBroker" class="form-control">
+															</td>
+															<td>经营单位</td>
+															<td><input type="text" class="form-control"
+																	   name="operatingUnit"></td>
+															<td>报关单号</td>
+															<td><input type="text" class="form-control" name="customsBillNo"></td>
+														</tr>
+														<tr>
+															<td>出口口岸</td>
+															<td>
+																<select class="exportPortSel select2 select2-hidden-accessible absOpacity" style="position:absolute;width: 160px;" tabindex="-1" aria-hidden="true">
+																</select>
+																<input style="width: 50px;float: left;" type="text" name="exportPortCode" class="form-control">
+																<input style="width: 110px;float: left;" type="text" name="exportPort" class="form-control">
+															</td>
+															<td>中文货名</td>
+															<td><input type="text" class="form-control"
+																	   name="chineseGoodsName"></td>
+														</tr>
+														<tr>
+															<td>报关日期</td>
+															<td><input type="text" class="form-control Time"
+																	   name="customsDate"></td>
+															<td>HS编码</td>
+															<td><input type="text" class="form-control"
+																	   name="hsCode"></td>
+														</tr>
+														<tr>
+															<td>报关完成</td>
+															<td><input type="text" class="form-control Time"
+																	   name="customsCompleteDate"></td>
+															<td>海关查验</td>
+															<td><select name="customsInspection"
+																		class="form-control"
+																		style="width: 160px; height: 30px;border-radius: 3px;">
+																<option value="1">是</option>
+																<option value="0">否</option>
+															</select></td>
+														</tr>
+														<tr>
+															<td>转关方</td>
+															<td><input type="text" class="form-control"
+																	   name="transitCustomsParty"></td>
+															<td>查验日期</td>
+															<td><input type="text" class="form-control Time"
+																	   name="inspectionDate"></td>
+														</tr>
+														</tbody>
+													</table>
+												</div>
+											</form>
+											<div class="row" style="margin: 10px 20px; float: right;">
+												<button class="pull-right btn btn-primary invalid" data-toggle="modal" data-target="#expDeclareEntrust">
+													报关委托
+												</button>
+											</div>
+											<!--取报关状态按钮-->
+											<div class="row" style="margin: 10px 20px; float: right;">
+												<button class="pull-right btn btn-primary invalid"
+														data-toggle="modal" data-target="#declareStatus">取报关状态</button>
+											</div>
+										</fieldset>
+										<!--下面的表-->
+										<div class="row" style="width: 100%;">
+											<div class="handle" style="padding-bottom: 10px; margin: 20px; color: blue;">
+												<div style="height: 20px;float: left;" id="declareAdd" class="invalid" onclick="Airdeclare.addData()">
+													<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增&emsp;&emsp;&emsp;
+												</div>
+												<div style="height: 20px;float: left;" id="declareCopy" class="invalid" onclick="Airdeclare.copyData()">
+													<span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span>复制&emsp;&emsp;&emsp;
+												</div>
+												<div style="height: 20px;float: left;" id="declareDelete" class="invalid" onclick="Airdeclare.delData()">
+													<span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>删除
+												</div>
+											</div>
+											<div style="float: left; height: 200px; overflow: scroll; width: 100%;border:1px solid #c6d3d6;">
+												<table class="table table-bordered">
+													<thead>
+													<tr bgcolor="#C6EDF7">
+														<td>类型</td>
+														<td>提单号</td>
+														<td>单证名称</td>
+														<td>单证号</td>
+														<td>最新状态</td>
+														<td>处理时间</td>
+														<td>操作员</td>
+													</tr>
+													</thead>
+													<tbody>
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</section>
+								</div>
+								<!--费用-->
+								<div role="tabpanel" class="cost tab-pane" id="cost">
+									<section class="content" style="margin: 0px 10px;">
+										<ul class="nav nav-tabs" role="tablist">
+											<!--<li role="presentation" class="active" style="width: 100px;">
+												<a href="#airExportPayable" aria-controls="airExportPayable" role="tab" data-toggle="tab">应付费用</a>
+											</li>-->
+											<!--<li role="presentation" style="width: 100px;">
+												<a href="#expReceivable" aria-controls="expReceivable" role="tab" data-toggle="tab">应收费用</a>
+											</li>-->
+										</ul>
+										<div class="tab-content">
+											<!--应付费用-->
+											<div role="tabpanel" class="tab-pane active" id="airExportPayable" style="position: relative;">
+												<div class="setBlue" style="text-align: right; height: 55px; line-height: 55px; font-weight: bold;">
+													<div style="height: 20px; width: 60px; display: inline-block; text-align: center;" id="addPayCost" class="invalid" onclick="AIRexportPayExpense.addData(this)">
+														<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+													</div>
+													<div style="height: 20px; width: 60px; display: inline-block; text-align: center;" id="deletePayCost" class="invalid" onclick="AIRexportPayExpense.delData(this)">
+														<span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>删除
+													</div>
+												</div>
+												<div style="height: 300px; overflow: scroll; border: 1px solid #c6d3d6;">
+													<table class="table table-bordered">
+														<thead>
+														<tr>
+															<td>
+																<input type="checkbox" name="all"  onclick="AIRexportPayExpense.checkAll(this)">
+															</td>
+															<td>序号</td>
+															<td>费用代码</td>
+															<td>科目</td>
+															<td>往来单位</td>
+															<td>货币</td>
+															<td>数量</td>
+															<td>单价</td>
+															<td>单位</td>
+															<td>金额</td>
+															<td>P/C</td>
+															<td>付款买单</td>
+															<td>业务员</td>
+															<td>操作确认</td>
+															<td>业务确认</td>
+															<td>商务确认</td>
+															<td>财务确认</td>
+															<td>备注</td>
+														</tr>
+														</thead>
+														<tbody>
+
+														</tbody>
+													</table>
+												</div>
+												<div style="margin-top: 50px;">
+													<div class="text-right">
+														USD合计：<input type="text" class="form-control" id="USDTotal" name="USDTotal" readonly="readonly">&emsp;&emsp;RMB合计：<input type="text" class="form-control" id="RMBTotal" name="RMBTotal" readonly="readonly">
+														<br>
+														<button class="btn btn-primary invalid" style="margin-top: 10px;" onclick="AIRexportPayExpense.confirmationSubmission()">确定提交</button>
+													</div>
+												</div>
+											</div>
+											<!--应收费用-->
+											<div role="tabpanel" class="tab-pane" id="expReceivable" style="position: relative;">
+												<div style="position: absolute; right: 0px; top: -20px;">
+													<div style="height: 20px; width: 60px; display: inline-block; text-align: center;" id="addRecieveCost" class="invalid" onclick="AIRexportPayExpense.addData(this)">
+															<span class="glyphicon glyphicon-plus" aria-hidden="true"
+																  style="color: blue;"></span>新增
+													</div>
+													<div style="height: 20px; width: 60px; display: inline-block; text-align: center;" id="deleteRecieveCost" class="invalid" onclick="AIRexportPayExpense.delData(this)">
+															<span class="glyphicon glyphicon-minus-sign"
+																  aria-hidden="true" style="color: blue;"></span>删除
+													</div>
+												</div>
+												<div style="height: 300px; overflow: scroll; border: 1px solid #c6d3d6; margin-top: 30px;">
+													<table class="table">
+														<thead>
+														<tr>
+															<td>
+																<input type="checkbox" name="all" onclick="AIRexportPayExpense.checkAll(this)">
+															</td>
+															<td>序号</td>
+															<td>费用代码</td>
+															<td>科目</td>
+															<td>往来单位</td>
+															<td>货币</td>
+															<td>数量</td>
+															<td>单价</td>
+															<td>单位</td>
+															<td>金额</td>
+															<td>P/C</td>
+															<td>联系人</td>
+															<td>制作人</td>
+															<td>操作日期</td>
+															<td>发票号</td>
+															<td>开票状态</td>
+															<td>合同号</td>
+															<td>确认状态</td>
+														</tr>
+														</thead>
+														<tbody>
+
+														</tbody>
+													</table>
+												</div>
+												<div style="margin-top: 30px;">
+													<div class="text-right">
+														USD合计：<input type="text" class="form-control" id="USDTotal" name="USDTotal" readonly="readonly">&emsp;&emsp;RMB合计：<input type="text" class="form-control" id="RMBTotal" name="RMBTotal" readonly="readonly">
+													</div>
+												</div>
+											</div>
+										</div>
+									</section>
+								</div>
+								<!--跟踪-->
+								<div role="tabpanel" class="tab-pane trace" id="tracing" style="height: 100%;">
+									<ul id="myTab" class="nav nav-tabs">
+										<li class="active"><a href="#exportProTrack" data-toggle="tab">流程跟踪</a></li>
+										<li><a href="#exportStatusTrack" data-toggle="tab" id="statusLi">状态跟踪</a></li>
+										<li><a href="#exportSecondTrack" data-toggle="tab">二程跟踪</a></li>
+									</ul>
+									<div id="myTabContent" class="tab-content" style="margin: 10px;">
+										<div class="tab-pane fade in active" id="exportProTrack">
+											<div>
+											   <span class="setBlue canEdit" style="padding:10px 10px;font-size:1.2em;display: inline-block;cursor: pointer;">
+												   <span class="glyphicon glyphicon-edit"></span>编辑
+											   </span>
+											</div>
+											<table id="exportProTrack_tab" style="text-align: center;" class="table" border=1px bordercolor=#D0D0D0 width="80%" >
+												<tr>
+													<td rowspan = "2">步骤</td>
+													<td colspan = "2">计划</td>
+													<td colspan = "4">实际</td>
+												</tr>
+												<tr>
+													<td>计划时间</td>
+													<td>安排人</td>
+													<td>状态</td>
+													<td>完成时间</td>
+													<td>执行人</td>
+													<td>备注</td>
+												</tr>
+											</table>
+										</div>
+										<div class="tab-pane fade" id="exportStatusTrack">
+											<ul id="myTab_1" class="nav nav-tabs">
+												<!--<li class="active"><a href="#test">测试</a></li>-->
+												<li class="active"><a href="#jzx" data-toggle="tab" class="hbxx">航班信息</a></li>
+												<li class="tg"><a href="#tg" data-toggle="tab">通关</a></li>
+												<!--<li><a href="#cl" data-toggle="tab">车辆GPS</a></li>-->
+											</ul>
+											<div id="myTabContent_1" class="tab-content">
+												<!--<div class="fade active" id="test">
+                                                    测试
+                                                </div>-->
+												<div class="tab-pane fade in active" id="jzx" style="height: 400px;">
+													<form>
+														<fieldset class="myFieldset">
+															<legend>航班信息跟踪</legend>
+															<div style="width: 95%;height: 30px; margin: 10px;">
+																<div style="float: left;margin: 5px;">
+																	<span>运单号：</span>
+																</div>
+																<div style="float: left;margin: 5px;" class="transportOrder">
+
+																</div>
+																<!--<div style="float: right;">
+                                                                    <button type="button" class="btn btn-primary">消息推送</button>
+                                                                </div>-->
+															</div>
+															<div>
+																<div id="status" style="height: 40px; background-color: #e9f5ff;border: 1px solid #ffffff;">
+																	<span style="font-weight: bold;font-size: 1.4em;padding-left: 500px;">空港状态</span>
+																</div>
+																<table class="text-center table_2 table table_air_status">
+																	<thead>
+																	<tr>
+																		<th style="text-align: center; height: 32px;border:1px solid #ffffff">运单号</th>
+																		<th style="text-align: center;height: 32px;border:1px solid #ffffff">发生时间</th>
+																		<th style="text-align: center;height: 32px;border:1px solid #ffffff">发生地</th>
+																		<th style="text-align: center;height: 32px;border:1px solid #ffffff">物流状态</th>
+																	</tr>
+																	</thead>
+																	<tbody>
+
+																	</tbody>
+																</table>
+															</div>
+														</fieldset>
+													</form>
+												</div>
+												<div class="tab-pane fade" id="tg" style="height: 500px;">
+													<form>
+														<fieldset class="myFieldset">
+															<legend>通关跟踪</legend>
+															<div style="width: 95%;height: 30px; margin: 10px;">
+																<div style="float: left;width: 40%;">报关单号：
+																	<div class="customId" style="display: inline-block; vertical-align: middle;">
+																		<input type="text" class="form-control" name="customsNo">
+																	</div>
+																</div>
+																<div style="float: left;width: 40%;">提单号：
+																	<div class="billLandingId" style="display: inline-block; vertical-align: middle;">
+																	</div>
+																</div>
+																<!--<div style="float: right;">
+                                                                    <button type="button" class="btn btn-primary">消息推送</button>
+                                                                </div>-->
+															</div>
+															<div style="margin: 10px;height: 200px;">
+																<table class="text-center table_1 table" border="1" style = "width: 100%">
+																	<!-- <tr bgcolor="#CCCCCC" style="text-align: center;">
+                                                                        <td colspan="5" >
+                                                                            通关状态
+                                                                        </td>
+                                                                    </tr> -->
+																	<thead>
+																	<tr bgcolor="#C6EDF7">
+																		<td>申报口岸</td>
+																		<td>申报日期</td>
+																		<td>报关单号</td>
+																		<td>提运单号</td>
+																		<td>核销单号</td>
+																	</tr>
+																	</thead>
+																	<tbody>
+																	</tbody>
+																</table>
+															</div>
+															<div style="margin: 10px;height: 200px;">
+																<table class="text-center table_2 table" border="1" style = "width: 100%">
+																	<thead>
+																	<tr bgcolor="#C6EDF7">
+																		<td>当前环节</td>
+																		<td>处理时间</td>
+																	</tr>
+																	</thead>
+																	<tbody>
+																	</tbody>
+																</table>
+															</div>
+														</fieldset>
+													</form>
+												</div>
+												<!--<div class="tab-pane fade" id="cl">.....</div>-->
+											</div>
+										</div>
+										<div class="tab-pane fade" id="exportSecondTrack" style=" margin-bottom: 50px;">
+											<div style="text-align: right; height: 40px; line-height: 55px; font-weight: bold;">
+
+												<div style="height: 20px; width: 60px; display: inline-block; text-align: center;" class="invalid"
+													 onclick="AirSecondTrack.addData('AIRexport')" id="addStatus">
+													<span class="glyphicon glyphicon-plus" aria-hidden="true"
+														  style="color: blue;"></span>新增
+												</div>
+												<div style="height: 20px; width: 60px; display: inline-block; text-align: center;" class="invalid"
+													 onclick="AirSecondTrack.delData('AIRexport')" id="deleteStatus">
+													<span class="glyphicon glyphicon-minus-sign"
+														  aria-hidden="true" style="color: blue;"></span>删除
+												</div>
+											</div>
+											<form id="secondTracking_form">
+												<div style="width: 100%; height: 300px; overflow: scroll;">
+													<table class="table table-bordered" border=1px bordercolor=#D0D0D0 style="width: 100%; text-align: center; vertical-align: middle;">
+														<tr>
+															<td>我司编号</td>
+															<td>上家</td>
+															<td>客户单位</td>
+															<td>主单号</td>
+															<td>出运日期</td>
+															<td>件数</td>
+															<td>毛重</td>
+															<td>起运港</td>
+															<td>目的港</td>
+															<td>中转港/时间</td>
+															<td>到港时间</td>
+															<td>备注</td>
+														</tr>
+													</table>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--打印模态框-->
+	<div class="modal fade" id="print" tabindex="-1" role="dialog" aria-labelledby="print" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="printLabel">打印</h4>
+				</div>
+				<div class="modal-body">
+					<fieldset class="myFieldset" style="border: 1px solid blue">
+						<legend>打印信息</legend>
+						<div class="form-inline" style="padding: 10px;">
+							<div style="height: 40px;">
+								<div class="col-sm-3">单证代码</div>
+								<div class="col-sm-3">
+									<input class="form-control" name="printCode" style="width: 120px; height: 30px;" />
+								</div>
+								<div class="col-sm-3">
+									<span style="color: red;">*</span>打印方式
+								</div>
+								<div class="col-sm-3">
+									<select name="" class="form-control" style="border-radius: 3px; width: 120px; height: 30px;">
+										<option>套打</option>
+										<option>非套打</option>
+									</select>
+								</div>
+							</div>
+							<div style="height: 40px;">
+								<div class="col-sm-3">
+									<span style = "color: red;">*</span>单证类型
+								</div>
+								<div class="col-sm-3">
+									<select id = "printSelect_1" class="mbl select2 select2-hidden-accessible absOpacity" style = "position:absolute;width: 120px;" tabindex="-1" aria-hidden="true"></select>
+									<input type="text" id="printInput_1" class="lg form-control" name="type" style = "width: 120px; height: 30px;">
+								</div>
+								<div class="col-sm-3">
+									<span style="color: red;">*</span>打印份数
+								</div>
+								<div class="col-sm-3">
+									<input name="" class="form-control" style="width: 120px; height: 30px;" value="1" />
+								</div>
+							</div>
+							<div style="height: 40px;">
+								<div class="col-sm-3">
+									<span style="color: red;">*</span>打印模板
+								</div>
+								<div class="col-sm-3">
+									<select id="printSelect_2" class="mbl select2 select2-hidden-accessible absOpacity" style="position: absolute; width: 120px;" tabindex="-1" aria-hidden="true">
+									</select>
+									<input type="text" id="printInput_2" name="printTemplates" class="lg form-control" style="width: 120px; height: 30px;">
+									<input type="text" name="printFormatId" style="width: 52px; display: none;">
+								</div>
+							</div>
+							<div style="float: right;">
+								<button class="btn btn-primary ajaxAsk" name="print" >打印</button>
+								<iframe style="display: none;" id="printIframe" src=""></iframe>
+								<a style="display: none" id="download" href="" download>打印</a>
+								&nbsp;
+								<div class="btn-group">
+									<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" name="showPrint">
+										导出&nbsp;<span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu">
+										<li><span name="exportPrintPdf">导出为pdf</span></li>
+										<li><span name="exportPrintExcel">导出为Excel</span></li>
+										<li><span name="exportPrintWord">导出为word</span></li>
+									</ul>
+								</div>
+								&nbsp;
+								<button class="btn btn-primary ajaxAsk" name="previewButton" onclick="">预览</button>
+								<!--<button class = "btn btn-primary" name = "">预览</button>-->
+							</div>
+						</div>
+					</fieldset>
+					<!--<h4 style="color: blue;">打印日志</h4>
+					<table class="table table-striped" border="1">
+						<thead>
+							<tr>
+								<td>打印日期</td>
+								<td>打印人</td>
+								<td>打印单据</td>
+								<td>IP地址</td>
+								<td>打印内容</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>2017.5.30 12:49</td>
+								<td>张三</td>
+								<td>提单</td>
+								<td>192.168.1.11</td>
+								<td><button class="btn btn-primary">查看</button></td>
+							</tr>
+							<tr>
+								<td>2017.5.30 12:49</td>
+								<td>张三</td>
+								<td>提单</td>
+								<td>192.168.1.11</td>
+								<td><button class="btn btn-primary">查看</button></td>
+							</tr>
+							<tr>
+								<td>2017.5.30 12:49</td>
+								<td>张三</td>
+								<td>提单</td>
+								<td>192.168.1.11</td>
+								<td><button class="btn btn-primary">查看</button></td>
+							</tr>
+						</tbody>
+					</table>-->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--总览——其他选项——附件上传 模态框-->
+	<div class="modal fade" id="zlQtxxFjxx" tabindex="-1" role="dialog" aria-labelledby="zlQtxxFjxxLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 900px;">
+			<form id="fileUpload" name="fileUpload" method="POST"enctype="multipart/form-data">
+				<div class="modal-content" style="width: 100%;">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span> </button>
+						<h5 class="modal-title">附件上传</h5>
+					</div>
+					<div class="modal-body" style="width: 100%;overflow: scroll;">
+						<table class="table table-bordered">
+							<thead>
+							<tr>
+								<th>文件名</th>
+								<th>文件类型</th>
+								<th>大小</th>
+								<th>上传日期</th>
+								<th>已下载次数</th>
+								<th>备注</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr>
+								<td name="attachmentName"></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td name="downloadNumber"></td>
+								<td><input name="remarks"></td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="modal-footer" style="padding-bottom: 10px;">
+						<input type="file" id="selectedFile" name='selectedFile'multiple="multiple"/>
+						<button type="button" class="btn btn-primary"  onclick="AIRexport.uploadFile()">上传</button>
+						<button type="button" class="btn btn-primary" onclick="AIRexport.downloadFile()">下载</button>
+						<button type="button" class="btn btn-primary"  onclick="AIRexport.deleteFile()">删除</button>
+						<button type="button" class="btn btn-primary" data-dismiss="modal" >返回</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<!-- 委托新增 -->
+	<div class="modal fade" id="newWT" tabindex="-1" role="dialog"
+		 aria-labelledby="zlnewWT" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h5 class="modal-title">新增</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-3">
+							<input type="radio" value="">自动编号
+						</div>
+						<div class="col-sm-9">
+							<div class="panel panel-default">
+								<div class="panel-body">
+									<div class="row">
+										<div class="col-sm-4">
+											<input type="radio"> 出口整箱
+										</div>
+										<div class="col-sm-4">
+											<input type="radio"> 进口整箱
+										</div>
+										<div class="col-sm-4">
+											<input type="radio"> 出口拼箱
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-3">
+							<input type="radio" value="">拼整编号
+						</div>
+						<div class="col-sm-9">
+							<div class="panel panel-default">
+								<div class="panel-body">
+									<div class="row">
+										<div class="col-sm-4">
+											<input type="radio"> 自拼
+										</div>
+										<div class="col-sm-4">
+											<input type="radio"> 外拼
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-3">准备使用的JOBNO</div>
+						<div class="col-sm-9">
+							<div class="col-sm-4">
+								<input type="text" name="entrServiceCode" readonly="readonly">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-primary" data-dismiss="modal">确定</button>
+					<button class="btn btn-primary" data-dismiss="modal">返回</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--财务信息弹出框-->
+	<div class="modal fade" id="financeTC" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="financeInfo">财务信息</h4>
+				</div>
+				<div style="padding-left: 30px; padding-bottom: 30px;">
+					<table class="table">
+						<tbody>
+						<tr>
+							<td>USD统计</td>
+							<td>RMB统计</td>
+						</tr>
+						<tr>
+							<td>
+								<label>应收&emsp;</label>
+								<input type="text" id="USDfinanceGet" style="width: 160px;" class="form-control" readonly="readonly" name="receivUSD">
+							</td>
+							<td>
+								<label>应收&emsp;</label>
+								<input type="text" id="RMBfinanceGet" style="width: 160px;" class="form-control" readonly="readonly" name="receivRMB">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>应付&emsp;</label>
+								<input type="text" id="USDfinancePay" style="width: 160px;" class="form-control" readonly="readonly" name="payUSD">
+							</td>
+							<td>
+								<label>应付&emsp;</label>
+								<input type="text" id="RMBfinancePay" style="width: 160px;" class="form-control" readonly="readonly" name="payRMB">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>毛利&emsp;</label>
+								<input type="text" id="USDfinanceProfit" style="width: 160px;" class="form-control" readonly="readonly" name="profitUSD">
+							</td>
+							<td>
+								<label>毛利&emsp;</label>
+								<input type="text" id="RMBfinanceProfit" style="width: 160px;" class="form-control" readonly="readonly" name="profitRMB">
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--发货人详细信息-->
+	<div class="modal fade" id="shipperDetail" tabindex="-1" role="dialog"
+		 aria-labelledby="shipperDetail" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content" style="width: 900px;">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<table class="table" border="1" id="customerShipTable">
+						<thead></thead>
+						<tbody>
+						<tr>
+							<td>代码</td>
+							<td>合成名称</td>
+							<td>新增人</td>
+							<td>新增日期</td>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>2</td>
+							<td>3</td>
+							<td>4</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="modal-footer"></div>
+			</div>
+		</div>
+	</div>
+	<!--报关委托模态框-->
+	<div class="modal fade bs-example-modal-lg" id="expDeclareEntrust" tabindex="-1" role="dialog" aria-labelledby="expDeclareEntrust">
+		<div class="modal-dialog  modal-lg" role="document">
+			<div class="modal-content" style="width: 800px; font-size: small;">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">报关委托</h4>
+				</div>
+				<div class="modal-body">
+					<table class="table table-condensed" border="1" cellpadding="0" cellspacing="0" style="border: 1px solid #c6d3d6;">
+						<caption align="top">
+							出口货物报关详情
+						</caption>
+						<thead></thead>
+						<tbody>
+						<tr>
+							<td colspan="2">
+								<!--<span>收发货人</span><br>
+                                <input type="text" name="" class="RO"  readonly="readonly">-->
+								<span>出口口岸</span><br>
+								<input type="text" name="exportPort" class="RO form-control" readonly="readonly">
+							</td>
+							<td>
+								<span>备案号</span><br>
+								<input type="text" name="" class="RO form-control" readonly="readonly">
+							</td>
+							<td>
+								<span>出口日期</span><br>
+								<input type="text" name="" class="RO form-control" readonly="readonly">
+							</td>
+							<td>
+								<span>申报日期</span><br>
+								<input type="text" class="RO form-control"  readonly="readonly">
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<span>经营单位</span><br>
+								<input type="text" name="operatingUnit" class="RO form-control" readonly="readonly">
+							</td>
+							<td>
+								<span>运输方式</span><br>
+								<input type="text" name="trafMode" class="RO form-control" readonly="readonly">
+							</td>
+							<td>
+								<span>运输工具名称</span><br>
+								<input type="text" name="transportName" class="RO form-control" readonly="readonly">
+							</td>
+							<td>
+								<span>提运单号</span><br>
+								<input type="text" name="billLadingNo" class="RO form-control" readonly="readonly">
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<span>发送单位</span><br>
+								<input type="text" value="海盟" class="RO form-control"  readonly="readonly">
+							</td>
+							<td>
+								<span>贸易方式</span><br>
+								<input type="text" name="entrTradeMode" class="RO form-control" readonly="readonly">
+							</td>
+							<td>
+								<span>征免性质</span><br>
+								<input type="text"  name="" class="RO form-control" readonly="readonly">
+							</td>
+							<td>
+								<span>结汇方式</span><br>
+								<input type="text" name="" class="RO form-control" readonly="readonly">
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<!--<span>贸易国（地区）</span><br>
+                                <input type="text" name="" class="RO" readonly="readonly">-->
+								<span>许可证号</span><br>
+								<input type="text" class="RO form-control" readonly="readonly">
+							</td>
+							<td>
+								<span>运抵国（地区）</span><br>
+								<input type="text" name="entrDestPortCountry" class="RO form-control" readonly="readonly">
+							</td>
+							<td>
+								<span>指运港</span><br>
+								<input type="text" name="entrDestPortCNName" class="RO form-control" readonly="readonly">
+							</td>
+							<td>
+								<span>境内货源地</span><br>
+								<input type="text" class="RO form-control"  readonly="readonly" name="loadingPortName">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span>批准文号</span><br>
+								<input type="text" class="RO form-control" readonly="readonly">
+							</td>
+							<td>
+								<span>成交方式</span><br>
+								<input type="text" class="RO form-control" readonly="readonly">
+							</td>
+							<td>
+								<span>运费</span><br>
+								<input type="text" class="RO form-control" readonly="readonly" name="bookFreight">
+							</td>
+							<td>
+								<span>保费</span><br>
+								<input type="text" class="RO form-control" readonly="readonly">
+							</td>
+							<td>
+								<span>杂费</span><br>
+								<input type="text" class="RO form-control" readonly="readonly">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span>合同协议号</span><br>
+								<input type="text" class="RO form-control" readonly="readonly">
+							</td>
+							<td>
+								<span>件数</span><br>
+								<input type="text" name="number" class="RO form-control" readonly="readonly">
+							</td>
+							<td>
+								<span>包装种类</span><br>
+								<input type="text" name="numberUnit" class="RO form-control" readonly="readonly">
+							</td>
+							<td>
+								<span>毛重（千克）</span><br>
+								<input type="text" name="gross" class="RO form-control" readonly="readonly">
+							</td>
+							<td>
+								<span>净重（千克）</span><br>
+								<input type="text" name="netWeight" class="RO form-control" readonly="readonly">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span>集装箱号</span>
+								<br>
+								<input type="text" name="caseNumber" class="RO form-control" readonly="readonly">
+							</td>
+							<td colspan="3" class="showCompanyDocumentList">
+								<span>随附单证</span>
+								<br>
+								<button class="btn btn-primary pull-right" style="margin-top:15px;" onclick="Airdeclare.choseAccompanyDocument()">选择</button>
+							</td>
+							<td>
+								<span>生产厂家</span>
+								<br>
+								<input type="text" class="RO form-control" readonly="readonly">
+							</td>
+						</tr>
+						<tr>
+							<td colspan="5">
+								<span>标记唛码及标注</span>
+								<br>
+								<br>
+								<span>备注：</span>
+								<input type="text" class="form-control" onblur="Airdeclare.saveRemark(this)" style="width: 180px;border: 1px solid #d2d6de;display: inline;margin-left: 25px;" name="remark" >
+								<br>
+								<br>
+								<span>集装箱号：</span>
+								<input type="text" name="caseNo" class="RO form-control"  style="width: 180px;display: inline;"  readonly="readonly">
+								<!--   <textarea rows="3" cols="30" name="mark" class="RO" readonly="readonly"></textarea>-->
+								<!-- <span>备注：出口发票号：HX7YC09C049</span><br>
+                                    <span>BMOU4752190</span> -->
+							</td>
+						</tr>
+						</tbody>
+					</table>
+					<div class="row">
+						<div class="col-sm-10">
+							接收方：
+							<label class="checkbox-inline">
+								<input type="radio" id="2.0" value="2.0" name="jsf">报关2.0系统
+							</label>
+							<label class="checkbox-inline">
+								<input type="radio" id="g1" value="1" name="jsf">报关管理
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="Airdeclare.sendCustomsCommission()">发送</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="Airdeclare.exportExcle()">导出</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal">返回</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--报关委托 选择随附单证 文件列表 模态框-->
+	<div class="modal fade" id="AIRexpChoseAccompanyDocument" tabindex="-1" role="dialog" aria-labelledby="choseAccompanyDocument" aria-hidden="true">
+		<div class="modal-dialog" style="width: 900px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span> </button>
+					<h5 class="modal-title">选择随附单证</h5>
+				</div>
+				<div class="modal-body" style="width: 100%;overflow: auto;">
+					<table class="table table-bordered">
+						<thead>
+						<tr>
+							<th><input type="checkbox" name="checkAll"></th>
+							<th>文件名</th>
+							<th>文件类型</th>
+							<th>大小</th>
+							<th>上传日期</th>
+							<th>备注</th>
+						</tr>
+						</thead>
+						<tbody>
+
+						</tbody>
+					</table>
+
+				</div>
+				<div class="modal-footer" style="padding-bottom: 10px;">
+					<button type="button" class="btn btn-primary"  onclick="Airdeclare.submitAccompanyDocument()">确定</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal" >返回</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--取报关状态模态框-->
+	<div class="modal fade" id="declareStatus" tabindex="-1" role="dialog"
+		 aria-labelledby="declareStatus">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="customsDeclarationStatuslabel">取报关状态</h4>
+				</div>
+				<div class="modal-body"></div>
+			</div>
+		</div>
+	</div>
+	<!--审核模态框-->
+	<div class="modal fade" id="examin" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+		<div class="modal-dialog" style="width: 400px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">审核</h4>
+				</div>
+				<div class="modal-body">
+					<div style="padding-left: 30px; padding-bottom: 30px;">
+						<table class="table">
+							<tbody>
+							<tr>
+								<td>
+									<label>请选择下列选项：</label>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input type="radio" name="examin" value="true"> <label>审核通过&emsp;&emsp;</label>
+									<input type="radio" name="examin" value="false"> <label>审核未通过</label>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div>
+										<label style="position: relative;top: -30px;">拒绝理由&emsp;</label>
+										<textarea name="updateRemark" style="border-radius:3px;width: 180px;height: 70px;"></textarea>
+									</div>
+								</td>
+								<!--<td style="vertical-align: middle;text-align: center;" >拒绝理由</td>
+                                <td><textarea name="updateRemark" style="border-radius:3px;width: 180px;height: 70px;"></textarea></td>-->
+							</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id=""  style="background-color: #00a0e9;color: white;" onclick="AIRinputorder.examinSubmit()">确定</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="">取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--审核结果模态框-->
+	<div class="modal fade" id="examinResultModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+		<div class="modal-dialog" style="width: 300px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<!--<h4 class="modal-title">审核</h4>-->
+				</div>
+				<div class="modal-body">
+					已审核
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--运价规格模态框-->
+	<!--<div class="modal fade" id="priceModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+		<div class="modal-dialog" style="width: 400px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">运价</h4>
+				</div>
+				<div class="modal-body">
+					<div style="padding-left: 30px; padding-bottom: 30px;">
+						<table class="table">
+							<tbody>
+							<tr>
+								<td>请选择规格</td>
+							</tr>
+							<tr>
+								<td>
+									<input type="radio" name="standard" value="M"> <label>M</label>&emsp;
+								</td>
+								<td>
+									<input type="text" class="value" name="priceM" value="" readonly="readonly">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input type="radio" name="standard" value="N"> <label>N</label>&emsp;
+								</td>
+								<td>
+									<input type="text" class="value" name="priceN" value="" readonly="readonly">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input type="radio" name="standard" value="45+"> <label>45+</label>&emsp;
+								</td>
+								<td>
+									<input type="text" class="value" name="price45" value="" readonly="readonly">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input type="radio" name="standard" value="100+"> <label>100+</label>&emsp;
+								</td>
+								<td>
+									<input type="text" class="value" name="price100" value="" readonly="readonly">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input type="radio" name="standard" value="300+"> <label>300+</label>&emsp;
+								</td>
+								<td>
+									<input type="text" class="value" name="price300" value="" readonly="readonly">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input type="radio" name="standard" value="500+"> <label>500+</label>&emsp;
+								</td>
+								<td>
+									<input type="text" id="" class="value" name="price500" value="" readonly="readonly">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input type="radio" name="standard" value="1000+"> <label>1000+</label>&emsp;
+								</td>
+								<td>
+									<input type="text" id="" class="value" name="price1000" value="" readonly="readonly">
+								</td>
+							</tr>
+							<tr>
+								<td>战险费</td>
+								<td>
+									<input type="text" id="" name="warRiskCharge" value="" readonly="readonly">
+								</td>
+							</tr>
+							<tr>
+								<td>燃油费</td>
+								<td>
+									<input type="text" id="" name="fuelCharge" value="" readonly="readonly">
+								</td>
+							</tr>
+							<tr>
+								<td>其他费用</td>
+								<td>
+									<input type="text" id="" name="otherCharge" value="" readonly="readonly">
+								</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id=""  style="background-color: #00a0e9;color: white;" onclick="AIRinputorder.getPriceButton()">确定</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="">取消</button>
+				</div>
+			</div>
+		</div>
+	</div>-->
+	<!--请填写完整数据-->
+	<div class="modal fade" id="priceResultModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+		<div class="modal-dialog" style="width: 300px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<!--<h4 class="modal-title">审核</h4>-->
+				</div>
+				<div class="modal-body">
+					请将数据填写完整
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--操作成功提醒框-->
+	<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+		<div class="modal-dialog" style="width: 300px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<!--<h4 class="modal-title">审核</h4>-->
+				</div>
+				<div class="modal-body">
+					操作成功
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--委托人模态框-->
+	<div class="modal fade" id="exportEntrustModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document" style="width: 900px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">委托人</h4>
+				</div>
+				<div class="modal-body" style="width: 100%;overflow: auto;height:520px;">
+					<!--表单查询-->
+					<div class="box search-box">
+						<div class="box-body" style="position:relative">
+							<form class="search-table form-inline" id="exportEntrustForm" role="form" style="width: 100%;">
+								<fieldset class="myFieldset" style="padding:5px 0px;">
+									<div class="form-inline" style="margin-bottom: 5px;">
+										<div class="col-sm-4">
+											<label>单位代码</label>
+											<input type="text" class="form-control" name="customerCode" placeholder="请输入单位代码">
+										</div>
+										<div class="col-sm-4">
+											<label>简称</label>
+											<input type="text" class="form-control" name="abbrForShow" placeholder="请输入简称">
+										</div>
+										<div class="col-sm-4">
+											<label>负责人</label>
+											<input type="text" class="form-control" name="manInCharge" placeholder="请输入负责人">
+										</div>
+										<div style="clear:both;"></div>
+									</div>
+									<div class="form-inline" style="margin-bottom: 5px;">
+										<div class="col-sm-4">
+											<label>销售</label>
+											<input name="salesmanName" class="form-control" placeholder="请输入销售">
+										</div>
+										<div class="col-sm-4">
+											<label>客服</label>
+											<input name="servicePersonName" class="form-control" placeholder="请输入客服">
+										</div>
+										<div class="col-sm-4">
+											<label>属性</label>
+											<input name="creditRateName" class="form-control" placeholder="请输入属性">
+										</div>
+									</div>
+								</fieldset>
+							</form>
+							<div class="form-inline">
+								<div class="col-md-3 pull-right">
+									<button class="btn btn-primary left" onclick="AIRexport.entrustSearch();" style="margin-right: 10px;">查询</button>
+									<button class="btn btn-primary right search_reset" style="background-color: white;color: #000;border: 1px solid #ccc;" onclick="AIRexport.entrustReset()"> 重置</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--查询结果显示-->
+					<div class="box datable-box">
+						<div class="box-body">
+							<table id="clientTable" class="table table-bordered table-striped">
+
+							</table>
+						</div>
+					</div>
+				</div>
+				<!--<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" onclick="AIRexport.getEntrustButton()">确定</button>
+                </div>-->
+			</div>
+		</div>
+	</div>
+	<!--费用 应付往来单位-->
+	<div class="modal fade" id="AIRIntercourseUnit" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document" style="width: 900px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span> </button>
+					<h4 class="modal-title">应付往来单位</h4>
+				</div>
+				<div class="modal-body">
+					<!--表单查询-->
+					<div class="box search-box">
+						<div class="box-body" style="position:relative">
+							<form class="search-table form-inline" id="IntercourseUnitForm" role="form" style="width:100%">
+								<fieldset class="myFieldset" style="padding: 5px 0px;">
+									<div class="form-inline" style="margin-bottom: 5px;">
+										<div class="col-sm-4">
+											<label>单位代码</label>
+											<input type="text" class="form-control" name="customerCode" placeholder="请输入单位代码">
+										</div>
+										<div class="col-sm-4">
+											<label>单位简称</label>
+											<input type="text" class="form-control" name="abbrCn" placeholder="请输入单位简称">
+										</div>
+										<div style="clear:both;"></div>
+									</div>
+								</fieldset>
+							</form>
+							<div class="form-inline">
+								<div class="col-md-3 pull-right">
+									<button class="btn btn-primary left" onclick="FCLexport.FCLIntercourUnit_table.ajax.reload();" style="margin-right: 10px;">查询</button>
+									<button class="btn btn-primary right search_reset" style="background-color: white;color: #000;border: 1px solid #ccc;"> 重置</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--查询结果显示-->
+					<div class="box datable-box">
+						<div class="box-body">
+							<table id="IntercourseUnitTable" class="table table-bordered table-striped">
+
+							</table>
+						</div>
+					</div>
+				</div>
+				<!--   <div class="modal-footer">
+                       <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                       <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+                   </div>-->
+			</div>
+		</div>
+	</div>
+	<!--费用 应收往来单位-->
+	<div class="modal fade" id="AIRReceivableUnit" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document" style="width: 900px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span> </button>
+					<h4 class="modal-title">应收往来单位</h4>
+				</div>
+				<div class="modal-body">
+					<!--表单查询-->
+					<div class="box search-box">
+						<div class="box-body" style="position:relative">
+							<form class="search-table form-inline" id="ReceivableUnitForm" role="form" style="width:100%">
+								<fieldset class="myFieldset" style="padding: 5px 0px;">
+									<div class="form-inline" style="margin-bottom: 5px;">
+										<div class="col-sm-4">
+											<label>单位代码</label>
+											<input type="text" class="form-control" name="customerCode" placeholder="请输入单位代码">
+										</div>
+										<div class="col-sm-4">
+											<label>单位简称</label>
+											<input type="text" class="form-control" name="abbrCn" placeholder="请输入单位简称">
+										</div>
+										<div style="clear:both;"></div>
+									</div>
+								</fieldset>
+							</form>
+							<div class="form-inline">
+								<div class="col-md-3 pull-right">
+									<button class="btn btn-primary left" onclick="FCLexport.FCLReceivableUnit_table.ajax.reload();" style="margin-right: 10px;">查询</button>
+									<button class="btn btn-primary right search_reset" style="background-color: white;color: #000;border: 1px solid #ccc;"> 重置</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--查询结果显示-->
+					<div class="box datable-box">
+						<div class="box-body">
+							<table id="ReceivableUnitTable" class="table table-bordered table-striped">
+
+							</table>
+						</div>
+					</div>
+				</div>
+				<!--  <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                      <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+                  </div>-->
+			</div>
+		</div>
+	</div>
+	<!--输单页面 订舱方-->
+	<div class="modal fade" id="airBooking" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document" style="width:900px">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">订舱方</h4>
+				</div>
+				<div class="modal-body">
+					<!--表单查询-->
+					<div class="box search-box">
+						<div class="box-body" style="position:relative">
+							<form class="search-table form-inline" id="airBookingForm" role="form" style="width:100%">
+								<fieldset class="myFieldset" style="padding: 5px 0px;">
+									<div class="form-inline" style="margin-bottom: 5px;">
+										<div class="col-sm-4">
+											<label>单位代码</label>
+											<input type="text" class="form-control" name="customerCode" placeholder="请输入单位代码">
+										</div>
+										<div class="col-sm-4">
+											<label>单位简称</label>
+											<input type="text" class="form-control" name="abbrCn" placeholder="请输入单位简称">
+										</div>
+										<div style="clear:both;"></div>
+									</div>
+								</fieldset>
+							</form>
+							<div class="form-inline">
+								<div class="col-md-3 pull-right">
+									<button class="btn btn-primary left" onclick="AIRexport.airBooking_table.ajax.reload();" style="margin-right: 10px;">查询</button>
+									<button class="btn btn-primary right search_reset" id="airBookingSeachPortForm" style="background-color: white;color: #000;border: 1px solid #ccc;"> 重置</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--查询结果显示呢-->
+					<div class="box datable-box">
+						<div class="box-body">
+							<table id="airBookingTable" class="table table-bordered table-striped">
+
+							</table>
+						</div>
+					</div>
+				</div>
+				<!-- <div class="modal-footer">
+                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                     <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+                 </div>-->
+			</div>
+		</div>
+	</div>
+	<!--数据同步模态框-->
+	<div class="modal fade" id="AIRIsDSModal" tabindex="-1" role="dialog" style="z-index: 1040; display: none;">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+					<h4 class="modal-title" id="myModalLabel">数据同步</h4>
+				</div>
+				<div class="modal-body">
+					<p>
+						是否将本票数据同步到供应链公司？
+					</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button type="button" class="btn btn-primary YesSubmit">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<link rel="stylesheet" href="air/export/css/AIRexport.css">
+	<script src="air/export/js/AIRexport.js"></script>
+	<script src="air/export/js/AIRinputorder.js"></script>
+	<script type="text/javascript" src="air/export/js/AIRCargoData.js"></script>
+	<script src="air/import/js/goodsPlan.js"></script>
+	<script type="text/javascript" src="air/export/js/Airdeclare.js"></script>
+	<script type="text/javascript" src="air/export/js/AirBusinessTrack.js"></script>
+	<script type="text/javascript" src="air/export/js/AirSecondTrack.js"></script>
+	<script src="air/export/js/PageFunction.js"></script>
+	<script src="air/export/js/AirExport_print.js"></script>
+	<!--<script src="logistics/js/logisticsFee.js"></script>-->
+	<script src="air/export/js/AirStatusTrack.js"></script>
+	<script src="air/export/js/AIRexportPayExpense.js"></script>
+	<script src="air/export/js/exportGoodsPlan.js"></script>
+	<script>
+		showButton();
+	</script>
+</div>

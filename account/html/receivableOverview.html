@@ -1,0 +1,102 @@
+<div id="tab_220201" class="receivableOverview basedata tab-page" role="tabpanel">
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <!--begin search box-->
+                <div class="box search-box" style="margin-bottom: 10px">
+                    <div class="box-body" style="position: relative;padding-bottom: 35px;">
+                        <form class="search-table form-inline" id="receivableOverviewSearchForm" role="form" style="height: 66px;overflow: hidden;">
+                            <div class="row" style="margin-bottom:10px;margin-left: 0px;">
+                                <div class="form-group" style="width:28%;">
+                                    <label style="width: 50px;">状态</label>
+                                    <select  name="status" class="form-control select2 select2-hidden-accessible" style="width:70%;" tabindex="-1" aria-hidden="true">
+                                        <option value=""></option>
+                                        <option>未核销</option>
+                                        <option>部分核销</option>
+                                        <option>已核销</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" style="width:28%;margin:auto 6%;">
+                                    <label style="width: 50px;">业务类型</label>
+                                    <select  name="businessType" class="form-control select2 select2-hidden-accessible" style="width:70%;" tabindex="-1" aria-hidden="true">
+                                        <option value=""></option>
+                                        <option value=""></option>
+                                        <option>海运出口整箱</option>
+                                        <option>海运进口整箱</option>
+                                        <option>海运出口拼箱</option>
+                                        <option>海运进口拼箱</option>
+                                        <option>空运出口</option>
+                                        <option>空运进口</option>
+                                        <option>物流集装箱进口</option>
+                                        <option>多式联运</option>
+                                        <option>集装箱出口</option>
+                                        <option>零担运输</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" style="width:28%;">
+                                    <label style="width: 50px;">业务编号</label>
+                                    <input type="text" class="form-control" style="width: 70%" name="businessCode">
+                                </div>
+                            </div>
+                            <div class="row" style="margin-bottom:10px;margin-left: 0px;">
+                                <div class="form-group" style="width:28%;">
+                                    <label style="width: 50px;">往来单位</label>
+                                    <input type="text" class="form-control" style="width: 70%" name="contactCompany">
+                                </div>
+                                <div class="form-group" style="width:28%;margin:auto 6%;">
+                                    <label style="width: 50px;">发票号</label>
+                                    <input type="text" class="form-control" style="width: 70%" name="invoiceNumber">
+                                </div>
+                                <div class="form-group" style="width:28%;">
+                                    <label style="width: 50px;">财务编号</label>
+                                    <input type="text" class="form-control" style="width: 70%" name="financialNumber">
+                                    <!--<input type="text" class="form-control" name="serviceLineId" style="width:70%;" />-->
+                                </div>
+                            </div>
+                            <div class="row" style="margin-bottom:10px;margin-left: 0px;">
+                                <div class="form-group" style="width:28%;">
+                                    <label style="width: 50px;">核销方式</label>
+                                    <select  name="writeOffMethod" class="form-control select2 select2-hidden-accessible" style="width:70%;" tabindex="-1" aria-hidden="true">
+                                        <option value=""></option>
+                                        <option>现销</option>
+                                        <option>预销</option>
+                                    </select>
+                                </div>
+                                <input type="text" class="form-control" style="width: 70%;display: none" name="salesmanId">
+                            </div>
+                        </form>
+                        <div class="sm-wrqapper" style="position: absolute;bottom: 5px;width: 180px;left: 50%;margin-left: -90px;">
+                            <span onclick="receivableOverview.telescopic(this)" style="font-size: 13px;color:#20aaec;position: relative;top: 2px;cursor: pointer;">更多搜索<i class="fa fa-fw fa-angle-double-down"></i></span>
+                            <input type="button" id="BTN_90040100" class="btn btn-info btn-size" onclick="receivableOverview.doSearch()" value="查询"/>
+                            <button class="btn btn-info search_reset" id="receivableOverviewSearchPortForm"  style="background-color: white;color:#000;border:1px solid #ccc;">
+                                重置
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!--<div style="height: 10px;color: #333"></div>-->
+                <div class="box datable-box">
+
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="receivableOverviewTable" class="table table-bordered table-striped">
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+
+                    <!--modify button-->
+
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- DataTables -->
+    <script src="account/js/receivableOverview.js"></script>
+    <script src="account/js/public.js"></script>
+    <script>
+
+    </script>
+</div>

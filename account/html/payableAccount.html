@@ -1,0 +1,575 @@
+<div id="tab_220302" class="payableAccount basedata  tab-page" role="tabpanel" onload="InitpayableAccount()">
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box search-box">
+                    <div class="box-body"  style="position: relative;padding-bottom: 35px;">
+                        <form class="search-table form-inline" id="payableAccountSearchForm" role="form" style="height: 66px;overflow: hidden;">
+                            <div class="row" style="margin-bottom:10px;margin-left: 0px;">
+                                <div class="form-group" style="width:28%;">
+                                    <label style="width: 60px;">供应商名称</label>
+                                    <input type="text" class="form-control" name="contactCompany"style="width:70%;" />
+                                </div>
+                                <div class="form-group" style="width:28%;margin:auto 6%;">
+                                    <label style="width: 60px;">对账单编号</label>
+                                    <input type="text" class="form-control" name="reconcileCode"style="width:70%;" />
+                                </div>
+                                <div class="form-group" style="width:28%;">
+                                    <label style="width: 50px;">状态</label>
+                                    <!--<input type="text" class="form-control" name="status"style="width:70%;" />-->
+                                    <select name="status" class="select2 select2-hidden-accessible" style="width: 70%;"  tabindex="-1" aria-hidden="true">
+                                        <option value=""></option>
+                                        <option>未确认</option>
+                                        <option>已确认</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-bottom:10px;margin-left: 0px;">
+                                <div class="form-group" style="width:28%;">
+                                    <label style="width:60px;">核对时间</label>
+                                    <input type="text" class="form-control startTime" name="checkDateStart" id="qBeginTime" style="width:33%;"> -
+                                    <input type="text" class="form-control endTime" name="checkDateEnd" id="qEndTime" style="width:33%;">
+
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="ldn-wrqapper" style="position: absolute;bottom: 0;width: 176px;left: 50%;margin-left: -88px;">
+                            <input type="button" class="btn btn-info btn-size" onclick="payableAccount.doSearch()" value="查找"/>
+                            <button class="btn btn-info search_reset" id="payableAccountSeachPortForm" style="background-color: white;color:#000;border:1px solid #ccc;" >
+                                重置
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!--对账单确认-->
+                <div class="modal fade" id="editpayableAccountModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" style="width: 800px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close modal_close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="editpayableAccountModalTitle">对账确认</h4>
+                            </div>
+                            <div class="modal-body" id="editpayableAccountModalBody">
+                                <form id="editpayableAccountForm" class="form-inline">
+                                    <table class="edit-table" style="text-align: right">
+                                        <tr>
+                                            <td style="width: 7%;">
+                                                <label>对账编号</label>
+                                            </td>
+                                            <td style="width: 16%;">
+                                                <input style="width: 100%;" class="form-control" name="reconcileCode">
+                                            </td>
+                                            <td style="width: 11%;">
+                                                <label>客户代码</label>
+                                            </td>
+                                            <td style="width: 16%;">
+                                                <input style="width: 100%;" class="form-control" name="customerCode">
+                                            </td>
+                                            <td style="width: 11%;">
+                                                <label>往来单位</label>
+                                            </td>
+                                            <td style="width: 16%;">
+                                                <input style="width: 100%;" class="form-control" name="contactCompany">
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td colspan="6">
+                                                <table id="StatementConfirmTable" class="table table-bordered" style="width: 98%"></table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 7%;">
+                                                <label>应付USD</label>
+                                            </td>
+                                            <td style="width: 16%;">
+                                                <input style="width: 100%;" class="form-control" name="payableUsd">
+                                            </td>
+                                            <td style="width: 11%;">
+                                                <label>应付RMB</label>
+                                            </td>
+                                            <td style="width: 16%;">
+                                                <input style="width: 100%;" class="form-control" name="payableRmb">
+                                            </td>
+                                            <td style="width: 11%;">
+                                                <label>对账USD</label>
+                                            </td>
+                                            <td style="width: 16%;">
+                                                <input style="width: 100%;" class="form-control" name="reconcileUsd">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 7%;">
+                                                <label>对账RMB</label>
+                                            </td>
+                                            <td style="width: 16%;">
+                                                <input style="width: 100%;" class="form-control" name="reconcileRmb">
+                                            </td>
+                                            <td style="width: 11%;">
+                                                <label>对账合计币种</label>
+                                            </td>
+                                            <td style="width: 16%;">
+                                                <input style="width: 100%;" class="form-control" name="reconcileCurrency">
+                                            </td>
+                                            <td style="width: 11%;">
+                                                <label>汇率</label>
+                                            </td>
+                                            <td style="width: 16%;">
+                                                <input style="width: 100%;" class="form-control" name="exchangeRate">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 7%;">
+                                                <label>对账金额</label>
+                                            </td>
+                                            <td style="width: 16%;">
+                                                <input style="width: 100%;" class="form-control" name="reconcileAmount">
+                                            </td>
+                                            <td style="width: 11%;">
+                                                <label>核对人</label>
+                                            </td>
+                                            <td style="width: 16%;">
+                                                <input style="width: 100%;" class="form-control" name="checkerName">
+                                            </td>
+                                            <td style="width: 11%;">
+                                                <label>核对时间</label>
+                                            </td>
+                                            <td style="width: 16%;">
+                                                <input style="width: 100%;" class="form-control startTime" name="checkDate">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 7%;">
+                                                <label>备注</label>
+                                            </td>
+                                            <td colspan="5">
+                                                <textarea style="width: 100%;" class="form-control" name="remark"></textarea>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <div class="form-group"style="width: 90%;text-align: right">
+                                    <button type="button" class="btn btn-primary" onclick="payableAccount.editpayableAccountConfirm()">确认</button>
+                                    <button type="button" class="btn btn-primary" onclick="payableAccount.editpayableAccountback()">打回</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div>
+
+
+                <!--对账单详情-->
+                <div class="modal fade" id="detailspayableAccountModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" style="width: 800px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close modal_close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">对账单详情</h4>
+                            </div>
+                            <div class="modal-body" id="detailspayableAccountModalBody">
+                                <form id="detailspayableAccountSearchForm">
+                                    <div hidden="hidden">
+                                        <input name="customerCode">
+                                        <input name="payableReconcileId">
+                                        <input name="reconcileStatus">
+                                        <input name="confirmStatus">
+                                        <input name="reconcileConfirmStatus">
+                                        <input name="reconcileStatus">
+                                    </div>
+                                </form>
+                                <form id="detailspayableAccountForm" class="form-inline">
+                                    <table class="edit-table" style="text-align: right">
+                                        <tr>
+                                            <td style="width: 7%;">
+                                                <label>对账编号</label>
+                                            </td>
+                                            <td style="width: 16%;">
+                                                <input style="width: 100%;" class="form-control" name="reconcileCode">
+                                            </td>
+                                            <td style="width: 11%;">
+                                                <label>客户代码</label>
+                                            </td>
+                                            <td style="width: 16%;">
+                                                <input style="width: 100%;" class="form-control" name="customerCode">
+                                            </td>
+                                            <td style="width: 11%;">
+                                                <label>往来单位</label>
+                                            </td>
+                                            <td style="width: 16%;">
+                                                <input style="width: 100%;" class="form-control" name="contactCompany">
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td colspan="6">
+                                                <table id="StatementDetailsTable" class="table table-bordered" style="width: 98%"></table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 7%;">
+                                                <label>应付USD</label>
+                                            </td>
+                                            <td style="width: 16%;">
+                                                <input style="width: 100%;" class="form-control" name="payableUsd">
+                                            </td>
+                                            <td style="width: 11%;">
+                                                <label>应付RMB</label>
+                                            </td>
+                                            <td style="width: 16%;">
+                                                <input style="width: 100%;" class="form-control" name="payableRmb">
+                                            </td>
+                                            <td style="width: 11%;">
+                                                <label>对账USD</label>
+                                            </td>
+                                            <td style="width: 16%;">
+                                                <input style="width: 100%;" class="form-control" name="reconcileUsd">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 7%;">
+                                                <label>对账RMB</label>
+                                            </td>
+                                            <td style="width: 16%;">
+                                                <input style="width: 100%;" class="form-control" name="reconcileRmb">
+                                            </td>
+                                            <td style="width: 11%;">
+                                                <label>对账合计币种</label>
+                                            </td>
+                                            <td style="width: 16%;">
+                                                <input style="width: 100%;" class="form-control" name="reconcileCurrency">
+                                            </td>
+                                            <td style="width: 11%;">
+                                                <label>汇率</label>
+                                            </td>
+                                            <td style="width: 16%;">
+                                                <input style="width: 100%;" class="form-control" name="exchangeRate">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 7%;">
+                                                <label>对账金额</label>
+                                            </td>
+                                            <td style="width: 16%;">
+                                                <input style="width: 100%;" class="form-control" name="reconcileAmount">
+                                            </td>
+                                            <td style="width: 11%;">
+                                                <label>核对人</label>
+                                            </td>
+                                            <td style="width: 16%;">
+                                                <input style="width: 100%;" class="form-control" name="checkerName">
+                                            </td>
+                                            <td style="width: 11%;">
+                                                <label>核对时间</label>
+                                            </td>
+                                            <td style="width: 16%;">
+                                                <input style="width: 100%;" class="form-control" name="checkDate">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 7%;">
+                                                <label>备注</label>
+                                            </td>
+                                            <td colspan="5">
+                                                <textarea style="width: 100%;" class="form-control" name="remark"></textarea>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+
+                                </form>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div>
+                <!--开票申请-->
+                <div class="modal fade" id="billApplicationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" style="width: 1000px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close modal_close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="billApplicationModalTitle">开票申请</h4>
+                            </div>
+                            <div class="modal-body" id="billApplicationModalBody">
+                                <form id="billApplicationForm" class="form-inline">
+                                   <div class="row" style="margin: 10px 0;">
+                                       <div class="form-group" style="width: 31%">
+                                           <label>发票种类</label>
+                                           <select style="width: 70%"class="form-control">
+                                               <option>普票</option>
+                                               <option>增票</option>
+                                           </select>
+                                       </div>
+                                       <div class="form-group"style="width: 31%">
+                                           <label>开票日期</label>
+                                           <input class="form-control" style="width: 70%">
+                                       </div>
+                                       <div class="form-group"style="width: 31%">
+                                           <label>开票人</label>
+                                           <input class="form-control" style="width: 70%">
+                                       </div>
+                                   </div>
+                                    <div class="row" style="margin: 10px 0;border: solid 1px black;height: 220px">
+                                        <div class="form-group" style="border-right: solid 1px black;height: 100%;width: 3%;margin-left: 10px;height: 220px">
+                                           <label>购货单位</label>
+                                        </div>
+                                        <div class="form-group" style="border-right: solid 1px black;height: 100%;width: 60%;margin-left: 10px">
+                                            <div class="row"style="margin: 10px">
+                                                <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名称</label>
+                                                <input class="form-control">
+                                            </div>
+                                            <div class="row"style="margin: 10px">
+                                                <label>纳税人识别号</label>
+                                                <input class="form-control">
+                                            </div>
+                                            <div class="row"style="margin: 10px">
+                                                <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;地址</label>
+                                                <input class="form-control">
+                                            </div>
+                                            <div class="row"style="margin: 10px">
+                                                <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;电话</label>
+                                                <input class="form-control">
+                                            </div>
+                                            <div class="row"style="margin: 10px">
+                                                <label>开户行及账号</label>
+                                                <input class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div>
+                                                <lable>开票员</lable>
+                                                <input class="form-control">
+                                            </div>
+                                            <div style="text-align: center;padding-top: 20px;">
+                                                <button class="btn btn-primary">提交</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <td>商品名称</td>
+                                            <td>规格型号</td>
+                                            <td>计量单位</td>
+                                            <td>数量</td>
+                                            <td>单价(不含税)</td>
+                                            <td>金额(不含税)</td>
+                                            <td>税率</td>
+                                            <td>税额</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input style="width: 100px;"></td>
+                                            <td><input style="width: 100px;"></td>
+                                            <td><input style="width: 100px;"></td>
+                                            <td><input style="width: 100px;"></td>
+                                            <td><input style="width: 100px;"></td>
+                                            <td><input style="width: 100px;"></td>
+                                            <td><input style="width: 100px;"></td>
+                                            <td><input style="width: 100px;"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input style="width: 100px;"></td>
+                                            <td><input style="width: 100px;"></td>
+                                            <td><input style="width: 100px;"></td>
+                                            <td><input style="width: 100px;"></td>
+                                            <td><input style="width: 100px;"></td>
+                                            <td><input style="width: 100px;"></td>
+                                            <td><input style="width: 100px;"></td>
+                                            <td><input style="width: 100px;"></td>
+                                        </tr>
+                                    </table>
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <td><label>合计</label></td>
+                                            <td>
+                                                <div class="row">
+                                                    <div class="form-group">
+                                                        <label>金额</label>
+                                                        <input class="form-control">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>税额</label>
+                                                        <input class="form-control">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><label>价税合计</label></td>
+                                            <td>
+                                                <div class="row">
+                                                    <div class="form-group">
+                                                        <label>大写</label>
+                                                        <input class="form-control">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>小写</label>
+                                                        <input class="form-control">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>申请说明</td>
+                                            <td></td>
+                                        </tr>
+                                    </table>
+                                    <div class="row" style="margin: 10px 0;border: solid 1px black;height: 220px">
+                                        <div class="form-group" style="border-right: solid 1px black;height: 100%;width: 3%;margin-left: 10px;height: 220px">
+                                            <label>销货单位</label>
+                                        </div>
+                                        <div class="form-group" style="border-right: solid 1px black;height: 100%;width: 60%;margin-left: 10px">
+                                            <div class="row"style="margin: 10px">
+                                                <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名称</label>
+                                                <input class="form-control">
+                                            </div>
+                                            <div class="row"style="margin: 10px">
+                                                <label>纳税人识别号</label>
+                                                <input class="form-control">
+                                            </div>
+                                            <div class="row"style="margin: 10px">
+                                                <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;地址</label>
+                                                <input class="form-control">
+                                            </div>
+                                            <div class="row"style="margin: 10px">
+                                                <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;电话</label>
+                                                <input class="form-control">
+                                            </div>
+                                            <div class="row"style="margin: 10px">
+                                                <label>开户行及账号</label>
+                                                <input class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea></textarea>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div>
+                <!--对账单编号模态框-->
+                <div class="modal fade" id="statementNumberDetailsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" style="width: 800px">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close modal_close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="detailspayableAccountModalTitle">对账单详情</h4>
+                            </div>
+                            <div class="modal-body">
+                                <table id="statementNumberDetailsTable" class="table-bordered" style="width: 100%"></table>
+                                <div class="row" style="margin: 20px">
+                                    <div class="form-group">
+                                        <label>应付USD</label>
+                                        <input style="width: 30%">
+                                        <label style="margin-left: 30px;">应付RMB</label>
+                                        <input style="width: 30%">
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="row" style="margin: 20px">
+                                        <div class="form-group">
+                                            <label>业务负责人</label>
+                                            <select>
+                                                <option></option>
+                                            </select>
+                                            <label>业务申请人</label>
+                                            <select>
+                                                <option></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="btn_group" style="text-align: center">
+                                            <button class="btn btn-primary" >对账提醒</button>
+                                            <button class="btn btn-primary">取消</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--应付未对账-->
+                <div class="modal fade" id="notReconcileCountDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close modal_close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">对账单详情</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="notReconcileCountTable box-body">
+                                    <table id="notReconcileCountTable" class="table-bordered" style="width: 100%"></table>
+                                </div>
+
+                                <form class="search-table form-inline" role="form" >
+                                    <table style="text-align: center;margin: 20px;border-collapse: separate;border-spacing: 5px;" class="edit-table">
+                                        <tr>
+                                            <td><label>应付USD</label></td>
+                                            <td><input class="form-control" style="width: 70%;margin: 0 10px" id="payableUSD"></td>
+                                            <td><label style="margin-left: 30px;">应付RMB</label></td>
+                                            <td><input class="form-control" style="width: 70%;margin: 0 10px" id="payableRMB"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><label>业务申请人</label></td>
+                                            <td><input class="form-control" name="businessApplicantName" style="width: 70%;margin: 0 10px"></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </table>
+                                </form>
+                            </div>
+                            <div class="modal-footer" style="position: absolute; right: 0px; bottom: 0px;">
+                                <div style="display: none">
+                                    <input name="contactCompanyNo">
+                                    <input name="notReconcileCountNo">
+                                    <input name="creator">
+                                    <input name="businessAffairsId">
+                                </div>
+                                <div >
+                                    <button class="btn btn-default" data-dismiss="modal" type="button">取消</button>
+                                    <button class="btn btn-primary" type="button" onclick="payableAccount.sendeditedMessage()">对账提醒</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn_group">
+                    <button id="addpayableAccount" class="btn btn-info" onclick="payableAccount.statementAccountConfirm()">
+                        对账单确认
+                    </button>
+                    <button id="editpayableAccount" class="btn btn-info" onclick="payableAccount.statementAccountDetails()">
+                        对账单详情
+                    </button>
+                    <button id="printPayableAccount" class="btn btn-info" onclick="payableAccount.print()">
+                        打印
+                    </button>
+                    <button id="cancelPayableAccount" class="btn btn-info" onclick="payableAccount.cancel()">
+                        撤销
+                    </button>
+                </div>
+                <div class="box datable-box">
+                    <!-- /.box-header -->
+                    <div class="payableAccountTable box-body">
+                        <!-- /.box-header -->
+                        <table id="payableAccountTable" class="table table-bordered table-striped" style="width: 100%;">
+                        </table>
+                    </div>
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- DataTables -->
+
+    <script src="freight/js/public.js"></script>
+    <script src="account/js/payableAccount.js"></script>
+</div>

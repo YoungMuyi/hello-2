@@ -1,0 +1,81 @@
+
+<div id="tab_220301" class="payableOverview payable tab-page" role="tabpanel">
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <!--begin search box-->
+                <div class="box search-box">
+                    <div class="box-body">
+                        <form class="search-table form-inline" id="searchPayableOverviewForm" role="form" style="height: 66px;overflow: hidden;">
+                            <div class="row" style="margin-bottom:10px;margin-left: 0px;">
+                                <div class="form-group" style="width: 28%;">
+                                    <label style="width: 50px">状态</label>
+                                    <select name="status" class="select2 select2-hidden-accessible" style="width: 70%;"  tabindex="-1" aria-hidden="true">
+                                        <option value=""></option>
+                                        <option>商务已确认</option>
+                                        <option>财务已确认</option>
+                                        <option>已请款</option>
+                                        <option>已核销</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" style="width:28%;margin:auto 6%;">
+                                    <label style="width: 50px">业务类型</label>
+                                    <select name="businessType" class="select2 select2-hidden-accessible" style="width: 70%;"  tabindex="-1" aria-hidden="true">
+                                        <option value=""></option>
+                                        <option>海运出口整箱</option>
+                                        <option>海运进口整箱</option>
+                                        <option>海运出口拼箱</option>
+                                        <option>海运进口拼箱</option>
+                                        <option>空运出口</option>
+                                        <option>空运进口</option>
+                                        <option>物流集装箱进口</option>
+                                        <option>多式联运</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" style="width: 28%;">
+                                    <label style="width: 50px">往来单位</label>
+                                    <input type="text" class="form-control" style="width: 70%;"  name="contactCompany">
+                                </div>
+                            </div>
+                            <div class="row" style="margin-bottom:10px;margin-left: 0px;">
+                                <div class="form-group" style="width: 28%;">
+                                    <label style="width: 50px">对账编号</label>
+                                    <input type="text" class="form-control" style="width: 70%;"  name="reconcileCode">
+                                </div>
+                                <div class="form-group" style="width:28%;margin:auto 6%;">
+                                    <label style="width: 50px">财务编号</label>
+                                    <input type="text" class="form-control" style="width: 70%;"  name="billingId">
+                                </div>
+                            </div>
+                        </form>
+                        <div class="ldn-wrqapper">
+                            <input style="margin-right: 5px;" type="button" id="BTN_90026011" onclick="payableOverview.doSearch()" class="btn btn-info btn-size"  value="查询"/>
+                            <button style="background-color: white;color:#000;border:1px solid #ccc;" class="btn btn-info search_reset" id="resetSearchPayableOverviewForm">
+                                重置
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+                <!--end search box-->
+                <div style="height: 10px;color: #333"></div>
+                <div class="box datable-box">
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="payableOverViewTable" class="table table-bordered table-striped" style="width: 100%;">
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+
+
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- DataTables -->
+    <script src="account/js/payableOverview.js"></script>
+    <script src="account/js/public.js"></script>
+</div>

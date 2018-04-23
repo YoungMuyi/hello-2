@@ -1,0 +1,161 @@
+<div id="tab_9003" class="charge basedata tab-page" role="tabpanel">
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <!--begin search box-->
+                <div class="box search-box">
+                    <div class="box-body">
+                        <form class="search-table form-inline" id="searchChargeForm">
+                            <div class="row" style="margin-bottom:10px;margin-left: 0px;">
+                                <div class="form-group" style="width:28%;">
+                                    <label style="width: 76px;">费用代码</label>
+                                    <input type="text" class="form-control" name="code" style="width:60%;">
+                                </div>
+                                <div class="form-group" style="width:28%;margin:auto 6%;">
+                                    <label style="width: 100px;">费用名称(CN)</label>
+                                    <input type="text" class="form-control" name="cnName" style="width:54%;">
+                                </div>
+                                <div class="form-group" style="width:28%;">
+                                    <label style="width: 100px;">费用名称(EN)</label>
+                                    <input type="text" class="form-control" name="enName" style="width:54%;">
+                                </div>
+                            </div>
+                        </form>
+                        <div class="ldn-wrqapper">
+                            <!--  <lable class="check-1">生效&nbsp&nbsp&nbsp&nbsp<input class="check-size" type="checkbox" name="生效"/>
+                             </lable> -->
+                            <input type="button" id="90030100" class="btn btn-info btn-size" onclick="Charge.doSearch()" value="查询"/>
+                            <button class="btn btn-info search_reset" id="resetChargeForm" style="background-color: white;color:#000;border:1px solid #ccc;">
+                                重置
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+                    <!--end search box-->
+
+                    <div class="modal fade" id="editChargeModal" tabindex="-1" role="dialog"
+                         aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close modal_close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="editChargeModalTitle">新增</h4>
+                                </div>
+                                <div class="modal-body" style="padding: 10px 10px 40px" id="editChargeModalBody">
+                                    <form id="editChargeForm" class="form-inline">
+                                       <table class="edit-table">
+                                           <tr>
+                                               <td><b class="color-red">*</b>费用代码</td>
+                                               <td><input type="text" class="form-control" name="code"/></td>
+                                               <td><b class="color-red">*</b>费用名称(CN)</td>
+                                               <td><input type="text" class="form-control" name="cnName"/></td>
+                                           </tr>
+                                           <tr>
+                                               <td>基准利率</td>
+                                               <td><input type="text" class="form-control" name="rateBase"/></td>
+                                               <td><b class="color-red">*</b>费用名称(EN)</td>
+                                               <td><input type="text" class="form-control" name="enName"/></td>
+                                           </tr>
+                                           <tr>
+                                               <td>EDI代码</td>
+                                               <td><input type="text" class="form-control" name="ediCode"/></td>
+                                               <td>其他EDI代码</td>
+                                               <td><input type="text" class="form-control" name="otherEdiCode"/></td>
+                                           </tr>
+                                           <tr>
+                                               <td>描述</td>
+                                               <td><input type="text" class="form-control" name="description"/></td>
+                                               <td></td>
+                                               <td></td>
+                                           </tr>
+                                           <tr>
+                                               <td>操作人</td>
+                                               <td><input type="text" class="form-control" name="amenderName" readonly/></td>
+                                               <td>修改时间</td>
+                                               <td><input type="text" class="form-control" name="amendTime" readonly/></td>
+                                           </tr>
+
+                                       </table>
+
+                                        <div hidden="true"><label>新增或保存</label><input type="text" class="form-control" name="chargeId" hidden="true"/>
+                                            <input type="text" name="saveType" id="saveType"></div>
+                                        <div class="modal-footer">
+                                            <div class="sm-wrapper">
+                                                <input type="submit" class="btn btn-primary" id="editChargeModalSubmit" value="确定"/>
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+                                                <!--<button type="button" class="btn btn-primary" id="editChargeModalSubmit">确定</button>-->
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal -->
+                    </div>
+                    <div class="btn_group">
+                        <button id="90030200" onclick="Charge.addCharge()" class="btn btn-info" data-name="BTN_90030200" style="display: none;">
+                            新增
+                        </button>
+                        <button id="90030300" onclick="Charge.editCharge()" class="btn btn-info" data-name="BTN_90030300" style="display: none;">
+                            修改
+                        </button>
+                        <button id="90030400" onclick="Charge.deleteCharge()" class="btn btn-info" data-name="BTN_90030400" style="display: none;">
+                            删除
+                        </button>
+                        <!--<div class="btn-group export-excel dataTable-dropdown-menu">-->
+                            <!--<button type="button" class="btn btn-info">导出Excel</button>-->
+                            <!--<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">-->
+                                <!--<span class="caret"></span>-->
+                                <!--<span class="sr-only">Toggle Dropdown</span>-->
+                            <!--</button>-->
+                            <!--<ul class="dropdown-menu export-excel-menu" role="menu">-->
+                                <!--<li id="Charge_export-excel-selected"></li>-->
+                                <!--<li id="Charge_export-excel-current"></li>-->
+                                <!--<li id="Charge_export-excel-all"></li>-->
+                            <!--</ul>-->
+                        <!--</div>-->
+                        <!--<button id="Charge_import-excel" onclick="customsDocumentAttachment.importExcel()" class="btn btn-info">-->
+                        <!--导出Excel-->
+                        <!--</button>-->
+                        <!--<div class="btn-group export-print dataTable-dropdown-menu">-->
+                            <!--<button type="button" class="btn btn-info">打印</button>-->
+                            <!--<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">-->
+                                <!--<span class="caret"></span>-->
+                                <!--<span class="sr-only">Toggle Dropdown</span>-->
+                            <!--</button>-->
+                            <!--<ul class="dropdown-menu export-print-menu" role="menu">-->
+                                <!--<li id="Charge_export-print-selected"></li>-->
+                                <!--<li id="Charge_export-print-all"></li>-->
+                            <!--</ul>-->
+                        <!--</div>-->
+                        <!--<div class="btn-height btn-group" style="vertical-align: top;" id="Charge_export-copy"></div>-->
+                        <!--<div class="btn-height btn-group" style="vertical-align: top;"  id="Charge_export-columnVisibility" ></div>-->
+                        <!--<button id="refreshCharge" onclick="Charge.doSearch()" class="btn btn-info">-->
+                            <!--刷新-->
+                        <!--</button>-->
+                        <!--<button id="showChargeDetail" class="btn btn-info">-->
+                            <!--详情-->
+                        <!--</button>-->
+                    </div>
+                    <div class="box datable-box">
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table id="chargeTable" class="table table-bordered table-striped">
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+
+                        <!--modify button-->
+
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+            </div>
+        <!-- /.row -->
+    </section>
+    <!-- DataTables -->
+    <script src="basedata/js/charge.js?v=201711090001"></script>
+    <script src="basedata/js/public.js?v=201711090001"></script>
+
+</div>

@@ -1,0 +1,668 @@
+
+<div id="tab_220203" class="receivableWriteOff receivable tab-page" role="tabpanel">
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <!--begin search box-->
+                <div class="box search-box">
+                    <div class="box-body">
+                        <form class="search-table form-inline" id="searchReceivableWriteOffForm" role="form" style="height: 66px;overflow: hidden;">
+                            <div class="row" style="margin-bottom:10px;margin-left: 0px;">
+                                <div class="form-group" style="width: 28%;">
+                                    <label style="width: 50px">客户代码</label>
+                                    <input type="text" class="form-control" style="width: 70%;"  name="customerCode">
+                                </div>
+                                <div class="form-group" style="width:28%;margin:auto 6%;">
+                                    <label style="width: 50px">往来单位</label>
+                                    <input type="text" class="form-control" style="width: 70%;"  name="contactCompany">
+                                </div>
+                                <div class="form-group" style="width: 28%;">
+                                    <label style="width: 50px">财务编号</label>
+                                    <input type="text" class="form-control" style="width: 70%;"  name="financialNumber">
+                                </div>
+                            </div>
+                            <div class="row" style="margin-bottom:10px;margin-left: 0px;">
+                                <div class="form-group" style="width:28%;">
+                                    <label style="width: 50px">状态</label>
+                                    <select name="writeOffStatus" class="select2 select2-hidden-accessible" style="width: 70%;"  tabindex="-1" aria-hidden="true">
+                                        <option value=""></option>
+                                        <option>未核销</option>
+                                        <option>部分核销</option>
+                                        <option>已核销</option>
+                                        <option>已发送</option>
+                                        <option>已认领</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" style="width: 28%;margin:auto 6%;">
+                                    <label style="width: 50px">收款单位</label>
+                                    <select name="receiveCompany" class="select2 select2-hidden-accessible" style="width: 70%;"  tabindex="-1" aria-hidden="true">
+                                        <option value=""></option>
+                                        <option value="海盟供应商">海盟供应商</option>
+                                        <option value="海盟物流">海盟物流</option>
+                                        <option value="海盟国际货运">海盟国际货运</option>
+                                        
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="ldn-wrqapper">
+                            <input style="margin-right: 5px;" type="button" id="BTN_9006011" onclick="receivableWriteOff.doSearch()" class="btn btn-info btn-size"  value="查询"/>
+                            <button style="background-color: white;color:#000;border:1px solid #ccc;" class="btn btn-info search_reset" id="resetSearchReceivableWriteOffForm">
+                                重置
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+                <!--end search box-->
+                <!--发送模态框-->
+                <div class="modal fade" id="receivableWriteOffSendModal" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" style="width: 600px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close modal_close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="receivableWriteOffSendModalTitle">发送</h4>
+                            </div>
+                            <div class="modal-body" style="padding: 5px" id="receivableWriteOffSendModalBody">
+                                <form id="receivableWriteOffSendModalForm" class="edit-table form-inline">
+                                    <div class="form-group" style="width: 42%;margin-top: 10px;margin-left: 25px">
+                                        <label style="width: 28%">客户代码</label>
+                                        <input type="text" class="form-control" style="width: 68%;"  name="customerCode" readonly>
+                                    </div>
+                                    <div class="form-group" style="width: 42%;margin-top: 10px;margin-left: 10px">
+                                        <label style="width: 28%">往来单位</label>
+                                        <input type="text" class="form-control" style="width: 68%;"  name="contactCompany" readonly>
+                                    </div>
+                                    <div class="form-group" style="width: 42%;margin-top: 10px;margin-left: 25px">
+                                        <label style="width: 28%">付款单位</label>
+                                        <input type="text" class="form-control" style="width: 68%;"  name="payCompany" readonly>
+                                    </div>
+                                    <div class="form-group" style="width: 42%;margin-top: 10px;margin-left: 10px">
+                                        <label style="width: 28%">付款银行</label>
+                                        <input type="text" class="form-control" style="width: 68%;"  name="payBank" readonly>
+                                    </div>
+                                    <div class="form-group" style="width: 42%;margin-top: 10px;margin-left: 25px">
+                                        <label style="width: 28%">收款银行</label>
+                                        <input type="text" class="form-control" style="width: 68%;"  name="receiveBank" readonly>
+                                    </div>
+                                    <div class="form-group" style="width: 42%;margin-top: 10px;margin-left: 10px">
+                                        <label style="width: 28%">收款账户</label>
+                                        <input type="text" class="form-control" style="width: 68%;"  name="receiveAccount" readonly>
+                                    </div>
+                                    <div class="form-group" style="width: 42%;margin-top: 10px;margin-left: 25px">
+                                        <label style="width: 28%">收款币种</label>
+                                        <input type="text" class="form-control" style="width: 68%;"  name="receiveCurrency" readonly>
+                                    </div>
+                                    <div class="form-group" style="width: 42%;margin-top: 10px;margin-left: 10px">
+                                        <label style="width: 28%">收款金额</label>
+                                        <input type="text" class="form-control" style="width: 68%;"  name="receiveAmount" readonly>
+                                    </div>
+                                    <div class="form-group" style="width: 42%;margin-top: 10px;margin-left: 25px">
+                                        <label style="width: 28%">收款时间</label>
+                                        <input type="text" class="form-control" style="width: 68%;"  name="receiveDate" readonly>
+                                    </div>
+                                    <div class="form-group" style="width: 42%;margin-top: 10px;margin-left: 25px">
+                                    </div>
+                                    <div class="form-group" style="width: 42%;margin-top: 10px;margin-left: 25px;margin-bottom: 35px">
+                                        <label style="width: 28%">选择公司</label>
+                                        <!--<select name="objectionSelectCompany" class="select2 select2-hidden-accessible" style="width: 68%;"  tabindex="-1" aria-hidden="true">-->
+                                            <!--<option>海盟供应链</option>-->
+                                            <!--<option>海盟国际货运</option>-->
+                                            <!--<option>海盟物流</option>-->
+                                        <!--</select>-->
+                                        <select name="objectionSelectCompany" class="form-control select2 select2-hidden-accessible" style="width: 60%;" tabindex="-1" aria-hidden="true">
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group" id="objectionSelect" style="width: 42%;margin-top: 10px;margin-left: 10px;margin-bottom: 35px">
+                                        <label style="width: 28%">对象部门</label>
+                                        <select multiple="" name="objectionSelect" class="select2 select2-hidden-accessible" style="width: 68%;"  tabindex="-1" aria-hidden="true">
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                    <div hidden="true"><label>发送</label>
+                                        <input type="text"  name="receivableWriteOffId"/>
+                                        <input type="text" name="writeOffStatus">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="sm-wrapper">
+                                            <input type="button" class="btn btn-primary" onclick="receivableWriteOff.sendeditedMessage()" id="receivableWriteOffSendSubmit" value="提交"/>
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button></button>
+                                            <!--<button type="button" class="btn btn-primary" id="editAccountExchangeRateModalSubmit">确定</button>-->
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div>
+                <!--财务核销和认领确认模态框-->
+                <div class="modal fade" id="billingsWriteOffModal" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" style="width: 800px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close modal_close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="billingsWriteOffModalTitle">财务核销</h4>
+                            </div>
+                            <div class="modal-body" style="padding: 5px" id="billingsWriteOffModalBody">
+                                <!--收款详情表单-->
+                                <fieldset id="myFieldset2" style="margin-left: 4%;margin-right: 4%">
+                                    <legend>收款详情</legend>
+                                    <form id="billingsWriteOffModalForm1" class="form-inline">
+                                        <!--<h5 style="margin-bottom: 0;margin-left:5%;color: dodgerblue;">收款详情</h5>-->
+                                        <div class="form-group" style="width: 30%;margin-left: 10px">
+                                            <label style="width: 28%">客户代码</label>
+                                            <input type="text" class="form-control" style="width: 68%;"  name="customerCode" readonly>
+                                        </div>
+                                        <div class="form-group" style="width: 30%;margin-left: 10px">
+                                            <label style="width: 28%">往来单位</label>
+                                            <input type="text" class="form-control" style="width: 68%;"  name="contactCompany" readonly>
+                                        </div>
+                                        <div class="form-group" style="width: 30%;margin-left: 10px">
+                                            <label style="width: 28%">付款单位</label>
+                                            <input type="text" class="form-control" style="width: 68%;"  name="payCompany" readonly>
+                                        </div>
+                                        <div class="form-group" style="width: 30%;margin-top: 10px;margin-left: 10px">
+                                            <label style="width: 28%">付款银行</label>
+                                            <input type="text" class="form-control" style="width: 68%;"  name="payBank" readonly>
+                                        </div>
+                                        <div class="form-group" style="width: 30%;margin-top: 10px;margin-left: 10px">
+                                            <label style="width: 28%">付款方式</label>
+                                            <input type="text" class="form-control" style="width: 68%;"  name="payMethod" readonly>
+                                        </div>
+                                        <div class="form-group" style="width: 30%;margin-top: 10px;margin-left: 10px">
+                                            <label style="width: 28%">收款银行</label>
+                                            <input type="text" class="form-control" style="width: 68%;"  name="receiveBank" readonly>
+                                        </div>
+                                        <div class="form-group" style="width: 30%;margin-top: 10px;margin-left: 10px">
+                                            <label style="width: 28%">收款账户</label>
+                                            <input type="text" class="form-control" style="width: 68%;"  name="receiveAccount" readonly>
+                                        </div>
+                                        <div class="form-group" style="width: 30%;margin-top: 10px;margin-left: 10px">
+                                            <label style="width: 28%">收款币种</label>
+                                            <input type="text" class="form-control" style="width: 68%;"  name="receiveCurrency" readonly>
+                                        </div>
+                                        <div class="form-group" style="width: 30%;margin-top: 10px;margin-left: 10px">
+                                            <label style="width: 28%">收款金额</label>
+                                            <input type="text" class="form-control" style="width: 68%;"  name="receiveAmount" readonly>
+                                        </div>
+                                        <div class="form-group" style="width: 30%;margin-top: 10px;margin-left: 10px">
+                                            <label style="width: 28%">收款时间</label>
+                                            <input type="text" class="form-control" style="width: 68%;"  name="receiveDate" readonly>
+                                        </div>
+                                        <div class="form-group" style="width: 30%;margin-top: 10px;margin-left: 10px">
+                                            <label style="width: 28%">核销方式</label>
+                                            <input type="text" class="form-control" style="width: 68%;"  name="writeOffMethod" readonly>
+                                        </div>
+                                        <div class="form-group" style="width: 30%;margin-top: 10px;margin-left: 10px">
+                                            <label style="width: 28%">核销余额</label>
+                                            <input type="text" class="form-control" style="width: 68%;"  name="writeOffBalance" readonly>
+                                        </div>
+                                        <div hidden="true">
+                                            <label>核销余额固定值</label>
+                                            <input type="text" name="writeOffBalanceTotal">
+                                            <label>汇率</label>
+                                            <input type="text" name="rate">
+                                            <label>财务核销或认领确认</label>
+                                            <input type="text"  name="receivableWriteOffId"/>
+                                            <input type="text" class="form-control" style="width: 68%;"  name="writeOffStaffId" readonly>
+                                        </div>
+                                        <hr style="color: black; margin-top: 10px;margin-left: 3%;margin-right: 3%;margin-bottom: 10px;">
+                                    </form>
+                                </fieldset>
+                                <!--核销详情表单-->
+                                <form id="billingsWriteOffModalForm2" class="form-inline">
+                                    <div class="sm-wrapper" style="position:absolute;margin-left: 65%;margin-bottom: 5px;margin-top: 5px">
+                                        <label style="color: white;">应收合计</label>
+                                        <input type="text" name="receivableSum" style="width: 80px">
+                                        <button type="button" style="margin-left: 45px" class="btn btn-default" onclick="receivableWriteOff.searchWriteOffDetail()">查询</button>
+                                        <!--<button type="button" class="btn btn-default" onclick="">可视列</button>-->
+                                    </div>
+                                    <div class="row" style="margin-left: 4%;height:35px;margin-right:4%;background-color: #057CC0;margin-top: 20px">
+                                        <h5 class="header" style="color: white; margin-left: 10px">核销详情</h5>
+                                    </div>
+
+                                    <!--核销详情datatable-->
+                                    <div class="box datable-box">
+                                        <div class="box-body" style="margin-left: 4%;margin-right: 4%" id="writeOffDetailTableParent">
+                                            <table id="writeOffDetailTable" class="table table-bordered table-striped" style="width: 100%;">
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div id="writeOff" hidden="true" style="margin-top: 20px">
+                                        <div class="form-group" style="width: 22%;margin-top: 10px;margin-left: 18%">
+                                            <label style="width: 28%">核销人员</label>
+                                            <input type="text" class="form-control" style="width: 68%;"  name="writeOffStaffName" readonly>
+                                        </div>
+                                        <div class="form-group" style="width: 22%;margin-top: 10px;margin-left: 12%">
+                                            <label style="width: 28%">核销时间</label>
+                                            <input type="text" class="form-control beginDate" style="width: 68%;"  name="writeOffDate" >
+                                        </div>
+                                    </div>
+                                    <div id="claim" hidden="true" style="margin-top: 20px">
+                                        <div class="form-group" style="width: 22%;margin-top: 10px;margin-left: 5%">
+                                            <label style="width: 28%">认领单位</label>
+                                            <input type="text" class="form-control" style="width: 68%;"  name="claimCompany">
+                                        </div>
+                                        <div class="form-group" style="width: 22%;margin-top: 10px;margin-left: 50px">
+                                            <label style="width: 28%">认领部门</label>
+                                            <input type="text" class="form-control" style="width: 68%;"  name="claimDepartment" >
+                                        </div>
+                                        <div class="form-group" style="width: 22%;margin-top: 10px;margin-left: 50px">
+                                            <label style="width: 28%">认领人员</label>
+                                            <input type="text" class="form-control" style="width: 68%;"  name="claimStaffName" >
+                                        </div>
+                                        <div class="form-group" style="width: 22%;margin-top: 10px;margin-left: 5%">
+                                            <label style="width: 28%">核销人员</label>
+                                            <input type="text" class="form-control" style="width: 68%;"  name="writeOffStaffName" readonly>
+                                        </div>
+                                        <div class="form-group" style="width: 22%;margin-top: 10px;margin-left: 50px">
+                                            <label style="width: 28%">核销时间</label>
+                                            <input type="text" class="form-control beginDate" style="width: 68%;"  name="writeOffDate" >
+                                        </div>
+                                    </div>
+                                    <div hidden="true" id="search"><label>财务核销或认领确认</label>
+                                        <input type="text"  name="receivableWriteOffId"/>
+                                        <input type="text" name="writeOffStatusList">
+                                    </div>
+
+                                    <div style="height: 40px">
+
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <div class="sm-wrapper" id="buttonWriteOff">
+                                            <input type="button" onclick="receivableWriteOff.confirmWriteOff()" class="btn btn-primary" id="btn2121123" value="保存"/>
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+                                            <!--<button type="button" class="btn btn-primary" id="editAccountExchangeRateModalSubmit">确定</button>-->
+                                        </div>
+                                        <div class="sm-wrapper" id="buttonClaim" style="display: none;">
+                                            <input type="button" onclick="receivableWriteOff.buttonClaimWriteOff(this,false)" class="btn btn-primary" id="refuseWriteOff" value="拒绝"/>
+                                            <input type="button" onclick="receivableWriteOff.buttonClaimWriteOff(this,true)" class="btn btn-primary" id="determineWriteOff" value="确定"/>
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+                                            <!--<button type="button" class="btn btn-primary" id="editAccountExchangeRateModalSubmit">确定</button>-->
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div>
+                <!--打印模态框-->
+                <div class="modal fade" id="businessDetailModal" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" style="width: 600px; height: 100px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close modal_close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="businessDetailModalTitle">业务详情</h4>
+                            </div>
+                            <div class="modal-body" style="padding: 5px" id="businessDetailModalBody">
+                                <form id="businessDetailModalForm" class="form-inline" style="margin-top: 20px;margin-bottom: 50px;">
+                                    <div class="box datable-box">
+                                        <!-- /.box-header -->
+                                        <div class="box-body">
+                                            <table align="center" style="width: 400px;" id="businessDetailTable" class="table table-bordered table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th>业务编号</th>
+                                                    <th>费用名称</th>
+                                                    <th>应收币种</th>
+                                                    <th>应收金额</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!-- /.box-body -->
+
+                                        <!--modify button-->
+
+                                    </div>
+                                    <div hidden="true"><label>业务详情</label>
+                                        <input type="text"  name="receivableInvoiceId"/>
+                                    </div>
+                                </form>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div>
+                <!--财务核销中查询模态框-->
+                <div class="modal fade" id="searchModal" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" style="width: 400px; height: 300px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close modal_close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="searchModalTitle">查询</h4>
+                            </div>
+                            <div class="modal-body" style="padding: 5px" id="searchModalBody">
+                                <form id="RWriteOffsearchModalForm" class="form-inline">
+                                    <div style="height: 10px">
+
+                                    </div>
+                                    <table class="edit-table">
+                                        <tr>
+                                            <td style="width: 30%">应收币种</td>
+                                            <td style="width: 65%;margin-left:8px">
+                                                <select name="currencyExpense"   tabindex="-1">
+                                                    <option value></option>
+                                                    <option value="RMB">RMB</option>
+                                                    <option value="USD">USD</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 30%">业务员</td>
+                                            <td style="width: 65%;margin-left:8px"><input type="text" class="form-control" name="salesmanName"/></td>
+                                        </tr>
+                                    </table>
+                                    <div style="height: 30px">
+
+                                    </div>
+
+                                    <div hidden="true"><label>查询</label>
+                                        <input type="text"  name="receivableWriteOffId"/>
+                                        <input type="text" name="writeOffStatusList">
+                                        <input type="text" name="customerCode">
+                                        <!--<input type="text" name="billingApplyStatus">-->
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="sm-wrapper">
+                                            <input type="button" class="btn btn-primary" onclick="receivableWriteOff.doSearch2()" id="searchModalSubmit" value="查询"/>
+                                            <input type="button" class="btn btn-primary" id="searchModalReset" value="重置"  />
+                                            <!--<button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>-->
+                                            <!--<button type="button" class="btn btn-primary" id="editAccountExchangeRateModalSubmit">确定</button>-->
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div>
+
+                <!--核销详情模态框-->
+                <div class="modal fade" id="writeOffDetailsModal" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" style="width: 900px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close modal_close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="writeOffDetailsModalTitle">核销详情</h4>
+                            </div>
+                            <div class="modal-body" style="padding: 5px" id="writeOffDetailsModalBody">
+                                <form id="writeOffDetailsModalForm" class="form-inline">
+                                    <div class="box datable-box" style="margin-bottom: 50px">
+                                        <div class="box-body" style="margin-top: 20px;margin-bottom: 20px">
+                                            <!--<table align="center" style="width: 728px;margin-bottom: 40px" id="writeOffDetailTable2" class="table table-bordered">-->
+                                                <!--<thead>-->
+                                                <!--<tr class="info">-->
+                                                    <!--<th>业务编号</th>-->
+                                                    <!--<th>提单号</th>-->
+                                                    <!--<th>费用名称</th>-->
+                                                    <!--<th>发票号</th>-->
+                                                    <!--<th>应收币种</th>-->
+                                                    <!--<th>应收金额</th>-->
+                                                    <!--<th>汇率</th>-->
+                                                    <!--<th>核销币种</th>-->
+                                                    <!--<th>核销金额</th>-->
+                                                    <!--<th>备注</th>-->
+                                                <!--</tr>-->
+                                                <!--</thead>-->
+                                                <!--<tbody>-->
+                                                <!--</tbody>-->
+                                            <!--</table>-->
+                                            <table id="writeOffDetailTable2" class="table table-bordered table-striped" style="width: 100%">
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="sm-wrapper">
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button></button>
+                                            <!--<button type="button" class="btn btn-primary" id="editAccountExchangeRateModalSubmit">确定</button>-->
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div>
+
+                <!-- 增加和修改模态框 -->
+                <div class="modal fade" id="writeOffInsertUpdateModal" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" style="width: 620px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close modal_close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="writeOffInsertUpdateModalTitle">增加</h4>
+                            </div>
+                            <div class="modal-body" style="padding: 5px;height: 320px" id="writeOffInsertUpdateModalBody">
+                                <form id="writeOffInsertUpdateForm" class="form-inline">
+                                    <table class="edit-table">
+                                        <tr>
+                                            <td style="width:10%;">财务编号</td>
+                                            <td>
+                                                <input type="text" class="form-control" name="financialNumber" style="width:164px;" disabled placeholder="自动生成" />
+                                            </td>
+                                            <td style="width:16%;"><b class="color-red">*</b>客户代码</td>
+                                            <td style="cursor: pointer;">
+                                                <select name="customerCode" class="form-control select2 select2-hidden-accessible" style="width:164px;" tabindex="-1" aria-hidden="true" disabled>
+                                                    <option value="" ></option>
+                                                </select>
+                                                <!--<input name="customerCode" class="form-control" style="width:164px;" tabindex="-1"  readonly>-->
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:16%;"><b class="color-red">*</b>往来单位</td>
+                                            <td>
+                                                <input type="text" class="form-control" name="contactCompany" style="width:164px;" readonly/>
+                                            </td>
+                                            <td>付款单位</td>
+                                            <td>
+                                                <select name="payCompany" class="form-control select2 select2-hidden-accessible" style="width:164px;" tabindex="-1" aria-hidden="true">
+                                                    <option value=""></option>
+                                                    
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:16%;"><b class="color-red">*</b>付款方式</td>
+                                            <td>
+                                                <select name="payMethod" class="form-control select2 select2-hidden-accessible" style="width:164px;" tabindex="-1" aria-hidden="true">
+                                                    <option value=""></option>
+                                                </select>
+                                            </td>
+                                            <td style="width:16%;"><b class="color-red">*</b>付款银行</td>
+                                            <td>
+                                                <select name="payBank" class="form-control select2 select2-hidden-accessible" style="width:164px;" tabindex="-1" aria-hidden="true">
+                                                    <option value=""></option>
+                                                </select>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+
+
+                                            <td style="width:16%;"><b class="color-red">*</b>收款单位</td>
+                                            <td>
+                                                
+                                                <select name="receiveCompany" class="form-control select2 select2-hidden-accessible" style="width:164px;" tabindex="-1" aria-hidden="true">
+                                                    <option value=""></option>
+                                                    <option value="海盟供应商">海盟供应商</option>
+                                                    <option value="海盟物流">海盟物流</option>
+                                                    <option value="海盟国际货运">海盟国际货运</option>
+                                                </select>
+                                            </td>
+                                            <td style="width:16%;"><b class="color-red">*</b>收款银行</td>
+                                            <td>
+                                                <select name="receiveBank" class="form-control select2 select2-hidden-accessible" style="width:164px;" tabindex="-1" aria-hidden="true">
+                                                    <option value=""></option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>收款账户/类型</td>
+                                            <td>
+                                                <select name="receiveAccount" class="form-control select2 select2-hidden-accessible" style="width:164px;" tabindex="-1" aria-hidden="true" disabled>
+                                                    <option value=""></option>
+                                                </select>
+                                                <select name="receiveAccountType" class="form-control select2 select2-hidden-accessible" style="width:60px;" tabindex="-1" aria-hidden="true">
+                                                    <option value="对公" selected="true">对公</option>
+                                                    <option value="个人">个人</option>
+                                                </select>
+                                            </td>
+                                            <td>收款币种</td>
+                                            <td>
+                                                <select name="receiveCurrency" class="form-control select2 select2-hidden-accessible" style="width:164px;" tabindex="-1" aria-hidden="true">
+                                                    <option value="RMB">RMB</option>
+                                                    <option value="USD">USD</option>
+                                                </select>
+                                            </td>
+                                            
+                                        </tr>
+                                        <tr>
+                                            <td style="width:16%;"><b class="color-red">*</b>收款金额</td>
+                                            <td>
+                                                <input type="text" class="form-control" name="receiveAmount" style="width:164px;"/>
+                                            </td>
+                                            <td>收款时间</td>
+                                            <td>
+                                                <input type="text" class="form-control beginDate" name="receiveDate" style="width:164px;"/>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>操作人</td>
+                                            <td>
+                                                <input type="text" class="form-control" name="amenderName" style="width:164px;" readonly/>
+                                            </td>
+                                            <td>修改日期</td>
+                                            <td>
+                                                <input type="text" class="form-control" name="amendTime" style="width:164px;" disabled/>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                    <div class="modal-footer ">
+                                        <div class="sm-wrapper">
+                                            <input type="submit" class="btn btn-primary" id="writeOffUpdateModalSubmit" value="确定"/>
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button></button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div>
+                
+                <!-- 客户代码和公司全称模态框 -->
+                <div class="modal fade" id="receivableClientDetail" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document" style="width: 600px;">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title">客户</h4>
+                                </div>
+                                <div class="modal-body" style="width: 100%;overflow: auto;height:520px;">
+                                    <div class="box search-box">
+                                        <div class="box-body" style="position:relative">
+                                            <form class="search-table form-inline" id="receivableClientDetailForm" role="form" style="width: 100%;">
+                                                <fieldset class="myClient" style="padding:2px 0px;">
+
+                                                    <table class="table" style="margin-bottom: 5px;">
+                                                        <tr>
+                                                            <td><label>客户代码</label></td>
+                                                            <td><input type="text" class="form-control" name="customerCode" placeholder="请输入单位代码" style="width:155px"></td>
+                                                            <td><label>公司全称</label></td>
+                                                            <td><input type="text" class="form-control" name="customerNameCn" placeholder="请输入简称" style="width: 155px;"></td>
+                                                        </tr>
+                                                    </table>
+                                                </fieldset>
+                                            </form>
+                                            <div class="form-inline">
+                                                <div class="col-md-4 pull-right">
+                                                    <button class="btn btn-primary left" onclick="receivableWriteOff.doSearch3();" style="margin-right: 10px;">查询</button>
+                                                    <button class="btn btn-primary right search_reset" style="background-color: white;color: #000;border: 1px solid #ccc;" id="resetClient"> 重置</button>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <!--</div>-->
+                                    </div>
+                                    <!--查询结果显示-->
+                                    <div class="box datable-box">
+                                        <div class="box-body clientTableClass">
+                                            <table id="clientTable" class="table table-bordered table-striped">
+                                            </table>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                    <button type="button" class="btn btn-primary" id="customerCodeSure">确定</button>
+                                </div>
+                                
+                            </div>
+                            
+                    </div>
+                </div>
+
+                <div class="btn_group">
+                    <button id="BIN_90002006" class="btn btn-info" data-toggle="modal" onclick="receivableWriteOff.addWriteOff()">
+                        增加
+                    </button>
+                    <button id="BIN_90002007" class="btn btn-info" data-toggle="modal" onclick="receivableWriteOff.updateWriteOff()">
+                        修改
+                    </button>
+                    <button id="BIN_90002008" class="btn btn-info" data-toggle="modal" onclick="receivableWriteOff.deleteWriteOff()">
+                        删除
+                    </button>
+                    <button id="BTN_90002001" type="button" onclick="receivableWriteOff.billingsWriteOff()" class="btn btn-info">
+                        核销
+                    </button>
+                    <button id="BTN_90002005" type="button" onclick="receivableWriteOff.reBillingWriteOff()" class="btn btn-info">
+                        反核销
+                    </button>
+                    <button id="BTN_90603002" type="button" onclick="receivableWriteOff.writeOffSend()" class="btn btn-info">
+                        发送
+                    </button>
+                    <button id="BTN_90603003" type="button" onclick="receivableWriteOff.confirmationOfClaim()" class="btn btn-info">
+                        认领确认
+                    </button>
+                    <button id="BTN_90603004" type="button" onclick="receivableWriteOff.print()" class="btn btn-info">
+                        打印
+                    </button>
+                </div>
+
+                <div class="box datable-box receivableWriteOffTableClass">
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="receivableWriteOffTable" class="table table-bordered table-striped">
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+
+
+                </div>
+
+
+
+
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- DataTables -->
+    <link rel="stylesheet" href="account/css/paymentManagement.css" />
+    <script src="account/js/receivableWriteOff.js"></script>
+    <script src="account/js/public.js"></script>
+</div>

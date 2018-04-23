@@ -1,0 +1,289 @@
+<!--<style>
+    table #receivableInvoiceTable th,td{white-space;nowrp;}
+</style>-->
+<div id="tab_220202" class="receivableInvoice receivable tab-page" role="tabpanel">
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <!--begin search box-->
+            <div class="box search-box">
+                <div class="box-body">
+                    <form class="search-table form-inline" id="searchReceivableInvoiceForm" role="form" style="height: 66px;overflow: hidden;">
+                        <div class="row" style="margin-bottom:10px;margin-left: 0px;">
+                            <div class="form-group" style="width: 28%;">
+                                <label style="width: 50px">状态</label>
+                                <select name="billingApplyStatus" class="select2 select2-hidden-accessible" style="width: 70%;"  tabindex="-1" aria-hidden="true">
+                                    <option value=""></option>
+                                    <option value="已开票">已开票</option>
+                                    <option value="已领取">已领取</option>
+                                    <option value="作废">作废</option>
+                                </select>
+                            </div>
+                            <div class="form-group" style="width:28%;margin:auto 6%;">
+                                <label style="width: 50px">客户代码</label>
+                                <input type="text" class="form-control" style="width: 70%;"  name="relateCompanyCode">
+                                <!--<select name="customerCode" class="select2 select2-hidden-accessible" style="width: 70%;"  tabindex="-1" aria-hidden="true">-->
+                                    <!--<option value=""></option>-->
+                                    <!--<option value="游客">游客</option>-->
+                                    <!--<option value="会员">会员</option>-->
+                                <!--</select>-->
+                            </div>
+                            <div class="form-group" style="width: 28%;">
+                                <label style="width: 50px">往来单位</label>
+                                <input type="text" class="form-control" style="width: 70%;"  name="relateCompanyName">
+                            </div>
+                        </div>
+                        <!--<div class="form-group" style="width: 22%;">-->
+                            <!--<input type="button" id="BTN_90060111" onclick="receivableInvoice.doSearch()" class="btn btn-info btn-size"  value="查询"/>-->
+                        <!--</div>-->
+                        <div class="row" style="margin-bottom:10px;margin-left: 0px;">
+                            <div class="form-group" style="width: 28%;">
+                                <label style="width: 50px">开票人</label>
+                                <input type="text" class="form-control" style="width: 70%;" name="drawerName">
+                            </div>
+                            <div class="form-group" style="width:28%;margin:auto 6%;">
+                                <label style="width: 50px">发票号</label>
+                                <input type="text" class="form-control" style="width: 70%;"  name="invoiceNumber">
+                            </div>
+                            <div class="form-group" style="width: 28%;">
+                                <label style="width: 50px">领票人</label>
+                                <input type="text" class="form-control" style="width: 70%;"  name="receiptorName">
+                            </div>
+                        </div>
+                        <!--<div class="form-group" style="width: 22%;">-->
+                            <!--<button class="btn btn-info search_reset" id="resetSearchReceivableInvoiceForm">-->
+                                <!--重置-->
+                            <!--</button>-->
+                        <!--</div>-->
+                    </form>
+                    <div class="ldn-wrqapper" >
+                        <input style="margin-right: 5px;" type="button" id="BTN_90060111" onclick="receivableInvoice.doSearch()" class="btn btn-info btn-size"  value="查询"/>
+                        <button style="background-color: white;color:#000;border:1px solid #ccc;" class="btn btn-info search_reset" id="resetSearchReceivableInvoiceForm">
+                            重置
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+            <!--end search box-->
+            <!--领票登记模态框-->
+            <div class="modal fade" id="invoiceCheckModal" tabindex="-1" role="dialog"
+                 aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" style="width: 400px; height: 300px;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close modal_close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="invoiceCheckModalTitle">领票登记</h4>
+                        </div>
+                        <div class="modal-body" style="padding: 5px;height: 150px" id="invoiceCheckModalBody">
+                            <form id="invoiceCheckModalForm" class="form-inline">
+                                <div style="height: 20px">
+
+                                </div>
+                                <table class="edit-table">
+                                    <tr>
+                                        <td style="width: 30%">领票人</td>
+                                        <td style="width: 65%">
+                                            <input style="width: 80%" type="text" class="form-control" name="receiptorName"/>
+                                            <!--<input style="display: none" name="receiptorId">-->
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 30%">领票日期</td>
+                                        <td style="width: 65%">
+                                            <input style="width:80%;" type="text" class="form-control beginDate" name="receiveDate"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div style="height: 20px">
+
+                                </div>
+
+                                <div hidden="true"><label>领票登记</label>
+
+                                    <input type="text" name="billingApplyStatus">
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="sm-wrapper">
+                                        <input type="button" class="btn btn-primary" onclick="receivableInvoice.submitInvoiceCheck()" id="receivableInvoiceSubmit" value="确定"/>
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button></button>
+                                        <!--<button type="button" class="btn btn-primary" id="editAccountExchangeRateModalSubmit">确定</button>-->
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+            </div>
+            <!--作废原因模态框-->
+            <div class="modal fade" id="invoiceInvalidModal" tabindex="-1" role="dialog"
+                 aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" style="width: 600px; height: 500px;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close modal_close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="invoiceInvalidModalTitle">领票作废</h4>
+                        </div>
+                        <div class="modal-body" style="padding: 5px;height: 195px" id="invoiceInvalidModalBody">
+                            <form id="invoiceInvalidModalForm" class="form-inline">
+                                <div style="height: 20px;">
+
+                                </div>
+                                <table class="edit-table">
+                                    <tr>
+                                        <div class="form-group" style="margin-left: 15%; margin-bottom: 5%">
+                                            <label style="margin-right: 10px">作废原因</label>
+                                            <textarea rows="3" cols="50" class="form-control" name="invalidReason"/>
+                                        </div>
+                                    </tr>
+                                    <tr>
+                                        <div class="form-group" style="margin-left: 15%">
+                                            <label style="width: 15%">操作人</label>
+                                            <input  type="text" style="width: 30%; margin-right: 5%" class="form-control" name="invalidStaffName" readonly/>
+                                            <input type="text" style="display: none" name="invalidStaffId">
+                                            <label style="width: 15%">操作时间</label>
+                                            <input  type="text" style="width: 30%;" class="form-control" name="invalidDate" readonly/>
+
+                                        </div>
+                                    </tr>
+                                </table>
+                                <div style="height: 20px;">
+
+                                </div>
+
+                                <div hidden="true"><label>作废原因或领票作废</label>
+                                    <input type="text"  name="receivableInvoiceId"/>
+                                    <input type="text" name="billingApplyStatus">
+                                </div>
+
+                                <div class="modal-footer">
+                                    <div class="sm-wrapper">
+                                        <input  type="button" onclick="receivableInvoice.invalidInvoice()" class="btn btn-primary" id="invoiceInvalidSubmit" value="确定"/>
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+                                        <!--<button type="button" class="btn btn-primary" id="editAccountExchangeRateModalSubmit">确定</button>-->
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+            </div>
+            <!--开票申请编号详情模态框-->
+            <div class="modal fade" id="businessDetailModal" tabindex="-1" role="dialog"
+                 aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" style="width: 600px; height: 100px;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close modal_close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="businessDetailModalTitle">业务详情</h4>
+                        </div>
+                        <div class="modal-body" style="padding: 5px" id="businessDetailModalBody">
+                            <form id="businessDetailModalForm" class="form-inline" style="margin-top: 20px;margin-bottom: 50px;">
+                                <div class="box datable-box">
+                                    <!-- /.box-header -->
+                                    <!--<div class="box-body">-->
+                                        <!--<table align="center" style="width: 400px;" id="businessDetailTable" class="table table-bordered table-striped">-->
+                                            <!--<thead>-->
+                                                <!--<tr>-->
+                                                    <!--<th>业务编号</th>-->
+                                                    <!--<th>费用名称</th>-->
+                                                    <!--<th>应收币种</th>-->
+                                                    <!--<th>应收金额</th>-->
+                                                <!--</tr>-->
+                                            <!--</thead>-->
+                                            <!--<tbody>-->
+                                            <!--</tbody>-->
+                                        <!--</table>-->
+                                    <!--</div>-->
+                                    <div class="box-body">
+                                        <table id="businessDetailTable" class="table table-bordered table-striped" style="width:100%;">
+                                        </table>
+                                    </div>
+
+                                </div>
+                                <div hidden="true"><label>业务详情</label>
+                                    <input type="text"  name="receivableInvoiceId"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+            </div>
+             <!--导入弹出框-->
+            <div class="modal fade" id="importExcelReceivableInvoiceModal" tabindex="-1"
+                 role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" style="width: 490px;position: relative;top: 40%;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close modal_close"
+                                    data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">导入</h4>
+                        </div>
+                        <div class="modal-body" style="padding:20px" id="importExcelShippingQuotationModalBody">
+                            <div id="chooseExcelWin2" class="easyui-window"
+                                 data-options="iconCls:'icon-table',draggable:true,minimizable:true,collapsible:false, closable:true,closed:true,shadow:true,modal:true">
+                                <form id="form1ReceivableInvoice" method="post" action=""
+                                      enctype="multipart/form-data" accept-charset="UTF-8" target="receivableInvoiceFrame">
+                                    <!--<form id="form1" accept-charset="UTF-8">-->
+                                    <fieldset style="display: inline-block;">
+                                        <input type="file" name="TicketOpenInfo" style="width:160px;display:inline-block;" />
+                                        <!--<input type="text" name="taskSketchId" id="taskSketchId" hidden="true" />-->
+                                    </fieldset>
+                                    <div style="padding:5px 10px;text-align:center;display: inline-block;">
+                                        <a style="cursor: pointer;" href="excelTemplates/金税导入模板.zip">模版下载</a>
+                                        <input type="button" value="上传"  class="btn btn-primary" onclick="receivableInvoice.importExcel2()"/>
+                                        <!--<input type="button" onclick="rejectChooseExcel();" value="取消" />-->
+                                    </div>
+                                    <iframe id="receivableInvoiceFrame" name="receivableInvoiceFrame" width="100%" height="500px" frameborder=no  style="display: none"></iframe>
+                                </form>
+                            </div>
+                            <!--<div class="red-font">-->
+                                <!--导入说明：-->
+                                <!--1：起运港、目的地港、船公司、中转港、20GP/40GP/40HQ、天数、开始日期不能为空。-->
+                                <!--<a style="cursor: pointer;" href="excelTemplates/freightshippingquotation.xlsx">模版下载</a>-->
+                            <!--</div>-->
+                        </div>
+
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal -->
+            </div>
+            <div class="btn_group">
+                <button id="BTN_900602001" type="button" onclick="receivableInvoice.invoiceCheck()" class="btn btn-info">
+                    领票登记
+                </button>
+                <button id="BTN_900603002" type="button" onclick="receivableInvoice.invoiceInvalid()" class="btn btn-info">
+                    作废
+                </button>
+                <button id="receivableInvoice_import" type="button" onclick="receivableInvoice.importExcel()" class="btn btn-info">
+                    开票信息导入
+                </button>
+                <button id="receivableInvoice_export" type="button" onclick="receivableInvoice.exportInvoice()" class="btn btn-info">
+                    开票导出
+                </button>
+                <!--<div class="btn-height btn-group" style="vertical-align: top;" id="AccountExchangeRate_export-copy"></div>-->
+                <!--<div class="btn-height btn-group" style="vertical-align: top;"  id="AccountExchangeRate_export-columnVisibility" ></div>-->
+            </div>
+
+            <div class="box datable-box">
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="receivableInvoiceTable" class="table table-bordered table-striped">
+                    </table>
+                </div>
+                <!-- /.box-body -->
+
+                <!--modify button-->
+
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- DataTables -->
+<script src="account/js/receivableInvoice.js"></script>
+<script src="account/js/public.js"></script>
+</div>

@@ -1,0 +1,150 @@
+<div id="tab_14_17" class="commonUsedWords basedata tab-page" role="tabpanel" onload="InitCommonUsedWords()">
+    <div class="content-header">
+        <!--<h1>-->
+            <!--基础资料-->
+            <!--<small>常用词汇</small>-->
+        <!--</h1>-->
+        <!--<ol class="breadcrumb">-->
+            <!--<li><a href="#"><i class="fa fa-dashboard"></i>基础资料</a></li>-->
+            <!--<li><a href="#">常用词汇</a></li>-->
+            <!--<li class="active">数据表格</li>-->
+        <!--</ol>-->
+        <div class="btn_group">
+
+            <button id="addCommonUsedWords" onclick="commonUsedWords.addCommonUsedWords()" class="btn btn-info">
+                新增
+            </button>
+
+            <button id="editCommonUsedWords" onclick="commonUsedWords.editCommonUsedWords()" class="btn btn-info">
+                修改
+            </button>
+
+            <button id="deleteCommonUsedWords" onclick="commonUsedWords.deleteCommonUsedWords()" class="btn btn-info">
+                删除
+            </button>
+            <!--<button id="refreshCommonUsedWords" onclick="commonUsedWords.doSearch()" class="btn btn-info">-->
+                <!--刷新-->
+            <!--</button>-->
+            <!--<button id="showCommonUsedWordsDetail" class="btn btn-info">-->
+                <!--详情-->
+            <!--</button>-->
+
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <!--begin search box-->
+                <div class="box">
+                    <div class="box-header">
+                        <h4 class="box-title">查询</h4>
+                        <div class="pull-right box-tools">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                <i class="fa fa-plus"></i></button>
+                            <!--<button type="button" class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove">-->
+                            <!--<i class="fa fa-times"></i></button>-->
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <form class="search-table form-inline" id="commonUsedWordsSearchForm" role="form">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>代码类型</label>
+                                    <input type="text" class="form-control" name="codeType">
+                                </div>
+                                <div class="col-md-4">
+                                    <label>编码名称</label>
+                                    <input type="text" class="form-control" name="codeName">
+                                </div>
+                            </div>
+                        </form>
+                        <div class="sm-wrqapper">
+                            <input type="button" class="btn btn-info btn-size" onclick="commonUsedWords.doSearch()" value="查找"/>
+
+                            <button class="btn btn-info search_reset" id="charge_reset">
+                                重置
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!--弹出框-->
+                <div class="modal fade" id="editCommonUsedWordsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close modal_close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="editCommonUsedWordsModalTitle">增加</h4>
+                            </div>
+                            <div class="modal-body" style="padding: 20px" id="editCommonUsedWordsModalBody">
+                                <form id="editCommonUsedWordsForm">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group"><label class="color-red">代码类型</label><input type="text" class="form-control" name="codeType"/></div>
+                                            <div class="form-group"><label>编码名称</label><input type="text" class="form-control" name="codeName"/></div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group"><label>编码宽度</label><input type="text" class="form-control" name="codeWidth"/></div>
+                                            <div class="form-group">
+                                                <label>相关类型</label>
+                                                <select  name="relatedType" class="form-control select2 select2-hidden-accessible" style="width:100%;" tabindex="-1" aria-hidden="true">
+                                                    <option value=""></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group"><label>编码描述</label><input type="text" class="form-control" name="description"/></div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group"><label>操作人</label><input type="text" class="form-control" name="amender" readonly/></div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group"><label>修改时间</label><input type="text" class="form-control" name="amendTime" readonly/></div>
+                                        </div>
+                                    </div>
+                                    <div  hidden="true"><input type="text" class="form-control" name="commonUsedWordsId" /><input type="text" class="form-control" name="amender" value="1" readonly/><input type="text" name="saveType" hidden="true"><input type="text" class="form-control" name="saveType" id="saveType"/></div>
+                                    <div class="modal-footer ">
+                                        <div class="sm-wrapper">
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+                                            <!--<button type="button" class="btn btn-primary" id="editCommonUsedWordsModalSubmit">确定</button>-->
+                                            <input type="submit" class="btn btn-primary" id="editCommonUsedWordsModalSubmit" value="确定"/>
+
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div>
+
+
+                <div class="box datable-box">
+
+                    <!-- /.box-header -->
+                    <div class="box-body">
+
+                        <table id="commonUsedWordsTable" class="table table-bordered table-striped">
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+
+                    <!--modify button-->
+
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- DataTables -->
+
+    <script src="basedata/js/public.js?v=201711090001"></script>
+    <script src="basedata/js/common_used_words.js?v=201711090001"></script>
+</div>

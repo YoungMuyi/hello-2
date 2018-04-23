@@ -1,0 +1,370 @@
+
+<div id="tab_2205" class="financialReimburse tab-page" role="tabpanel">
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <!--begin search box-->
+                <div class="box search-box">
+                    <div class="box-body">
+                        <form class="search-table form-inline" id="searchFinancialReimburseForm" role="form" style="height: 66px;overflow: hidden;">
+                            <div class="row" style="margin-bottom:10px;margin-left: 0px;">
+                                <div class="form-group" style="width: 28%;">
+                                    <label style="width: 50px">状态</label>
+                                    <select name="status" class="select2 select2-hidden-accessible" style="width: 70%;"  tabindex="-1" aria-hidden="true">
+                                        <option value=""></option>
+                                        <option value="已上报">已上报</option>
+                                        <option value="财务已审">财务已审</option>
+                                        <option value="业务已审">业务已审</option>
+                                        <option value="已报销">已报销</option>
+                                    </select>
+
+                                </div>
+                                <div class="form-group" style="width:28%;margin:auto 6%;">
+                                    <label style="width: 50px">费用名称</label>
+                                    <input type="text" class="form-control" style="width: 70%;"  name="feeName">
+                                </div>
+                                <div class="form-group" style="width: 28%;">
+                                    <label style="width: 50px">业务编号</label>
+                                    <input type="text" class="form-control" style="width: 70%;"  name="businessCode">
+                                </div>
+                            </div>
+                            <div class="row" style="margin-bottom:10px;margin-left: 0px;">
+                                <div class="form-group" style="width: 28%;">
+                                    <label style="width: 50px">客户名称</label>
+                                    <input type="text" class="form-control" style="width: 70%;"  name="customerName">
+                                </div>
+                            </div>
+                        </form>
+                        <div class="ldn-wrqapper">
+                            <input style="margin-right: 5px;" type="button" id="BTN_902206011" onclick="financialReimburse.doSearch()" class="btn btn-info btn-size"  value="查询"/>
+                            <button style="background-color: white;color:#000;border:1px solid #ccc;" class="btn btn-info search_reset" id="resetSearchFinancialReimburseForm">
+                                重置
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+                <!--end search box-->
+
+                <!--新增修改撤回查看详情模态框-->
+                <div class="modal fade" id="financialReimburseModal" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" style="width: 650px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close modal_close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="financialReimburseModalTitle">新增</h4>
+                            </div>
+                            <div class="modal-body" style="padding: 5px" id="financialReimburseModalBody">
+                                <!--收款详情表单-->
+                                <form id="financialReimburseModalForm1" class="form-inline">
+                                    <div class="form-group" style="width: 42%;margin-top: 10px;margin-left: 6%">
+                                        <label style="width: 28%">报销编号</label>
+                                        <input type="text" class="form-control" style="width: 68%;"  name="reimburseCode" readonly>
+                                    </div>
+                                    <div class="form-group" style="width: 42%;margin-top: 10px;margin-left: 10px">
+                                        <label style="width: 28%">申请人</label>
+                                        <input type="text" class="form-control" style="width: 68%;"  name="applicantName" readonly>
+                                    </div>
+                                    <div hidden="true">
+                                        <label>申请人ID</label>
+                                        <input type="text"  name="applicantId" >
+                                    </div>
+                                    <div class="form-group" style="width: 42%;margin-top: 10px;margin-left: 6%">
+                                        <label style="width: 28%">申请部门</label>
+                                        <input type="text" class="form-control" style="width: 68%;"  name="applyDepartment" readonly>
+                                    </div>
+                                    <div class="form-group" style="width: 42%;margin-top: 10px;margin-left: 10px">
+                                        <label style="width: 28%">申请时间</label>
+                                        <input type="text" class="form-control" style="width: 68%;"  name="applyDate" readonly>
+                                    </div>
+                                    <div class="form-group" style="width: 42%;margin-top: 10px;margin-left: 6%">
+                                        <label style="width: 28%">费用开始日期</label>
+                                        <input type="text" class="form-control beginDate" style="width: 68%;"  name="feeStartTime" id="feeStartTime">
+                                    </div>
+                                    <div class="form-group" style="width: 42%;margin-top: 10px;margin-left: 10px">
+                                        <label style="width: 28%">费用结束日期</label>
+                                        <input type="text" class="form-control endDate" style="width: 68%;"  name="feeEndTime" id="feeEndTime">
+                                    </div>
+                                    <div class="form-group" style="width: 42%;margin-top: 10px;margin-left: 6%">
+                                        <label style="width: 28%">客户名称</label>
+                                        <!--<select name="customerName" onchange="financialReimburseSelector2.selector2(this)" class="select2 select2-hidden-accessible" style="width: 68%;"  tabindex="-1" aria-hidden="true">-->
+                                            <!--<option value=""></option>-->
+                                        <!--</select>-->
+                                        <select name="customerName" onchange="financialReimburse.selector2(this)" class="select2 ;" style="width: 68%;"  tabindex="-1" aria-hidden="true">
+                                            <option value=""></option>
+                                        </select>
+                                        <!--<input type="text" class="form-control" style="width: 68%;"  name="customerName">-->
+                                    </div>
+                                    <div class="form-group" style="width: 42%;margin-top: 10px;margin-left: 10px">
+                                        <label style="width: 28%">业务编号</label>
+                                        <select name="businessId" class="select2 select2-hidden-accessible" style="width: 68%;"  tabindex="-1" aria-hidden="true">
+                                            <option value=""></option>
+                                        </select>
+                                        <!--<input type="text" class="form-control" style="width: 68%;"  name="businessId">-->
+                                    </div>
+                                    <div class="form-group" style="width: 42%;margin-top: 10px;margin-left: 6%">
+                                        <label style="width: 28%">相关项目</label>
+                                        <select name="relatedProject" class="select2 select2-hidden-accessible" style="width: 68%;"  tabindex="-1" aria-hidden="true">
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group" style="width: 42%;margin-top: 10px;margin-left: 10px">
+                                        <label style="width: 28%">备注</label>
+                                        <input type="text" class="form-control" style="width: 68%;"  name="remark">
+                                    </div>
+                                    <hr style="color: black; margin-top: 10px;margin-left: 3%;margin-right: 3%;margin-bottom: 10px;">
+                                    <div hidden="true"><label>存放报销明细</label>
+                                        <input type="text"  name="financialReimburseId"/>
+                                        <input type="text"  name="reimbursementDetails"/>
+                                        <input type="text"  name="reimburseAmount"/>
+                                        <!--<input type="text" name="billingApplyStatus">-->
+                                    </div>
+                                <!--</form>-->
+                                <!--核销详情表单-->
+                                <!--<form id="financialReimburseModalForm2" class="form-inline">-->
+                                    <!--报销明细table操作-->
+                                    <div class="sm-wrapper" style="position:absolute;margin-left: 75%; margin-top: 5px">
+                                        <button type="button" class="btn btn-primary" onclick="financialReimburse.addReimburseDetail()">添加</button>
+                                        <button type="button" class="btn btn-primary" onclick="financialReimburse.deleteReimburseDetail()">删除</button>
+                                    </div>
+                                    <div class="row" style="margin-left: 4%;height:35px;margin-right:4%;background-color: #E5E5E5;">
+                                        <h5 class="header" style="color: black; margin-left: 10px">报销明细</h5>
+
+                                    </div>
+
+                                    <!--核销详情datatable-->
+                                    <div class="box datable-box">
+                                        <div class="box-body">
+                                            <table align="center" border="1" cellspacing="0" cellpadding="0" style="border:1px solid #c6d3d6;width: 589px;margin-left: 4%" id="financialReimburseDetailTable" class="table table-condensed">
+                                                <thead>
+                                                <tr>
+                                                    <th style="width: 5%;"><input type="checkbox" class="checkAllSurcharge"></th>
+                                                    <th>费用名称</th>
+                                                    <th>费用代码</th>
+                                                    <th>费用日期</th>
+                                                    <th>票据张数</th>
+                                                    <th>金额</th>
+                                                    <th>摘要说明</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                            <!--<table id="writeOffDetailTable" class="table table-bordered table-striped">-->
+                                            <!--</table>-->
+                                        </div>
+                                    </div>
+
+                                    <div style="height: 50px">
+
+                                    </div>
+
+                                    <div class="modal-footer" style="margin-top: 20px">
+                                        <div class="sm-wrapper" >
+                                            <!--<input type="button" onclick="financialReimburse.submitFinancialReimburse()" class="btn btn-primary"  id="financialReimburseSubmit" value="提交"/>-->
+                                            <input type="submit" class="btn btn-primary"
+                                                   id="financialReimburseSubmit" value="提交"/>
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+                                            <!--<button type="button" class="btn btn-primary" id="editAccountExchangeRateModalSubmit">确定</button>-->
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div>
+                <!--打印模态框-->
+                <div class="modal fade" id="businessDetailModal" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" style="width: 600px; height: 100px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close modal_close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="businessDetailModalTitle">业务详情</h4>
+                            </div>
+                            <div class="modal-body" style="padding: 5px" id="businessDetailModalBody">
+                                <form id="businessDetailModalForm" class="form-inline" style="margin-top: 20px;margin-bottom: 50px;">
+                                    <div class="box datable-box">
+                                        <!-- /.box-header -->
+                                        <div class="box-body">
+                                            <table align="center" style="width: 400px;" id="businessDetailTable" class="table table-bordered table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th>业务编号</th>
+                                                    <th>费用名称</th>
+                                                    <th>应收币种</th>
+                                                    <th>应收金额</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!-- /.box-body -->
+
+                                        <!--modify button-->
+
+                                    </div>
+                                    <div hidden="true"><label>业务详情</label>
+                                        <input type="text"  name="receivableInvoiceId"/>
+                                    </div>
+                                </form>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div>
+
+                <!--查看详情模态框-->
+                <div class="modal fade" id="detailModal"
+                     tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close modal_close"
+                                        data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title"
+                                    id="detailModalTitle">报销明细-详情</h4>
+                            </div>
+                            <div class="modal-body" style="padding: 10px 20px 30px;" id="detailModalBody">
+                                <form id="detailForm" class="form-inline">
+                                    <div class="row" style="margin-bottom:10px;margin-left: 20px;">
+                                        <div class="form-group" style="width: 45%;">
+                                            <label style="width: 80px">报销编号:</label>
+                                            <input class="form-control" type="text"
+                                                   name="reimburseCode" style="width: 60%;background: white;" readonly />
+                                            <!--<span>111</span>-->
+                                        </div>
+                                        <div class="form-group" style="width:45%;">
+                                            <label style="width: 80px">申请人:</label>
+                                            <input class="form-control" type="text"
+                                                   name="applicantId" style="width: 60%;background: white;" readonly />
+                                            <!--<span>222</span>-->
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-bottom:10px;margin-left: 20px;">
+                                        <div class="form-group" style="width: 45%;">
+                                            <label style="width: 80px">申请部门:</label>
+                                            <input class="form-control" type="text"
+                                                   name="applyDepartment" style="width: 60%;background: white;" readonly />
+                                            <!--<span>111</span>-->
+                                        </div>
+                                        <div class="form-group" style="width:45%;">
+                                            <label style="width: 80px">申请时间:</label>
+                                            <input class="form-control" type="text"
+                                                   name="applyDate" style="width: 60%;background: white;" readonly />
+                                            <!--<span>222</span>-->
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-bottom:10px;margin-left: 20px;">
+                                        <div class="form-group" style="width: 45%;">
+                                            <label style="width: 80px">费用开始日期:</label>
+                                            <input class="form-control" type="text"
+                                                   name="feeStartTime" style="width: 60%;background: white;" readonly />
+                                            <!--<span>111</span>-->
+                                        </div>
+                                        <div class="form-group" style="width:45%;">
+                                            <label style="width: 80px">费用结束日期:</label>
+                                            <input class="form-control" type="text"
+                                                   name="feeEndTime" style="width: 60%;background: white;" readonly />
+                                            <!--<span>222</span>-->
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-bottom:10px;margin-left: 20px;">
+                                        <div class="form-group" style="width: 45%;">
+                                            <label style="width: 80px">客户名称:</label>
+                                            <input class="form-control" type="text"
+                                                   name="customerName" style="width: 60%;background: white;" readonly />
+                                            <!--<span>111</span>-->
+                                        </div>
+                                        <div class="form-group" style="width:45%;">
+                                            <label style="width: 80px">业务编号:</label>
+                                            <input class="form-control" type="text"
+                                                   name="businessCode" style="width: 60%;background: white;" readonly />
+                                            <!--<span>222</span>-->
+                                        </div>
+
+                                    </div>
+                                    <div class="row" style="margin-bottom:10px;margin-left: 20px;">
+                                        <div class="form-group" style="width: 45%;">
+                                            <label style="width: 80px">相关项目:</label>
+                                            <input class="form-control" type="text"
+                                                   name="relatedProject" style="width: 60%;background: white;" readonly />
+                                            <!--<span>111</span>-->
+                                        </div>
+                                        <div class="form-group" style="width:45%;">
+                                            <label style="width: 80px">备注:</label>
+                                            <input class="form-control" type="text"
+                                                   name="remark" style="width: 60%;background: white;" readonly />
+                                            <!--<span>222</span>-->
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-left: 10px;height:35px;margin-right:4%;background-color: #E5E5E5;">
+                                        <h5 class="header" style="color: black; margin-left: 10px">报销明细</h5>
+
+                                    </div>
+
+                                    <div class="box">
+                                        <!-- /.box-header -->
+                                        <div class="box-body no-padding">
+                                            <table id="detail2_table" class="table table-bordered" border="1"
+                                                   cellspacing="0" cellpadding="0"
+                                                   style="border: 1px solid #c6d3d6;width: 530px;margin-left: 10px">
+                                                <thead class="table-default">
+                                                    <th style="width: 20%;">费用名称</th>
+                                                    <th style="width: 20%;">费用日期</th>
+                                                    <th style="width: 20%;">票据张数</th>
+                                                    <th style="width: 20%;">金额</th>
+                                                    <th style="width: 20%;">摘要说明</th>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!-- /.box-body -->
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal -->
+                </div>
+
+                <div class="btn_group">
+                    <button id="BTN_90002001" type="button" onclick="financialReimburse.addFinancialReimburse()" class="btn btn-info">
+                        新增
+                    </button>
+                    <button id="BTN_90603002" type="button" onclick="financialReimburse.editFinancialReimburse()" class="btn btn-info">
+                        修改
+                    </button>
+                    <button id="BTN_90423003" type="button" onclick="financialReimburse.seeFinancialReimburseDetail()" class="btn btn-info">
+                        查看详情
+                    </button>
+                    <button id="BTN_90603004" type="button" onclick="" class="btn btn-info">
+                        打印
+                    </button>
+                </div>
+
+                <div class="box datable-box">
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table style="width: 100%" id="financialReimburseTable" class="table table-bordered table-striped">
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+
+
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- DataTables -->
+    <script src="account/js/financialReimburse.js"></script>
+    <script src="account/js/public.js"></script>
+</div>
